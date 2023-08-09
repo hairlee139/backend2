@@ -10,5 +10,6 @@ router.delete('/delete/:id', authMiddleWare, QuanNhanController.deleteQuanNhan)
 router.get('/get-all', QuanNhanController.getAllQuanNhan)
 router.post('/delete-many', authMiddleWare, QuanNhanController.deleteMany)
 router.get('/get-all-type', QuanNhanController.getAllType)
+router.get('/get-by-id/:id', QuanNhanController.getQuanNhanByQuanNhanId)
 
 module.exports = router

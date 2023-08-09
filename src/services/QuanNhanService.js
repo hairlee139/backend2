@@ -190,6 +190,30 @@ const getAllType = () => {
         }
     })
 }
+const getQuanNhanByQuanNhanId = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const quannhan = await QuanNhan.findOne({
+                QuanNhanId: id
+            });
+            
+            if (!quannhan) {
+                resolve({
+                    status: 'ERR',
+                    message: 'Quannhan is not defined'
+                });
+            }
+            
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data: quannhan
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 
 module.exports = {
     createQuanNhan,
@@ -198,5 +222,6 @@ module.exports = {
     deleteQuanNhan,
     getAllQuanNhan,
     deleteManyQuanNhan,
-    getAllType
+    getAllType,
+    getQuanNhanByQuanNhanId
 }

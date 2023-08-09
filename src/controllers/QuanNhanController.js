@@ -17,7 +17,25 @@ const createQuanNhan = async (req, res) => {
         })
     }
 }
+const getQuanNhanByQuanNhanId = async (req, res) => {
+    try {
+        const quannhanId = req.params.id // Lấy QuanNhanId của user đang đăng nhập từ request
+        const data = req.body
+        if (!quannhanId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User QuanNhanId is not defined'
+            });
+        }
 
+        const response = await QuanNhanService.getQuanNhanByQuanNhanId(quannhanId,data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
 const updateQuanNhan = async (req, res) => {
     try {
         const quannhanId = req.params.id
@@ -121,5 +139,6 @@ module.exports = {
     deleteQuanNhan,
     getAllQuanNhan,
     deleteMany,
-    getAllType
+    getAllType,
+    getQuanNhanByQuanNhanId 
 }

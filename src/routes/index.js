@@ -5,6 +5,7 @@ const PaymentRouter = require('./PaymentRouter')
 const QuanNhanRouter = require('./QuanNhanRouter')
 const LoaiQuanNhanRouter = require("./LoaiQuanNhanRouter")
 const QuanHamRouter = require("./QuanHamRouter")
+const DanhMucCapBac = require("./DanhMucCapBacRouter")
 const routes = (app) => {
     app.use('/api/user', UserRouter)
     app.use('/api/product', ProductRouter)
@@ -13,6 +14,7 @@ const routes = (app) => {
     app.use('/api/quannhan', QuanNhanRouter)
     app.use('/api/loaiquannhan', LoaiQuanNhanRouter)
     app.use('/api/quanham', QuanHamRouter)
+    app.use('/api/danhmuccapbac',DanhMucCapBac)
 }
 
 module.exports = routes
