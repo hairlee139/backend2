@@ -3,6 +3,7 @@ const danhmuccapbacSchema = new mongoose.Schema(
     {
         DanhMucCapBacId: {type: String},
         TenDanhMucCapBac: { type: String },
+        HienThi: { type: Boolean, default: true},
         GhiChu: {String}
     },
     {

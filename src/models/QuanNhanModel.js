@@ -14,10 +14,11 @@ const quannhanSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "QuanHam",
         },
-        DonVi: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-        },
+        // DonVi: {
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     ref: "User",
+        // },
+        DonVi:{type: String},
         LoaiQN: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "LoaiQuanNhan",

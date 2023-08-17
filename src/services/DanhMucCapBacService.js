@@ -2,7 +2,7 @@ const DanhMucCapBac = require("../models/DanhMucCapBacModel")
 
 const createDanhMucCapBac = (newDanhMucCapBac) => {
     return new Promise(async (resolve, reject) => {
-        const { DanhMucCapBacId, TenDanhMucCapBac,GhiChu } = newDanhMucCapBac
+        const { DanhMucCapBacId, TenDanhMucCapBac,HienThi,GhiChu } = newDanhMucCapBac
         try {
             const checkDanhMucCapBac = await DanhMucCapBac.findOne({
                 TenDanhMucCapBac: TenDanhMucCapBac
@@ -16,6 +16,7 @@ const createDanhMucCapBac = (newDanhMucCapBac) => {
             const newDanhMucCapBac = await DanhMucCapBac.create({
                 DanhMucCapBacId,
                 TenDanhMucCapBac,
+                HienThi,
                 GhiChu
             })
             if (newDanhMucCapBac) {
@@ -170,7 +171,7 @@ const getAllDanhMucCapBac = (limit, page, sort, filter) => {
 const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allType = await DanhMucCapBac.distinct('TenDanhMucCapBac')
+            const allType = await DanhMucCapBac.distinct('GhiChu')
             resolve({
                 status: 'OK',
                 message: 'Success',

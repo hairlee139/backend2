@@ -1,15 +1,15 @@
-const DanhMucCapBacService = require('../services/DanhMucCapBacService')
+const NhomQuyenService = require('../services/NhomQuyenService')
 
-const createDanhMucCapBac = async (req, res) => {
+const createNhomQuyen = async (req, res) => {
     try {
-        const { DanhMucCapBacId, TenDanhMucCapBac,HienThi, GhiChu } = req.body
-        if (!DanhMucCapBacId || !TenDanhMucCapBac) {
+        const { NhomQuyenId, TenNhomQuyen,HienThi,Quyen, GhiChu } = req.body
+        if (!NhomQuyenId || !TenNhomQuyen || !Quyen) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
             })
         }
-        const response = await DanhMucCapBacService.createDanhMucCapBac(req.body)
+        const response = await NhomQuyenService.createNhomQuyen(req.body)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -18,17 +18,17 @@ const createDanhMucCapBac = async (req, res) => {
     }
 }
 
-const updateDanhMucCapBac = async (req, res) => {
+const updateNhomQuyen = async (req, res) => {
     try {
-        const danhmuccapbacId = req.params.id
+        const nhomquyenId = req.params.id
         const data = req.body
-        if (!danhmuccapbacId) {
+        if (!nhomquyenId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'danhmuccapbacId is required'
+                message: 'nhomquyenId is required'
             })
         }
-        const response = await DanhMucCapBacService.updateDanhMucCapBac(danhmuccapbacId, data)
+        const response = await NhomQuyenService.updateNhomQuyen(nhomquyenId, data)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -37,16 +37,16 @@ const updateDanhMucCapBac = async (req, res) => {
     }
 }
 
-const getDetailsDanhMucCapBac = async (req, res) => {
+const getDetailsNhomQuyen = async (req, res) => {
     try {
-        const danhmuccapbacId = req.params.id
-        if (!danhmuccapbacId) {
+        const nhomquyenId = req.params.id
+        if (!nhomquyenId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The danhmuccapbacId is required'
+                message: 'The nhomquyenId is required'
             })
         }
-        const response = await DanhMucCapBacService.getDetailsDanhMucCapBac(danhmuccapbacId)
+        const response = await NhomQuyenService.getDetailsNhomQuyen(nhomquyenId)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -55,16 +55,16 @@ const getDetailsDanhMucCapBac = async (req, res) => {
     }
 }
 
-const deleteDanhMucCapBac = async (req, res) => {
+const deleteNhomQuyen = async (req, res) => {
     try {
-        const danhmuccapbacId = req.params.id
-        if (!danhmuccapbacId) {
+        const nhomquyenId = req.params.id
+        if (!nhomquyenId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The danhmuccapbacId is required'
+                message: 'The nhomquyenId is required'
             })
         }
-        const response = await DanhMucCapBacService.deleteDanhMucCapBac(danhmuccapbacId)
+        const response = await NhomQuyenService.deleteNhomQuyen(nhomquyenId)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -82,7 +82,7 @@ const deleteMany = async (req, res) => {
                 message: 'The ids is required'
             })
         }
-        const response = await DanhMucCapBacService.deleteManyDanhMucCapBac(ids)
+        const response = await NhomQuyenService.deleteManyNhomQuyen(ids)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -91,10 +91,10 @@ const deleteMany = async (req, res) => {
     }
 }
 
-const getAllDanhMucCapBac = async (req, res) => {
+const getAllNhomQuyen = async (req, res) => {
     try {
         const { limit, page, sort, filter } = req.query
-        const response = await DanhMucCapBacService.getAllDanhMucCapBac(Number(limit) || null, Number(page) || 0, sort, filter)
+        const response = await NhomQuyenService.getAllNhomQuyen(Number(limit) || null, Number(page) || 0, sort, filter)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -105,7 +105,7 @@ const getAllDanhMucCapBac = async (req, res) => {
 
 const getAllType = async (req, res) => {
     try {
-        const response = await DanhMucCapBacService.getAllType()
+        const response = await NhomQuyenService.getAllType()
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -115,11 +115,11 @@ const getAllType = async (req, res) => {
 }
 
 module.exports = {
-    createDanhMucCapBac,
-    updateDanhMucCapBac,
-    getDetailsDanhMucCapBac,
-    deleteDanhMucCapBac,
-    getAllDanhMucCapBac,
+    createNhomQuyen,
+    updateNhomQuyen,
+    getDetailsNhomQuyen,
+    deleteNhomQuyen,
+    getAllNhomQuyen,
     deleteMany,
     getAllType
 }

@@ -6,6 +6,10 @@ const QuanNhanRouter = require('./QuanNhanRouter')
 const LoaiQuanNhanRouter = require("./LoaiQuanNhanRouter")
 const QuanHamRouter = require("./QuanHamRouter")
 const DanhMucCapBac = require("./DanhMucCapBacRouter")
+const DanhMucQuyen = require('./DanhMucQuyenRouter')
+const NhomQuyen = require('./NhomQuyenRouter')
+const PhamViNhom = require('./PhamViNhomRouter')
+const QuaTrinhCongTac = require('./QuaTrinhCongTacRouter')
 const routes = (app) => {
     app.use('/api/user', UserRouter)
     app.use('/api/product', ProductRouter)
@@ -15,6 +19,10 @@ const routes = (app) => {
     app.use('/api/loaiquannhan', LoaiQuanNhanRouter)
     app.use('/api/quanham', QuanHamRouter)
     app.use('/api/danhmuccapbac',DanhMucCapBac)
+    app.use('/api/danhmucquyen',DanhMucQuyen)
+    app.use('/api/nhomquyen',NhomQuyen)
+    app.use('/api/phamvinhom',PhamViNhom)
+    app.use('/api/quatrinhcongtac',QuaTrinhCongTac)
 }
 
 module.exports = routes
