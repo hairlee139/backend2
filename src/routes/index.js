@@ -10,6 +10,11 @@ const DanhMucQuyen = require('./DanhMucQuyenRouter')
 const NhomQuyen = require('./NhomQuyenRouter')
 const PhamViNhom = require('./PhamViNhomRouter')
 const QuaTrinhCongTac = require('./QuaTrinhCongTacRouter')
+const AdminGroup = require('./AdminGroupRouter')
+const AdminGroupPriority = require('./AdminGroupPriorityRouter')
+const Priority = require('./PriorityRouter')
+const StaffAdminGroup = require('./StaffAdminGroupRouter')
+const StaffPriority = require('./StaffPriorityRouter')
 const routes = (app) => {
     app.use('/api/user', UserRouter)
     app.use('/api/product', ProductRouter)
@@ -23,6 +28,11 @@ const routes = (app) => {
     app.use('/api/nhomquyen',NhomQuyen)
     app.use('/api/phamvinhom',PhamViNhom)
     app.use('/api/quatrinhcongtac',QuaTrinhCongTac)
+    app.use('/api/admingroup',AdminGroup)
+    app.use('/api/admingrouppriority',AdminGroupPriority)
+    app.use('/api/priority',Priority)
+    app.use('/api/staffadmingroup',StaffAdminGroup)
+    app.use('/api/staffpriority',StaffPriority)
 }
 
 module.exports = routes
