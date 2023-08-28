@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 const staffadmingroupSchema = new mongoose.Schema(
     {
         objectcode: {
-            type: String,
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
             
           },
         thetype: {
@@ -10,7 +11,8 @@ const staffadmingroupSchema = new mongoose.Schema(
             
           },
         admingroupcode: {
-            type: String,
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "AdminGroup",
             
           },
         edituser: {

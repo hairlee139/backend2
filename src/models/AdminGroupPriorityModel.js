@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
 const admingroupprioritySchema = new mongoose.Schema(
     {
-        objectcode: { type: String },
+        objectcode: { type: mongoose.Schema.Types.ObjectId,
+            ref: "AdminGroup", },
         thetype: { type: String },
-        prioritycode: { type: String },
+        prioritycode: { type: mongoose.Schema.Types.ObjectId,
+            ref: "Priority", },
         forman: { type: Number },
         func: { type: Number },
         inherit: { type: Number },

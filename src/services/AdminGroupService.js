@@ -13,6 +13,7 @@ const createAdminGroup = (newAdminGroup) => {
                     message: 'Quan nhan is already'
                 })
             }
+            else{
             const newAdminGroup = await AdminGroup.create({
                 code, codeview, name,  note,  edituser,edittime, lock, lockdate,  whois, unitcode, departmentlist, leveltitlelist, allunit, admin, staff
             })
@@ -22,7 +23,7 @@ const createAdminGroup = (newAdminGroup) => {
                     message: 'SUCCESS',
                     data: newAdminGroup
                 })
-            }
+            }}
         } catch (e) {
             reject(e)
         }

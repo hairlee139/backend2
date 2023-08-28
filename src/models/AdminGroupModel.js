@@ -41,14 +41,14 @@ const admingroupSchema = new mongoose.Schema(
             type: String,
             
           },
-        departmentlist: {
+        departmentlist: [{
             type: String,
             
-          },
-        leveltitlelist: {
+          }],
+        leveltitlelist: [{
             type: String,
             
-          },
+          }],
         allunit: {
             type: Number,
             

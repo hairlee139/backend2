@@ -1,5 +1,5 @@
 const Priority = require("../models/PriorityModel")
-
+const AdminGroupPriority = require("../models/AdminGroupPriorityModel")
 const createPriority = (newPriority) => {
     return new Promise(async (resolve, reject) => {
         const { code,description,showauth,name,lock,whois,groupcode,syscomponentcode,unitcode,addn,edit,dele} = newPriority
@@ -13,6 +13,7 @@ const createPriority = (newPriority) => {
                     message: 'Quan nhan is already'
                 })
             }
+            else{
             const newPriority = await Priority.create({
                 code,description,showauth,name,lock,whois,groupcode,syscomponentcode,unitcode,addn,edit,dele
             })
@@ -23,6 +24,7 @@ const createPriority = (newPriority) => {
                     data: newPriority
                 })
             }
+        }
         } catch (e) {
             reject(e)
         }

@@ -1,5 +1,5 @@
 const PriorityService = require('../services/PriorityService')
-
+const AdminGroupPriorityService = require('../services/AdminGroupPriorityService')
 const createPriority = async (req, res) => {
     try {
         const { code,
@@ -113,7 +113,25 @@ const getAllPriority = async (req, res) => {
         })
     }
 }
-
+const getAllPriorityFromAdminGroup = async (req, res) => {
+    try {
+        const adminGroupId = req.params.id // Lấy adminGroupId của user đang đăng nhập từ request
+        const data = req.body
+        if (!adminGroupId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'adminGroupId is not defined'
+            });
+        }
+        console.log("ABC"+req.params.id)
+        const response = await AdminGroupPriorityService.getAllPriorityFromAdminGroup(adminGroupId,data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
 const getAllType = async (req, res) => {
     try {
         const response = await PriorityService.getAllType()
@@ -132,5 +150,6 @@ module.exports = {
     deletePriority,
     getAllPriority,
     deleteMany,
-    getAllType
+    getAllType,
+    getAllPriorityFromAdminGroup
 }

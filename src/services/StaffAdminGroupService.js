@@ -4,14 +4,15 @@ const createStaffAdminGroup = (newStaffAdminGroup) => {
     return new Promise(async (resolve, reject) => {
         const { objectcode ,
             thetype ,
-            staffadmingroupcode ,
+            admingroupcode ,
             edituser ,
             edittime,
             lock,
             whois} = newStaffAdminGroup
         try {
             const checkStaffAdminGroup = await StaffAdminGroup.findOne({
-                objectcode: objectcode
+                objectcode: objectcode,
+                admingroupcode: admingroupcode
             })
             if (checkStaffAdminGroup !== null) {
                 resolve({
@@ -19,10 +20,11 @@ const createStaffAdminGroup = (newStaffAdminGroup) => {
                     message: 'Quyen is already'
                 })
             }
+            else{
             const newStaffAdminGroup = await StaffAdminGroup.create({
                 objectcode ,
             thetype ,
-            staffadmingroupcode ,
+            admingroupcode ,
             edituser ,
             edittime,
             lock,
@@ -35,6 +37,7 @@ const createStaffAdminGroup = (newStaffAdminGroup) => {
                     data: newStaffAdminGroup
                 })
             }
+        }
         } catch (e) {
             reject(e)
         }

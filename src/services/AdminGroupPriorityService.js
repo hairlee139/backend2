@@ -22,14 +22,16 @@ const createAdminGroupPriority = (newAdminGroupPriority) => {
             dele } = newAdminGroupPriority
         try {
             const checkAdminGroupPriority = await AdminGroupPriority.findOne({
-                objectcode: objectcode
+                objectcode: objectcode,
+                prioritycode: prioritycode
             })
             if (checkAdminGroupPriority !== null) {
                 resolve({
                     status: 'ERR',
-                    message: 'Admin Group is already'
+                    message: 'Admin Group Priority is already'
                 })
             }
+            else{
             const newAdminGroupPriority = await AdminGroupPriority.create({
                 objectcode ,
                 thetype ,
@@ -56,13 +58,37 @@ const createAdminGroupPriority = (newAdminGroupPriority) => {
                     message: 'SUCCESS',
                     data: newAdminGroupPriority
                 })
-            }
+            }}
         } catch (e) {
             reject(e)
         }
     })
 }
+const getAllPriorityFromAdminGroup = (id)  => {
+    return new Promise(async (resolve, reject) => {
+         try {
+             console.log(id)
+             const priorityList = await AdminGroupPriority.find({
+                 code: id
+             }).populate("objectcode").populate("prioritycode");
+             console.log(id)
+             if (!priorityList || priorityList.length === 0) {
+                 resolve({
+                     status: 'ERR',
+                     message: 'No priorityList found for the given PriorityId'
+                 });
+             }
 
+             resolve({
+                 status: 'OK',
+                 message: 'SUCCESS',
+                 data:  priorityList
+             });
+         } catch (error) {
+             reject(error);
+         }
+     });
+ };
 const updateAdminGroupPriority = (id, data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -221,5 +247,6 @@ module.exports = {
     deleteAdminGroupPriority,
     getAllAdminGroupPriority,
     deleteManyAdminGroupPriority,
-    getAllType
+    getAllType,
+    getAllPriorityFromAdminGroup
 }

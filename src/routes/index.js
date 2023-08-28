@@ -15,6 +15,7 @@ const AdminGroupPriority = require('./AdminGroupPriorityRouter')
 const Priority = require('./PriorityRouter')
 const StaffAdminGroup = require('./StaffAdminGroupRouter')
 const StaffPriority = require('./StaffPriorityRouter')
+const PriorityFromQuanNhanId = require('./PriorityFromQuanNhanIdRouter')
 const routes = (app) => {
     app.use('/api/user', UserRouter)
     app.use('/api/product', ProductRouter)
@@ -33,6 +34,7 @@ const routes = (app) => {
     app.use('/api/priority',Priority)
     app.use('/api/staffadmingroup',StaffAdminGroup)
     app.use('/api/staffpriority',StaffPriority)
+    app.use('/api/priorityfromid',PriorityFromQuanNhanId)
 }
 
 module.exports = routes

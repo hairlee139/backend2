@@ -13,6 +13,7 @@ const createPhamViNhom = (newPhamViNhom) => {
                     message: 'TenPhamViNhom is already'
                 })
             }
+            else{
             const newPhamViNhom = await PhamViNhom.create({
                 PhamViNhomId,
                 TenPhamViNhom,
@@ -26,6 +27,7 @@ const createPhamViNhom = (newPhamViNhom) => {
                     data: newPhamViNhom
                 })
             }
+        }
         } catch (e) {
             reject(e)
         }

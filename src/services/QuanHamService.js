@@ -13,6 +13,7 @@ const createQuanHam = (newQuanHam) => {
                     message: 'Quan nhan is already'
                 })
             }
+            else{
             const newQuanHam = await QuanHam.create({
                 QuanHamId, 
                 TenQuanHam, 
@@ -26,7 +27,7 @@ const createQuanHam = (newQuanHam) => {
                     message: 'SUCCESS',
                     data: newQuanHam
                 })
-            }
+            }}
         } catch (e) {
             reject(e)
         }

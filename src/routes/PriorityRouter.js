@@ -10,5 +10,5 @@ router.delete('/delete/:id', authMiddleWare, PriorityController.deletePriority)
 router.get('/get-all', PriorityController.getAllPriority)
 router.post('/delete-many', authMiddleWare, PriorityController.deleteMany)
 router.get('/get-all-type', PriorityController.getAllType)
-
+router.get('/get-by-id/:id', PriorityController.getAllPriorityFromAdminGroup)
 module.exports = router

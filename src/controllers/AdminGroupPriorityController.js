@@ -1,5 +1,6 @@
 const AdminGroupPriorityService = require('../services/AdminGroupPriorityService')
-
+const AdminGroup = require('../models/AdminGroupModel')
+const AdminGroupPriority = require('../models/AdminGroupPriorityModel')
 const createAdminGroupPriority = async (req, res) => {
     try {
         const { objectcode ,
@@ -63,7 +64,9 @@ const getDetailsAdminGroupPriority = async (req, res) => {
                 message: 'The objectcode is required'
             })
         }
-        const response = await AdminGroupPriorityService.getDetailsAdminGroupPriority(objectcode)
+        console.log(objectcode)
+        // const response = await AdminGroupPriorityService.getDetailsAdminGroupPriority(objectcode).populate("objectcode")
+        const response = await AdminGroupPriority.findById(objectcode).populate("objectcode").populate("prioritycode")
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({

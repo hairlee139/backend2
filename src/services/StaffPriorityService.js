@@ -27,6 +27,7 @@ const createStaffPriority = (newStaffPriority) => {
                     message: 'Quyen is already'
                 })
             }
+            else{
             const newStaffPriority = await StaffPriority.create({
                 objectcode,
             thetype,
@@ -51,6 +52,7 @@ const createStaffPriority = (newStaffPriority) => {
                     data: newStaffPriority
                 })
             }
+        }
         } catch (e) {
             reject(e)
         }

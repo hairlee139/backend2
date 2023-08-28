@@ -13,6 +13,7 @@ const createNhomQuyen = (newNhomQuyen) => {
                     message: 'TenNhomQuyen is already'
                 })
             }
+            else{
             const newNhomQuyen = await NhomQuyen.create({
                 NhomQuyenId,
                 TenNhomQuyen,
@@ -27,6 +28,7 @@ const createNhomQuyen = (newNhomQuyen) => {
                     data: newNhomQuyen
                 })
             }
+        }
         } catch (e) {
             reject(e)
         }
