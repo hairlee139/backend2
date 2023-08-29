@@ -9,7 +9,7 @@ const quannhanSchema = new mongoose.Schema(
         DiaChi: { type: String },
         SoDienThoai: { type: String },
         Email: { type: String },
-        HoatDong: {type: String},
+        HoatDong: [{type: String}],
         QuanHam: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "QuanHam",
@@ -18,7 +18,7 @@ const quannhanSchema = new mongoose.Schema(
         //     type: mongoose.Schema.Types.ObjectId,
         //     ref: "User",
         // },
-        DonVi:{type: String},
+        DonVi:[{type: String}],
         LoaiQN: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "LoaiQuanNhan",

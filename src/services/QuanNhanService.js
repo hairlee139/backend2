@@ -13,6 +13,7 @@ const createQuanNhan = (newQuanNhan) => {
                     message: 'Hoten is already'
                 })
             }
+            else{
             const newQuanNhan = await QuanNhan.create({
                 QuanNhanId,
                 HoTen, 
@@ -33,7 +34,7 @@ const createQuanNhan = (newQuanNhan) => {
                     message: 'SUCCESS',
                     data: newQuanNhan
                 })
-            }
+            }}
         } catch (e) {
             reject(e)
         }

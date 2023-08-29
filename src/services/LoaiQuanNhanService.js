@@ -13,6 +13,7 @@ const createLoaiQuanNhan = (newLoaiQuanNhan) => {
                     message: 'TenLoaiQuanNhan is already'
                 })
             }
+            else{
             const newLoaiQuanNhan = await LoaiQuanNhan.create({
                 LoaiQuanNhanId,
                 TenLoaiQuanNhan,
@@ -25,6 +26,7 @@ const createLoaiQuanNhan = (newLoaiQuanNhan) => {
                     data: newLoaiQuanNhan
                 })
             }
+        }
         } catch (e) {
             reject(e)
         }

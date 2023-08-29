@@ -10,24 +10,12 @@ const DanhMucQuyen = require('./DanhMucQuyenRouter')
 const NhomQuyen = require('./NhomQuyenRouter')
 const PhamViNhom = require('./PhamViNhomRouter')
 const QuaTrinhCongTac = require('./QuaTrinhCongTacRouter')
-
-const DanhMucCapBac = require("./DanhMucCapBacRouter")
-const DanhMucChucVu = require("./DanhMucChucVuRouter")
-const DanhMucHocHam = require("./DanhMucHocHamRouter")
-const DanhMucHocVi = require("./DanhMucHocViRouter")
-const DanhMucCDCMKT = require("./DanhMucCDCMKTRouter")
-const DanhMucKhenThuong = require("./DanhMucHinhThucKhenThuongRouter")
-const DanhMucKyLuat = require("./DanhMucHinhThucKyLuatRouter")
-const DanhMucLoaiDonVi = require("./DanhMucLoaiDonViRouter")
-
-const DanhMucTinh = require("./DanhMucTinhRouter")
-const DanhMucHuyen = require("./DanhMucHuyenRouter")
-const DanhMucXa = require("./DanhMucXaRouter")
-const DanhMucTonGiao = require("./DanhMucTonGiaoRouter")
-const DanhMucDanToc = require("./DanhMucDanTocRouter")
-const DanhMucKhuVucUT = require("./DanhMucKhuVucUTRouter")
-const DanhMucCheDoUT = require("./DanhMucCheDoUTRouter")
-
+const AdminGroup = require('./AdminGroupRouter')
+const AdminGroupPriority = require('./AdminGroupPriorityRouter')
+const Priority = require('./PriorityRouter')
+const StaffAdminGroup = require('./StaffAdminGroupRouter')
+const StaffPriority = require('./StaffPriorityRouter')
+const PriorityFromQuanNhanId = require('./PriorityFromQuanNhanIdRouter')
 const routes = (app) => {
     app.use('/api/user', UserRouter)
     app.use('/api/product', ProductRouter)
@@ -36,30 +24,17 @@ const routes = (app) => {
     app.use('/api/quannhan', QuanNhanRouter)
     app.use('/api/loaiquannhan', LoaiQuanNhanRouter)
     app.use('/api/quanham', QuanHamRouter)
-
+    // app.use('/api/danhmuccapbac', DanhMucCapBac)
     app.use('/api/danhmucquyen', DanhMucQuyen)
     app.use('/api/nhomquyen', NhomQuyen)
     app.use('/api/phamvinhom', PhamViNhom)
     app.use('/api/quatrinhcongtac', QuaTrinhCongTac)
-    //tổ chức nhân sự
-    app.use('/api/danhmuccapbac', DanhMucCapBac)
-    app.use('/api/danhmucchucvu', DanhMucChucVu)
-    app.use('/api/danhmuchocham', DanhMucHocHam)
-    app.use('/api/danhmuchocvi', DanhMucHocVi)
-    app.use('/api/danhmuccdcmkt', DanhMucCDCMKT)
-    app.use('/api/danhmucloaidonvi', DanhMucLoaiDonVi)
-    app.use('/api/danhmuckhenthuong', DanhMucKhenThuong)
-    app.use('/api/danhmuckyluat', DanhMucKyLuat)
-
-    //danh mục chung
-    app.use('/api/danhmuctinh', DanhMucTinh)
-    app.use('/api/danhmuchuyen', DanhMucHuyen)
-    app.use('/api/danhmucxa', DanhMucXa)
-    app.use('/api/danhmucdantoc', DanhMucDanToc)
-    app.use('/api/danhmuctongiao', DanhMucTonGiao)
-    app.use('/api/danhmuckhuvucut', DanhMucKhuVucUT)
-    app.use('/api/danhmucchedout', DanhMucCheDoUT)
-
+    app.use('/api/admingroup', AdminGroup)
+    app.use('/api/admingrouppriority', AdminGroupPriority)
+    app.use('/api/priority', Priority)
+    app.use('/api/staffadmingroup', StaffAdminGroup)
+    app.use('/api/staffpriority', StaffPriority)
+    app.use('/api/priorityfromid', PriorityFromQuanNhanId)
 }
 
 module.exports = routes

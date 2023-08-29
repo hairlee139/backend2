@@ -1,57 +1,54 @@
-const QuanHam = require("../models/QuanHamModel")
-
-const createQuanHam = (newQuanHam) => {
+const Priority = require("../models/PriorityModel")
+const AdminGroupPriority = require("../models/AdminGroupPriorityModel")
+const createPriority = (newPriority) => {
     return new Promise(async (resolve, reject) => {
-        const { QuanHamId, TenQuanHam, NgayNhan,  NgayKT,  MaQN } = newQuanHam
+        const { code,description,showauth,name,lock,whois,groupcode,syscomponentcode,unitcode,addn,edit,dele} = newPriority
         try {
-            const checkQuanHam = await QuanHam.findOne({
-                MaQN: MaQN
+            const checkPriority = await Priority.findOne({
+                code: code
             })
-            if (checkQuanHam !== null) {
+            if (checkPriority !== null) {
                 resolve({
                     status: 'ERR',
                     message: 'Quan nhan is already'
                 })
             }
             else{
-            const newQuanHam = await QuanHam.create({
-                QuanHamId, 
-                TenQuanHam, 
-                NgayNhan,  
-                NgayKT,  
-                MaQN
+            const newPriority = await Priority.create({
+                code,description,showauth,name,lock,whois,groupcode,syscomponentcode,unitcode,addn,edit,dele
             })
-            if (newQuanHam) {
+            if (newPriority) {
                 resolve({
                     status: 'OK',
                     message: 'SUCCESS',
-                    data: newQuanHam
+                    data: newPriority
                 })
-            }}
+            }
+        }
         } catch (e) {
             reject(e)
         }
     })
 }
 
-const updateQuanHam = (id, data) => {
+const updatePriority = (id, data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkQuanHam = await QuanHam.findOne({
+            const checkPriority = await Priority.findOne({
                 _id: id
             })
-            if (checkQuanHam === null) {
+            if (checkPriority === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'Quanham is not defined'
+                    message: 'Admingroup is not defined'
                 })
             }
 
-            const updatedQuanHam = await QuanHam.findByIdAndUpdate(id, data, { new: true })
+            const updatedPriority = await Priority.findByIdAndUpdate(id, data, { new: true })
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data: updatedQuanHam
+                data: updatedPriority
             })
         } catch (e) {
             reject(e)
@@ -59,23 +56,23 @@ const updateQuanHam = (id, data) => {
     })
 }
 
-const deleteQuanHam = (id) => {
+const deletePriority = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkQuanHam = await QuanHam.findOne({
+            const checkPriority = await Priority.findOne({
                 _id: id
             })
-            if (checkQuanHam === null) {
+            if (checkPriority === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'Quanham is not defined'
+                    message: 'Admingroup is not defined'
                 })
             }
 
-            await QuanHam.findByIdAndDelete(id)
+            await Priority.findByIdAndDelete(id)
             resolve({
                 status: 'OK',
-                message: 'Delete Quanham success',
+                message: 'Delete Admingroup success',
             })
         } catch (e) {
             reject(e)
@@ -83,13 +80,13 @@ const deleteQuanHam = (id) => {
     })
 }
 
-const deleteManyQuanHam = (ids) => {
+const deleteManyPriority = (ids) => {
     return new Promise(async (resolve, reject) => {
         try {
-            await QuanHam.deleteMany({ _id: ids })
+            await Priority.deleteMany({ _id: ids })
             resolve({
                 status: 'OK',
-                message: 'Delete Quanham success',
+                message: 'Delete Admingroup success',
             })
         } catch (e) {
             reject(e)
@@ -97,23 +94,23 @@ const deleteManyQuanHam = (ids) => {
     })
 }
 
-const getDetailsQuanHam = (id) => {
+const getDetailsPriority = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const quanham = await QuanHam.findOne({
+            const admingroup = await Priority.findOne({
                 _id: id
             })
-            if (quanham === null) {
+            if (admingroup === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'Quanham is not defined'
+                    message: 'Admingroup is not defined'
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data: quanham
+                data: admingroup
             })
         } catch (e) {
             reject(e)
@@ -121,48 +118,48 @@ const getDetailsQuanHam = (id) => {
     })
 }
 
-const getAllQuanHam = (limit, page, sort, filter) => {
+const getAllPriority = (limit, page, sort, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const totalQuanHam = await QuanHam.count()
-            let allQuanHam = []
+            const totalPriority = await Priority.count()
+            let allPriority = []
             if (filter) {
                 const label = filter[0];
-                const allObjectFilter = await QuanHam.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+                const allObjectFilter = await Priority.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
                 resolve({
                     status: 'OK',
                     message: 'Success',
                     data: allObjectFilter,
-                    total: totalQuanHam,
+                    total: totalPriority,
                     pageCurrent: Number(page + 1),
-                    totalPage: Math.ceil(totalQuanHam / limit)
+                    totalPage: Math.ceil(totalPriority / limit)
                 })
             }
             if (sort) {
                 const objectSort = {}
                 objectSort[sort[1]] = sort[0]
-                const allQuanHamSort = await QuanHam.find().limit(limit).skip(page * limit).sort(objectSort).sort({createdAt: -1, updatedAt: -1})
+                const allPrioritySort = await Priority.find().limit(limit).skip(page * limit).sort(objectSort).sort({createdAt: -1, updatedAt: -1})
                 resolve({
                     status: 'OK',
                     message: 'Success',
-                    data: allQuanHamSort,
-                    total: totalQuanHam,
+                    data: allPrioritySort,
+                    total: totalPriority,
                     pageCurrent: Number(page + 1),
-                    totalPage: Math.ceil(totalQuanHam / limit)
+                    totalPage: Math.ceil(totalPriority / limit)
                 })
             }
             if(!limit) {
-                allQuanHam = await QuanHam.find().sort({createdAt: -1, updatedAt: -1})
+                allPriority = await Priority.find().sort({createdAt: -1, updatedAt: -1})
             }else {
-                allQuanHam = await QuanHam.find().limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+                allPriority = await Priority.find().limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
             }
             resolve({
                 status: 'OK',
                 message: 'Success',
-                data: allQuanHam,
-                total: totalQuanHam,
+                data: allPriority,
+                total: totalPriority,
                 pageCurrent: Number(page + 1),
-                totalPage: Math.ceil(totalQuanHam / limit)
+                totalPage: Math.ceil(totalPriority / limit)
             })
         } catch (e) {
             reject(e)
@@ -173,7 +170,7 @@ const getAllQuanHam = (limit, page, sort, filter) => {
 const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allType = await QuanHam.distinct('TenQuanHam')
+            const allType = await Priority.distinct('objectcode')
             resolve({
                 status: 'OK',
                 message: 'Success',
@@ -186,11 +183,11 @@ const getAllType = () => {
 }
 
 module.exports = {
-    createQuanHam,
-    updateQuanHam,
-    getDetailsQuanHam,
-    deleteQuanHam,
-    getAllQuanHam,
-    deleteManyQuanHam,
+    createPriority,
+    updatePriority,
+    getDetailsPriority,
+    deletePriority,
+    getAllPriority,
+    deleteManyPriority,
     getAllType
 }
