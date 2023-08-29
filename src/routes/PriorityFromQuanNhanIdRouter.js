@@ -7,4 +7,5 @@ router.get('/get-by-id/:id', PriorityFromQuanNhanIdController.getChucVuDonViFrom
 router.get('/admingroupfromchucvudonvi/:departmentlist/:leveltitlelist', PriorityFromQuanNhanIdController.getAdminGroupFromChucVuDonVi);
 router.get('/admingroupbyuserid/:id', PriorityFromQuanNhanIdController.getAdminGroupCodeFromUser);
 router.get('/getpriorityfromuser/:id', PriorityFromQuanNhanIdController.getPriorityFromUser);
+router.get('/priorityfromadmingroup/:id', PriorityFromQuanNhanIdController.getAllPriorityFromAdminGroup)
 module.exports = router

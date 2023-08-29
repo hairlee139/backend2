@@ -69,7 +69,7 @@ const getAllPriorityFromAdminGroup = (id)  => {
          try {
              console.log(id)
              const priorityList = await AdminGroupPriority.find({
-                 code: id
+                 objectcode: id
              }).populate("objectcode").populate("prioritycode");
              console.log(id)
              if (!priorityList || priorityList.length === 0) {

@@ -2,25 +2,56 @@ const AdminGroupPriority = require("../models/AdminGroupPriorityModel")
 const StaffAdminGroup = require("../models/StaffAdminGroupModel")
 const QuanNhan = require("../models/QuanNhanModel")
 const AdminGroup = require("../models/AdminGroupModel")
-const getAllPriorityFromAdminGroup = (id)  => {
+// const getAllPriorityFromAdminGroup = (id)  => {
+//     return new Promise(async (resolve, reject) => {
+//          try {
+//              console.log(id)
+//              const priorityList = await AdminGroupPriority.find({
+//                  objectcode: id
+//              }).populate("objectcode").populate("prioritycode");
+//              console.log(id)
+//              if (!priorityList || priorityList.length === 0) {
+//                  resolve({
+//                      status: 'ERR',
+//                      message: 'No priorityList found for the given PriorityId'
+//                  });
+//              }
+             
+//              resolve({
+//                  status: 'OK',
+//                  message: 'SUCCESS',
+//                  data:  priorityList
+//              });
+//          } catch (error) {
+//              reject(error);
+//          }
+//      });
+//  };
+ const getAllPriorityFromAdminGroup = (id)  => {
     return new Promise(async (resolve, reject) => {
          try {
-             console.log(id)
+             
              const priorityList = await AdminGroupPriority.find({
-                 code: id
+                 objectcode: id
              }).populate("objectcode").populate("prioritycode");
-             console.log(id)
+             console.log("hi"+id)
              if (!priorityList || priorityList.length === 0) {
                  resolve({
                      status: 'ERR',
                      message: 'No priorityList found for the given PriorityId'
                  });
              }
-             
+             const codeValues = priorityList.map(item => ({
+                code: item.prioritycode.code,
+                description: item.prioritycode.description,
+                addn: item.prioritycode.addn,
+                edit: item.prioritycode.edit,
+                dele: item.prioritycode.dele,
+            }));
              resolve({
                  status: 'OK',
                  message: 'SUCCESS',
-                 data:  priorityList
+                 data:  codeValues
              });
          } catch (error) {
              reject(error);

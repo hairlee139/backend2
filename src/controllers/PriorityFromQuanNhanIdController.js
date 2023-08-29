@@ -12,7 +12,7 @@ const getAllPriorityFromAdminGroup = async (req, res) => {
             });
         }
         console.log("ABC"+req.params.id)
-        const response = await AdminGroupPriorityService.getAllPriorityFromAdminGroup(adminGroupId,data);
+        const response = await PriorityFromQuanNhanId.getAllPriorityFromAdminGroup(adminGroupId,data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
