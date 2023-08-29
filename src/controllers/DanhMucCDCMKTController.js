@@ -1,0 +1,125 @@
+const DanhMucCDCMKTService = require('../services/DanhMucCDCMKTService')
+
+const createDanhMucCDCMKT = async (req, res) => {
+    try {
+        const { DanhMucCDCMKTId, TenDanhMucCDCMKT, HienThi, GhiChu } = req.body
+        if (!DanhMucCDCMKTId || !TenDanhMucCDCMKT) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'The input is required'
+            })
+        }
+        const response = await DanhMucCDCMKTService.createDanhMucCDCMKT(req.body)
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+const updateDanhMucCDCMKT = async (req, res) => {
+    try {
+        const danhmuccdcmktId = req.params.id
+        const data = req.body
+        if (!danhmuccdcmktId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'danhmuccdcmktId is required'
+            })
+        }
+        const response = await DanhMucCDCMKTService.updateDanhMucCDCMKT(danhmuccdcmktId, data)
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+const getDetailsDanhMucCDCMKT = async (req, res) => {
+    try {
+        const danhmuccdcmktId = req.params.id
+        if (!danhmuccdcmktId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'The danhmuccdcmktId is required'
+            })
+        }
+        const response = await DanhMucCDCMKTService.getDetailsDanhMucCDCMKT(danhmuccdcmktId)
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+const deleteDanhMucCDCMKT = async (req, res) => {
+    try {
+        const danhmuccdcmktId = req.params.id
+        if (!danhmuccdcmktId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'The danhmuccdcmktId is required'
+            })
+        }
+        const response = await DanhMucCDCMKTService.deleteDanhMucCDCMKT(danhmuccdcmktId)
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+const deleteMany = async (req, res) => {
+    try {
+        const ids = req.body.ids
+        if (!ids) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'The ids is required'
+            })
+        }
+        const response = await DanhMucCDCMKTService.deleteManyDanhMucCDCMKT(ids)
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+const getAllDanhMucCDCMKT = async (req, res) => {
+    try {
+        const { limit, page, sort, filter } = req.query
+        const response = await DanhMucCDCMKTService.getAllDanhMucCDCMKT(Number(limit) || null, Number(page) || 0, sort, filter)
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+const getAllType = async (req, res) => {
+    try {
+        const response = await DanhMucCDCMKTService.getAllType()
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+module.exports = {
+    createDanhMucCDCMKT,
+    updateDanhMucCDCMKT,
+    getDetailsDanhMucCDCMKT,
+    deleteDanhMucCDCMKT,
+    getAllDanhMucCDCMKT,
+    deleteMany,
+    getAllType
+}

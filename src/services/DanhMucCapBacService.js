@@ -2,7 +2,7 @@ const DanhMucCapBac = require("../models/DanhMucCapBacModel")
 
 const createDanhMucCapBac = (newDanhMucCapBac) => {
     return new Promise(async (resolve, reject) => {
-        const { DanhMucCapBacId, TenDanhMucCapBac,HienThi,GhiChu } = newDanhMucCapBac
+        const { DanhMucCapBacId, TenDanhMucCapBac, HienThi, GhiChu } = newDanhMucCapBac
         try {
             const checkDanhMucCapBac = await DanhMucCapBac.findOne({
                 TenDanhMucCapBac: TenDanhMucCapBac
@@ -126,7 +126,7 @@ const getAllDanhMucCapBac = (limit, page, sort, filter) => {
             let allDanhMucCapBac = []
             if (filter) {
                 const label = filter[0];
-                const allObjectFilter = await DanhMucCapBac.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+                const allObjectFilter = await DanhMucCapBac.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -139,7 +139,7 @@ const getAllDanhMucCapBac = (limit, page, sort, filter) => {
             if (sort) {
                 const objectSort = {}
                 objectSort[sort[1]] = sort[0]
-                const allDanhMucCapBacSort = await DanhMucCapBac.find().limit(limit).skip(page * limit).sort(objectSort).sort({createdAt: -1, updatedAt: -1})
+                const allDanhMucCapBacSort = await DanhMucCapBac.find().limit(limit).skip(page * limit).sort(objectSort).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -149,10 +149,10 @@ const getAllDanhMucCapBac = (limit, page, sort, filter) => {
                     totalPage: Math.ceil(totalDanhMucCapBac / limit)
                 })
             }
-            if(!limit) {
-                allDanhMucCapBac = await DanhMucCapBac.find().sort({createdAt: -1, updatedAt: -1})
-            }else {
-                allDanhMucCapBac = await DanhMucCapBac.find().limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+            if (!limit) {
+                allDanhMucCapBac = await DanhMucCapBac.find().sort({ createdAt: -1, updatedAt: -1 })
+            } else {
+                allDanhMucCapBac = await DanhMucCapBac.find().limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
             }
             resolve({
                 status: 'OK',

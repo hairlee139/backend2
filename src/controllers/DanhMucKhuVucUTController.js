@@ -1,15 +1,15 @@
-const DanhMucLoaiDonViService = require('../services/DanhMucLoaiDonViService')
+const DanhMucKhuVucUTService = require('../services/DanhMucKhuVucUTService')
 
-const createDanhMucLoaiDonVi = async (req, res) => {
+const createDanhMucKhuVucUT = async (req, res) => {
     try {
-        const { DanhMucLoaiDonViId, TenDanhMucLoaiDonVi, HienThi, GhiChu } = req.body
-        if (!DanhMucLoaiDonViId || !TenDanhMucLoaiDonVi) {
+        const { DanhMucKhuVucUTId, TenDanhMucKhuVucUT, HienThi, GhiChu } = req.body
+        if (!DanhMucKhuVucUTId || !TenDanhMucKhuVucUT) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
             })
         }
-        const response = await DanhMucLoaiDonViService.createDanhMucLoaiDonVi(req.body)
+        const response = await DanhMucKhuVucUTService.createDanhMucKhuVucUT(req.body)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -18,17 +18,17 @@ const createDanhMucLoaiDonVi = async (req, res) => {
     }
 }
 
-const updateDanhMucLoaiDonVi = async (req, res) => {
+const updateDanhMucKhuVucUT = async (req, res) => {
     try {
-        const danhmucloaidonviId = req.params.id
+        const danhmuckhuvucutId = req.params.id
         const data = req.body
-        if (!danhmucloaidonviId) {
+        if (!danhmuckhuvucutId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'danhmucloaidonviId is required'
+                message: 'danhmuckhuvucutId is required'
             })
         }
-        const response = await DanhMucLoaiDonViService.updateDanhMucLoaiDonVi(danhmucloaidonviId, data)
+        const response = await DanhMucKhuVucUTService.updateDanhMucKhuVucUT(danhmuckhuvucutId, data)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -37,16 +37,16 @@ const updateDanhMucLoaiDonVi = async (req, res) => {
     }
 }
 
-const getDetailsDanhMucLoaiDonVi = async (req, res) => {
+const getDetailsDanhMucKhuVucUT = async (req, res) => {
     try {
-        const danhmucloaidonviId = req.params.id
-        if (!danhmucloaidonviId) {
+        const danhmuckhuvucutId = req.params.id
+        if (!danhmuckhuvucutId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The danhmucloaidonviId is required'
+                message: 'The danhmuckhuvucutId is required'
             })
         }
-        const response = await DanhMucLoaiDonViService.getDetailsDanhMucLoaiDonVi(danhmucloaidonviId)
+        const response = await DanhMucKhuVucUTService.getDetailsDanhMucKhuVucUT(danhmuckhuvucutId)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -55,16 +55,16 @@ const getDetailsDanhMucLoaiDonVi = async (req, res) => {
     }
 }
 
-const deleteDanhMucLoaiDonVi = async (req, res) => {
+const deleteDanhMucKhuVucUT = async (req, res) => {
     try {
-        const danhmucloaidonviId = req.params.id
-        if (!danhmucloaidonviId) {
+        const danhmuckhuvucutId = req.params.id
+        if (!danhmuckhuvucutId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The danhmucloaidonviId is required'
+                message: 'The danhmuckhuvucutId is required'
             })
         }
-        const response = await DanhMucLoaiDonViService.deleteDanhMucLoaiDonVi(danhmucloaidonviId)
+        const response = await DanhMucKhuVucUTService.deleteDanhMucKhuVucUT(danhmuckhuvucutId)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -82,7 +82,7 @@ const deleteMany = async (req, res) => {
                 message: 'The ids is required'
             })
         }
-        const response = await DanhMucLoaiDonViService.deleteManyDanhMucLoaiDonVi(ids)
+        const response = await DanhMucKhuVucUTService.deleteManyDanhMucKhuVucUT(ids)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -91,10 +91,10 @@ const deleteMany = async (req, res) => {
     }
 }
 
-const getAllDanhMucLoaiDonVi = async (req, res) => {
+const getAllDanhMucKhuVucUT = async (req, res) => {
     try {
         const { limit, page, sort, filter } = req.query
-        const response = await DanhMucLoaiDonViService.getAllDanhMucLoaiDonVi(Number(limit) || null, Number(page) || 0, sort, filter)
+        const response = await DanhMucKhuVucUTService.getAllDanhMucKhuVucUT(Number(limit) || null, Number(page) || 0, sort, filter)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -105,7 +105,7 @@ const getAllDanhMucLoaiDonVi = async (req, res) => {
 
 const getAllType = async (req, res) => {
     try {
-        const response = await DanhMucLoaiDonViService.getAllType()
+        const response = await DanhMucKhuVucUTService.getAllType()
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -115,11 +115,11 @@ const getAllType = async (req, res) => {
 }
 
 module.exports = {
-    createDanhMucLoaiDonVi,
-    updateDanhMucLoaiDonVi,
-    getDetailsDanhMucLoaiDonVi,
-    deleteDanhMucLoaiDonVi,
-    getAllDanhMucLoaiDonVi,
+    createDanhMucKhuVucUT,
+    updateDanhMucKhuVucUT,
+    getDetailsDanhMucKhuVucUT,
+    deleteDanhMucKhuVucUT,
+    getAllDanhMucKhuVucUT,
     deleteMany,
     getAllType
 }
