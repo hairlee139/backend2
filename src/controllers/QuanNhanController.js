@@ -2,7 +2,7 @@ const QuanNhanService = require('../services/QuanNhanService')
 
 const createQuanNhan = async (req, res) => {
     try {
-        const { QuanNhanId, HoTen, NgaySinh, GioiTinh, QueQuan, DiaChi, SoDienThoai, Email, HoatDong, QuanHam, DonVi, LoaiQN  } = req.body
+        const { QuanNhanId, HoTen, NgaySinh, GioiTinh, QueQuan, DiaChi, SoDienThoai, Email, HoatDong, QuanHam, DonVi, LoaiQN } = req.body
         if (!QuanNhanId || !HoTen || !NgaySinh || !GioiTinh || !QueQuan || !DiaChi || !HoatDong) {
             return res.status(200).json({
                 status: 'ERR',
@@ -28,7 +28,7 @@ const getQuanNhanByQuanNhanId = async (req, res) => {
             });
         }
 
-        const response = await QuanNhanService.getQuanNhanByQuanNhanId(quannhanId,data);
+        const response = await QuanNhanService.getQuanNhanByQuanNhanId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -47,7 +47,7 @@ const getQuanNhanFromDonVi = async (req, res) => {
             });
         }
 
-        const response = await QuanNhanService.getQuanNhanFromDonVi(donviId,data);
+        const response = await QuanNhanService.getQuanNhanFromDonVi(donviId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
