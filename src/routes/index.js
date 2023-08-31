@@ -5,7 +5,7 @@ const PaymentRouter = require('./PaymentRouter')
 const QuanNhanRouter = require('./QuanNhanRouter')
 const LoaiQuanNhanRouter = require("./LoaiQuanNhanRouter")
 const QuanHamRouter = require("./QuanHamRouter")
-
+const DanhMucCapBac = require("./DanhMucCapBacRouter")
 const DanhMucQuyen = require('./DanhMucQuyenRouter')
 const NhomQuyen = require('./NhomQuyenRouter')
 const PhamViNhom = require('./PhamViNhomRouter')
@@ -16,6 +16,10 @@ const Priority = require('./PriorityRouter')
 const StaffAdminGroup = require('./StaffAdminGroupRouter')
 const StaffPriority = require('./StaffPriorityRouter')
 const PriorityFromQuanNhanId = require('./PriorityFromQuanNhanIdRouter')
+const DonVi = require('./DonViRouter')
+const KieuDonVi = require('./KieuDonViRouter')
+const ChucVu = require('./ChucVuRouter')
+const ChucVuDonVi = require('./ChucVuDonViRouter')
 
 const DanhMucCapBac = require("./DanhMucCapBacRouter")
 const DanhMucCDCMKT = require("./DanhMucCDCMKTRouter")
@@ -34,7 +38,6 @@ const DanhMucDanToc = require("./DanhMucDanTocRouter")
 const DanhMucCheDoUT = require("./DanhMucCheDoUTRouter")
 const DanhMucKhuVucUT = require("./DanhMucKhuVucUTRouter")
 
-
 const routes = (app) => {
     app.use('/api/user', UserRouter)
     app.use('/api/product', ProductRouter)
@@ -43,6 +46,7 @@ const routes = (app) => {
     app.use('/api/quannhan', QuanNhanRouter)
     app.use('/api/loaiquannhan', LoaiQuanNhanRouter)
     app.use('/api/quanham', QuanHamRouter)
+
     app.use('/api/danhmucquyen', DanhMucQuyen)
     app.use('/api/nhomquyen', NhomQuyen)
     app.use('/api/phamvinhom', PhamViNhom)
@@ -53,6 +57,12 @@ const routes = (app) => {
     app.use('/api/staffadmingroup', StaffAdminGroup)
     app.use('/api/staffpriority', StaffPriority)
     app.use('/api/priorityfromid', PriorityFromQuanNhanId)
+    app.use('/api/donvi', DonVi)
+    app.use('/api/kieudonvi', KieuDonVi)
+    app.use('/api/chucvu', ChucVu)
+    app.use('/api/chucvudonvi', ChucVuDonVi)
+
+
 
     app.use('/api/danhmuccapbac', DanhMucCapBac)
     app.use('/api/danhmuccdcmkt', DanhMucCDCMKT)
