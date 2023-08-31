@@ -3,7 +3,7 @@ const QuanNhanService = require('../services/QuanNhanService')
 const createQuanNhan = async (req, res) => {
     try {
         const { QuanNhanId, HoTen, NgaySinh, GioiTinh, QueQuan, DiaChi, SoDienThoai, Email, HoatDong, QuanHam, DonVi, LoaiQN  } = req.body
-        if (!QuanNhanId || !HoTen || !NgaySinh || !GioiTinh || !QueQuan || !DiaChi || !SoDienThoai || !Email|| !HoatDong) {
+        if (!QuanNhanId || !HoTen || !NgaySinh || !GioiTinh || !QueQuan || !DiaChi || !HoatDong) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
@@ -29,6 +29,25 @@ const getQuanNhanByQuanNhanId = async (req, res) => {
         }
 
         const response = await QuanNhanService.getQuanNhanByQuanNhanId(quannhanId,data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
+const getQuanNhanFromDonVi = async (req, res) => {
+    try {
+        const donviId = req.params.id // Lấy QuanNhanId của user đang đăng nhập từ request
+        const data = req.body
+        if (!donviId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User QuanNhanId is not defined'
+            });
+        }
+
+        const response = await QuanNhanService.getQuanNhanFromDonVi(donviId,data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -140,5 +159,6 @@ module.exports = {
     getAllQuanNhan,
     deleteMany,
     getAllType,
-    getQuanNhanByQuanNhanId 
+    getQuanNhanByQuanNhanId,
+    getQuanNhanFromDonVi
 }

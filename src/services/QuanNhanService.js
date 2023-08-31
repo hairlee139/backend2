@@ -103,7 +103,31 @@ const deleteManyQuanNhan = (ids) => {
         }
     })
 }
-
+const getQuanNhanFromDonVi = (id)  => {
+    return new Promise(async (resolve, reject) => {
+         try {
+             console.log(id)
+             const quanNhan = await QuanNhan.find({
+                DonVi: { $regex: id, $options: 'i' }
+             });
+             console.log(id)
+             if (!quanNhan || quanNhan.length === 0) {
+                 resolve({
+                     status: 'ERR',
+                     message: 'No quanNhan found'
+                 });
+             }
+             
+             resolve({
+                 status: 'OK',
+                 message: 'SUCCESS',
+                 data:  quanNhan
+             });
+         } catch (error) {
+             reject(error);
+         }
+     });
+ };
 const getDetailsQuanNhan = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -224,5 +248,6 @@ module.exports = {
     getAllQuanNhan,
     deleteManyQuanNhan,
     getAllType,
-    getQuanNhanByQuanNhanId
+    getQuanNhanByQuanNhanId,
+    getQuanNhanFromDonVi
 }
