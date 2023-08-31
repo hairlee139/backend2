@@ -5,7 +5,6 @@ const PaymentRouter = require('./PaymentRouter')
 const QuanNhanRouter = require('./QuanNhanRouter')
 const LoaiQuanNhanRouter = require("./LoaiQuanNhanRouter")
 const QuanHamRouter = require("./QuanHamRouter")
-const DanhMucCapBac = require("./DanhMucCapBacRouter")
 const DanhMucQuyen = require('./DanhMucQuyenRouter')
 const NhomQuyen = require('./NhomQuyenRouter')
 const PhamViNhom = require('./PhamViNhomRouter')
@@ -37,6 +36,7 @@ const DanhMucTonGiao = require("./DanhMucTonGiaoRouter")
 const DanhMucDanToc = require("./DanhMucDanTocRouter")
 const DanhMucCheDoUT = require("./DanhMucCheDoUTRouter")
 const DanhMucKhuVucUT = require("./DanhMucKhuVucUTRouter")
+
 
 const routes = (app) => {
     app.use('/api/user', UserRouter)
