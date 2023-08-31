@@ -2,8 +2,8 @@ const QuaTrinhCongTacService = require('../services/QuaTrinhCongTacService')
 
 const createQuaTrinhCongTac = async (req, res) => {
     try {
-        const { QuaTrinhCongTacId,QuanNhanId, SoQuyetDinh, NgayQuyetDinh,  ChucVu,  DonVi, KetThuc, DonViSinhHoatHocThuat,  TrangThai, edituser, edittime,GhiChu  } = req.body
-        if ( !QuanNhanId || !ChucVu || !DonVi || !DonViSinhHoatHocThuat) {
+        const { QuaTrinhCongTacId, QuanNhanId, SoQuyetDinh, NgayQuyetDinh, ChucVu, DonVi, KetThuc, DonViSinhHoatHocThuat, TrangThai, edituser, edittime, GhiChu } = req.body
+        if (!QuanNhanId || !ChucVu || !DonVi || !DonViSinhHoatHocThuat | !SoQuyetDinh | !NgayQuyetDinhNgayQuyetDinh) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
@@ -47,7 +47,7 @@ const getQuaTrinhCongTacByQuanNhanId = async (req, res) => {
             });
         }
 
-        const response = await QuaTrinhCongTacService.getQuaTrinhCongTacByQuanNhanId(quannhanId,data);
+        const response = await QuaTrinhCongTacService.getQuaTrinhCongTacByQuanNhanId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({

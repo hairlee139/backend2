@@ -16,6 +16,25 @@ const Priority = require('./PriorityRouter')
 const StaffAdminGroup = require('./StaffAdminGroupRouter')
 const StaffPriority = require('./StaffPriorityRouter')
 const PriorityFromQuanNhanId = require('./PriorityFromQuanNhanIdRouter')
+
+const DanhMucCapBac = require("./DanhMucCapBacRouter")
+const DanhMucCDCMKT = require("./DanhMucCDCMKTRouter")
+const DanhMucChucVu = require("./DanhMucChucVuRouter")
+const DanhMucHocHam = require("./DanhMucHocHamRouter")
+const DanhMucHocVi = require("./DanhMucHocViRouter")
+const DanhMucKhenThuong = require("./DanhMucHinhThucKhenThuongRouter")
+const DanhMucKyLuat = require("./DanhMucHinhThucKyLuatRouter")
+const DanhMucLoaiDonVi = require("./DanhMucLoaiDonViRouter")
+
+const DanhMucTinh = require("./DanhMucTinhRouter")
+const DanhMucHuyen = require("./DanhMucHuyenRouter")
+const DanhMucXa = require("./DanhMucXaRouter")
+const DanhMucTonGiao = require("./DanhMucTonGiaoRouter")
+const DanhMucDanToc = require("./DanhMucDanTocRouter")
+const DanhMucCheDoUT = require("./DanhMucCheDoUTRouter")
+const DanhMucKhuVucUT = require("./DanhMucKhuVucUTRouter")
+
+
 const routes = (app) => {
     app.use('/api/user', UserRouter)
     app.use('/api/product', ProductRouter)
@@ -24,7 +43,6 @@ const routes = (app) => {
     app.use('/api/quannhan', QuanNhanRouter)
     app.use('/api/loaiquannhan', LoaiQuanNhanRouter)
     app.use('/api/quanham', QuanHamRouter)
-    // app.use('/api/danhmuccapbac', DanhMucCapBac)
     app.use('/api/danhmucquyen', DanhMucQuyen)
     app.use('/api/nhomquyen', NhomQuyen)
     app.use('/api/phamvinhom', PhamViNhom)
@@ -35,6 +53,23 @@ const routes = (app) => {
     app.use('/api/staffadmingroup', StaffAdminGroup)
     app.use('/api/staffpriority', StaffPriority)
     app.use('/api/priorityfromid', PriorityFromQuanNhanId)
+
+    app.use('/api/danhmuccapbac', DanhMucCapBac)
+    app.use('/api/danhmuccdcmkt', DanhMucCDCMKT)
+    app.use('/api/danhmucchucvu', DanhMucChucVu)
+    app.use('/api/danhmuchocham', DanhMucHocHam)
+    app.use('/api/danhmuchocvi', DanhMucHocVi)
+    app.use('/api/danhmuckhenthuong', DanhMucKhenThuong)
+    app.use('/api/danhmuckyluat', DanhMucKyLuat)
+    app.use('/api/danhmucloaidonvi', DanhMucLoaiDonVi)
+
+    app.use('/api/danhmuctinh', DanhMucTinh)
+    app.use('/api/danhmuchuyen', DanhMucHuyen)
+    app.use('/api/danhmucxa', DanhMucXa)
+    app.use('/api/danhmuctongiao', DanhMucTonGiao)
+    app.use('/api/danhmucdantoc', DanhMucDanToc)
+    app.use('/api/danhmuckhuvucut', DanhMucKhuVucUT)
+    app.use('/api/danhmucchedout', DanhMucCheDoUT)
 }
 
 module.exports = routes
