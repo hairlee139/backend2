@@ -2,7 +2,7 @@ const QuaTrinhHocTapKhac = require("../models/QuaTrinhHocTapKhacModel")
 
 const createQuaTrinhHocTapKhac = (newQuaTrinhHocTapKhac) => {
     return new Promise(async (resolve, reject) => {
-        const {code,QuanNhanId,Ten,Loai,Truong,NamNhan,edituser,edittime,GhiChu} = newQuaTrinhHocTapKhac
+        const { code, QuanNhanId, Ten, Loai, Truong, NamNhan, edituser, edittime, GhiChu } = newQuaTrinhHocTapKhac
         try {
             // const checkQuaTrinhHocTapKhac = await QuaTrinhHocTapKhac.findOne({
             //     QuaTrinhHocTapKhacId: QuaTrinhHocTapKhacId
@@ -14,7 +14,7 @@ const createQuaTrinhHocTapKhac = (newQuaTrinhHocTapKhac) => {
             //     })
             // }
             const newQuaTrinhHocTapKhac = await QuaTrinhHocTapKhac.create({
-                code,QuanNhanId,Ten,Loai,Truong,NamNhan,edituser,edittime,GhiChu
+                code, QuanNhanId, Ten, Loai, Truong, NamNhan, edituser, edittime, GhiChu
             })
             if (newQuaTrinhHocTapKhac) {
                 resolve({
@@ -38,7 +38,7 @@ const updateQuaTrinhHocTapKhac = (id, data) => {
             if (checkQuaTrinhHocTapKhac === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'Qua Trinh Cong Tac is not defined'
+                    message: 'Qua Trinh Hoc Tap Khac is not defined'
                 })
             }
 
@@ -123,7 +123,7 @@ const getAllQuaTrinhHocTapKhac = (limit, page, sort, filter) => {
             let allQuaTrinhHocTapKhac = []
             if (filter) {
                 const label = filter[0];
-                const allObjectFilter = await QuaTrinhHocTapKhac.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+                const allObjectFilter = await QuaTrinhHocTapKhac.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -136,7 +136,7 @@ const getAllQuaTrinhHocTapKhac = (limit, page, sort, filter) => {
             if (sort) {
                 const objectSort = {}
                 objectSort[sort[1]] = sort[0]
-                const allQuaTrinhHocTapKhacSort = await QuaTrinhHocTapKhac.find().limit(limit).skip(page * limit).sort(objectSort).sort({createdAt: -1, updatedAt: -1})
+                const allQuaTrinhHocTapKhacSort = await QuaTrinhHocTapKhac.find().limit(limit).skip(page * limit).sort(objectSort).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -146,10 +146,10 @@ const getAllQuaTrinhHocTapKhac = (limit, page, sort, filter) => {
                     totalPage: Math.ceil(totalQuaTrinhHocTapKhac / limit)
                 })
             }
-            if(!limit) {
-                allQuaTrinhHocTapKhac = await QuaTrinhHocTapKhac.find().sort({createdAt: -1, updatedAt: -1})
-            }else {
-                allQuaTrinhHocTapKhac = await QuaTrinhHocTapKhac.find().limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+            if (!limit) {
+                allQuaTrinhHocTapKhac = await QuaTrinhHocTapKhac.find().sort({ createdAt: -1, updatedAt: -1 })
+            } else {
+                allQuaTrinhHocTapKhac = await QuaTrinhHocTapKhac.find().limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
             }
             resolve({
                 status: 'OK',
@@ -185,18 +185,18 @@ const getQuaTrinhHocTapKhacByQuanNhanId = (id) => {
             const quaTrinhHocTapKhacList = await QuaTrinhHocTapKhac.find({
                 QuanNhanId: id
             });
-            
+
             if (!quaTrinhHocTapKhacList || quaTrinhHocTapKhacList.length === 0) {
                 resolve({
                     status: 'ERR',
                     message: 'No QuaTrinhHocTapKhac found for the given QuanNhanId'
                 });
             }
-            
+
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data:  quaTrinhHocTapKhacList
+                data: quaTrinhHocTapKhacList
             });
         } catch (error) {
             reject(error);

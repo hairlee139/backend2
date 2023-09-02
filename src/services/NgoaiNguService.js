@@ -2,7 +2,7 @@ const NgoaiNgu = require("../models/NgoaiNguModel")
 
 const createNgoaiNgu = (newNgoaiNgu) => {
     return new Promise(async (resolve, reject) => {
-        const { code,QuanNhanId,NgonNgu,LoaiBang,NamNhan,CapDo,TuongDuong,HinhThucBang,TrangThai,edituser,edittime,GhiChu} = newNgoaiNgu
+        const { code, QuanNhanId, NgonNgu, LoaiBang, NamNhan, CapDo, TuongDuong, HinhThucBang, TrangThai, edituser, edittime, GhiChu } = newNgoaiNgu
         try {
             // const checkNgoaiNgu = await NgoaiNgu.findOne({
             //     NgoaiNguId: NgoaiNguId
@@ -14,7 +14,7 @@ const createNgoaiNgu = (newNgoaiNgu) => {
             //     })
             // }
             const newNgoaiNgu = await NgoaiNgu.create({
-                code,QuanNhanId,NgonNgu,LoaiBang,NamNhan,CapDo,TuongDuong,HinhThucBang,TrangThai,edituser,edittime,GhiChu
+                code, QuanNhanId, NgonNgu, LoaiBang, NamNhan, CapDo, TuongDuong, HinhThucBang, TrangThai, edituser, edittime, GhiChu
             })
             if (newNgoaiNgu) {
                 resolve({
@@ -123,7 +123,7 @@ const getAllNgoaiNgu = (limit, page, sort, filter) => {
             let allNgoaiNgu = []
             if (filter) {
                 const label = filter[0];
-                const allObjectFilter = await NgoaiNgu.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+                const allObjectFilter = await NgoaiNgu.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -136,7 +136,7 @@ const getAllNgoaiNgu = (limit, page, sort, filter) => {
             if (sort) {
                 const objectSort = {}
                 objectSort[sort[1]] = sort[0]
-                const allNgoaiNguSort = await NgoaiNgu.find().limit(limit).skip(page * limit).sort(objectSort).sort({createdAt: -1, updatedAt: -1})
+                const allNgoaiNguSort = await NgoaiNgu.find().limit(limit).skip(page * limit).sort(objectSort).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -146,10 +146,10 @@ const getAllNgoaiNgu = (limit, page, sort, filter) => {
                     totalPage: Math.ceil(totalNgoaiNgu / limit)
                 })
             }
-            if(!limit) {
-                allNgoaiNgu = await NgoaiNgu.find().sort({createdAt: -1, updatedAt: -1})
-            }else {
-                allNgoaiNgu = await NgoaiNgu.find().limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+            if (!limit) {
+                allNgoaiNgu = await NgoaiNgu.find().sort({ createdAt: -1, updatedAt: -1 })
+            } else {
+                allNgoaiNgu = await NgoaiNgu.find().limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
             }
             resolve({
                 status: 'OK',
@@ -185,18 +185,18 @@ const getNgoaiNguByQuanNhanId = (id) => {
             const ngoaiNguList = await NgoaiNgu.find({
                 QuanNhanId: id
             });
-            
+
             if (!ngoaiNguList || ngoaiNguList.length === 0) {
                 resolve({
                     status: 'ERR',
                     message: 'No NgoaiNgu found for the given QuanNhanId'
                 });
             }
-            
+
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data:  ngoaiNguList
+                data: ngoaiNguList
             });
         } catch (error) {
             reject(error);

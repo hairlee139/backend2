@@ -2,8 +2,8 @@ const SauDaiHocService = require('../services/SauDaiHocService')
 
 const createSauDaiHoc = async (req, res) => {
     try {
-        const { code,QuanNhanId,LoaiBang,LinhVuc,TenLuanVan,Truong,QuocGia,NamNhan,TrangThai,edituser,edittime,GhiChu} = req.body
-        if ( !code || !QuanNhanId) {
+        const { code, QuanNhanId, LoaiBang, LinhVuc, TenLuanVan, Truong, QuocGia, NamNhan, TrangThai, edituser, edittime, GhiChu } = req.body
+        if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
@@ -47,7 +47,7 @@ const getSauDaiHocByQuanNhanId = async (req, res) => {
             });
         }
 
-        const response = await SauDaiHocService.getSauDaiHocByQuanNhanId(quannhanId,data);
+        const response = await SauDaiHocService.getSauDaiHocByQuanNhanId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
