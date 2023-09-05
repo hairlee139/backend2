@@ -169,6 +169,45 @@ const getDonVifromcode = async (req, res) => {
         });
     }
 };
+const getDonVifromObjectId = async (req, res) => {
+    try {
+        const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
+        const data = req.body
+        if (!donvichaid) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User donvichaid is not defined'
+            });
+        }
+
+        const response = await DonViService.getDonVifromObjectId(donvichaid,data);
+        const codes = response.data.map(item => item.code);
+        return res.status(200).json(codes);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
+const getDonViConWithHocViCounts  = async (req, res) => {
+    try {
+        const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
+        const data = req.body
+        if (!donvichaid) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User donvichaid is not defined'
+            });
+        }
+
+        const response = await DonViService.getDonViConWithHocViCounts(donvichaid,data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
 const getDonViConOnly = async (req, res) => {
     try {
         const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
@@ -181,6 +220,25 @@ const getDonViConOnly = async (req, res) => {
         }
 
         const response = await DonViService.getDonViConOnly(donvichaid,data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
+const getDonViConByTen = async (req, res) => {
+    try {
+        const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
+        const data = req.body
+        if (!donvichaid) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User donvichaid is not defined'
+            });
+        }
+
+        const response = await DonViService.getDonViConByTen(donvichaid,data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -219,5 +277,8 @@ module.exports = {
     getDonViCon,
     getDonViConOnly,
     getDonViConOnly2,
-    getDonVifromcode
+    getDonVifromcode,
+    getDonViConByTen,
+    getDonViConWithHocViCounts,
+    getDonVifromObjectId
 }

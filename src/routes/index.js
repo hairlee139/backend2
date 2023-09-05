@@ -42,7 +42,7 @@ const DanhMucTonGiao = require("./DanhMucTonGiaoRouter")
 const DanhMucDanToc = require("./DanhMucDanTocRouter")
 const DanhMucCheDoUT = require("./DanhMucCheDoUTRouter")
 const DanhMucKhuVucUT = require("./DanhMucKhuVucUTRouter")
-
+const HocViRouter = require("./HocViRouter")
 const routes = (app) => {
     app.use('/api/user', UserRouter)
     app.use('/api/product', ProductRouter)
@@ -51,7 +51,7 @@ const routes = (app) => {
     app.use('/api/quannhan', QuanNhanRouter)
     app.use('/api/loaiquannhan', LoaiQuanNhanRouter)
     app.use('/api/quanham', QuanHamRouter)
-
+    app.use('/api/hocvi', HocViRouter)
     app.use('/api/danhmucquyen', DanhMucQuyen)
     app.use('/api/nhomquyen', NhomQuyen)
     app.use('/api/phamvinhom', PhamViNhom)

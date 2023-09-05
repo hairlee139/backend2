@@ -182,6 +182,30 @@ const getAllType = () => {
         }
     })
 }
+const getChucVuByDonVi = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const ChucVuList = await ChucVuDonVi.find({
+                donvicode: id
+            });
+            
+            if (!ChucVuList || ChucVuList.length === 0) {
+                resolve({
+                    status: 'ERR',
+                    message: 'No Don vi con found for the given id'
+                });
+            }
+            
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data:  ChucVuList.map(chucvudonvi => chucvudonvi.name)
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 
 module.exports = {
     createChucVuDonVi,
@@ -190,5 +214,6 @@ module.exports = {
     deleteChucVuDonVi,
     getAllChucVuDonVi,
     deleteManyChucVuDonVi,
-    getAllType
+    getAllType,
+    getChucVuByDonVi
 }

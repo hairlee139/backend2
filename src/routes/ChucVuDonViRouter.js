@@ -10,5 +10,5 @@ router.delete('/delete/:id', authMiddleWare, ChucVuDonViController.deleteChucVuD
 router.get('/get-all', ChucVuDonViController.getAllChucVuDonVi)
 router.post('/delete-many', authMiddleWare, ChucVuDonViController.deleteMany)
 router.get('/get-all-type', ChucVuDonViController.getAllType)
-
+router.get('/getchucvu/:id', ChucVuDonViController.getChucVuByDonVi)
 module.exports = router

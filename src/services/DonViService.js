@@ -1,5 +1,5 @@
 const DonVi = require("../models/DonViModel")
-
+const { getAllHocViFromDonVi } = require('../services/HocViService');
 const createDonVi = (newDonVi) => {
     return new Promise(async (resolve, reject) => {
         const { code,
@@ -241,6 +241,30 @@ const getDonViConOnly = (id) => {
         }
     });
 };
+const getDonViConByTen = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const donviList = await DonVi.find({
+                parentcode: id
+            });
+            
+            if (!donviList || donviList.length === 0) {
+                resolve({
+                    status: 'ERR',
+                    message: 'No Don vi con found for the given QuanNhanId'
+                });
+            }
+            
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data:  donviList.map(donvi => donvi.name)
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 const getDonViConOnly2 = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -275,11 +299,36 @@ const getDonViConOnly2 = (id) => {
         }
     });
 };
+
 const getDonVifromcode = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             const donviList = await DonVi.find({
                 code: id
+            });
+            
+            if (!donviList || donviList.length === 0) {
+                resolve({
+                    status: 'ERR',
+                    message: 'No Don vi con found for the given QuanNhanId'
+                });
+            }
+            
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data:  donviList
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+const getDonVifromObjectId = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const donviList = await DonVi.find({
+                _id: id
             });
             
             if (!donviList || donviList.length === 0) {
@@ -320,6 +369,40 @@ const getDonViCon = async (parentCode, data) => {
         throw error;
     }
 };
+const getDonViConWithHocViCounts = async (id) => {
+    try {
+        // Lấy danh sách đơn vị con của đơn vị cha
+        const donViConResult = await getDonViConOnly(id);
+        if (donViConResult.status === 'ERR') {
+            return donViConResult; // Trả về lỗi nếu không tìm thấy đơn vị con
+        }
+
+        // Lấy số lượng học vị của từng đơn vị con
+        const donViConList = donViConResult.data;
+        const donViConWithHocViCounts = [];
+
+        for (const donViCon of donViConList) {
+            const hocViCounts = await getAllHocViFromDonVi(donViCon.code);
+            donViConWithHocViCounts.push({
+                donViCon,
+                hocViCounts,
+            });
+        }
+
+        //Trả về danh sách đơn vị con cùng với số lượng học vị
+        return {
+            status: 'OK',
+            message: 'SUCCESS',
+            data: donViConWithHocViCounts,
+        };
+    } catch (error) {
+        return {
+            status: 'ERR',
+            message:  error.message,
+        };
+    }
+};
+
 
 
 module.exports = {
@@ -333,5 +416,8 @@ module.exports = {
     getDonViCon,
     getDonViConOnly,
     getDonViConOnly2,
-    getDonVifromcode
+    getDonVifromcode,
+    getDonViConByTen,
+    getDonViConWithHocViCounts,
+    getDonVifromObjectId
 }

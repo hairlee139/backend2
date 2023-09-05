@@ -172,7 +172,7 @@ const getAllLoaiQuanNhan = (limit, page, sort, filter) => {
 const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allType = await LoaiQuanNhan.distinct('TenLoaiQN')
+            const allType = await LoaiQuanNhan.distinct('TenLoaiQuanNhan')
             resolve({
                 status: 'OK',
                 message: 'Success',
