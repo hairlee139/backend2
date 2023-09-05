@@ -2,8 +2,8 @@ const TinhTrangCongTacService = require('../services/TinhTrangCongTacService')
 
 const createTinhTrangCongTac = async (req, res) => {
     try {
-        const { code,QuanNhanId,QuyetDinh,NgayQuyetDinh,TrangThaiCongTac,KetThuc,TrangThai,edituser,edittime,GhiChu} = req.body
-        if ( !code || !QuanNhanId) {
+        const { code, QuanNhanId, QuyetDinh, NgayQuyetDinh, TrangThaiCongTac, KetThuc, TrangThai, edituser, edittime, GhiChu } = req.body
+        if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
@@ -47,7 +47,7 @@ const getTinhTrangCongTacByQuanNhanId = async (req, res) => {
             });
         }
 
-        const response = await TinhTrangCongTacService.getTinhTrangCongTacByQuanNhanId(quannhanId,data);
+        const response = await TinhTrangCongTacService.getTinhTrangCongTacByQuanNhanId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({

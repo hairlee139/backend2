@@ -2,7 +2,7 @@ const QuaTrinhCongTac = require("../models/QuaTrinhCongTacModel")
 
 const createQuaTrinhCongTac = (newQuaTrinhCongTac) => {
     return new Promise(async (resolve, reject) => {
-        const { QuaTrinhCongTacId,QuanNhanId, SoQuyetDinh, NgayQuyetDinh,  ChucVu,  DonVi, KetThuc, DonViSinhHoatHocThuat,  TrangThai, edituser, edittime,GhiChu } = newQuaTrinhCongTac
+        const { QuaTrinhCongTacId, QuanNhanId, SoQuyetDinh, NgayQuyetDinh, ChucVu, DonVi, KetThuc, DonViSinhHoatHocThuat, TrangThai, edituser, edittime, GhiChu } = newQuaTrinhCongTac
         try {
             // const checkQuaTrinhCongTac = await QuaTrinhCongTac.findOne({
             //     QuaTrinhCongTacId: QuaTrinhCongTacId
@@ -15,17 +15,17 @@ const createQuaTrinhCongTac = (newQuaTrinhCongTac) => {
             // }
             const newQuaTrinhCongTac = await QuaTrinhCongTac.create({
                 QuaTrinhCongTacId,
-                QuanNhanId, 
-                SoQuyetDinh, 
-                NgayQuyetDinh,  
-                ChucVu,  
-                DonVi, 
-                KetThuc, 
-                DonViSinhHoatHocThuat,  
-                TrangThai, 
-                edituser, 
+                QuanNhanId,
+                SoQuyetDinh,
+                NgayQuyetDinh,
+                ChucVu,
+                DonVi,
+                KetThuc,
+                DonViSinhHoatHocThuat,
+                TrangThai,
+                edituser,
                 edittime,
-                GhiChu 
+                GhiChu
             })
             if (newQuaTrinhCongTac) {
                 resolve({
@@ -134,7 +134,7 @@ const getAllQuaTrinhCongTac = (limit, page, sort, filter) => {
             let allQuaTrinhCongTac = []
             if (filter) {
                 const label = filter[0];
-                const allObjectFilter = await QuaTrinhCongTac.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+                const allObjectFilter = await QuaTrinhCongTac.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -147,7 +147,7 @@ const getAllQuaTrinhCongTac = (limit, page, sort, filter) => {
             if (sort) {
                 const objectSort = {}
                 objectSort[sort[1]] = sort[0]
-                const allQuaTrinhCongTacSort = await QuaTrinhCongTac.find().limit(limit).skip(page * limit).sort(objectSort).sort({createdAt: -1, updatedAt: -1})
+                const allQuaTrinhCongTacSort = await QuaTrinhCongTac.find().limit(limit).skip(page * limit).sort(objectSort).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -157,10 +157,10 @@ const getAllQuaTrinhCongTac = (limit, page, sort, filter) => {
                     totalPage: Math.ceil(totalQuaTrinhCongTac / limit)
                 })
             }
-            if(!limit) {
-                allQuaTrinhCongTac = await QuaTrinhCongTac.find().sort({createdAt: -1, updatedAt: -1})
-            }else {
-                allQuaTrinhCongTac = await QuaTrinhCongTac.find().limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+            if (!limit) {
+                allQuaTrinhCongTac = await QuaTrinhCongTac.find().sort({ createdAt: -1, updatedAt: -1 })
+            } else {
+                allQuaTrinhCongTac = await QuaTrinhCongTac.find().limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
             }
             resolve({
                 status: 'OK',
@@ -196,18 +196,18 @@ const getQuaTrinhCongTacByQuanNhanId = (id) => {
             const quaTrinhCongTacList = await QuaTrinhCongTac.find({
                 QuanNhanId: id
             });
-            
+
             if (!quaTrinhCongTacList || quaTrinhCongTacList.length === 0) {
                 resolve({
                     status: 'ERR',
                     message: 'No QuaTrinhCongTac found for the given QuanNhanId'
                 });
             }
-            
+
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data:  quaTrinhCongTacList
+                data: quaTrinhCongTacList
             });
         } catch (error) {
             reject(error);

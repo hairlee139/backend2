@@ -2,8 +2,8 @@ const DaiHocService = require('../services/DaiHocService')
 
 const createDaiHoc = async (req, res) => {
     try {
-        const { code,QuanNhanId,He,Nganh,Truong,QuocGia,NamNhan,TrangThai,edituser,edittime,GhiChu} = req.body
-        if ( !code || !QuanNhanId) {
+        const { code, QuanNhanId, He, Nganh, Truong, QuocGia, NamNhan, TrangThai, edituser, edittime, GhiChu } = req.body
+        if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
@@ -47,7 +47,7 @@ const getDaiHocByQuanNhanId = async (req, res) => {
             });
         }
 
-        const response = await DaiHocService.getDaiHocByQuanNhanId(quannhanId,data);
+        const response = await DaiHocService.getDaiHocByQuanNhanId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({

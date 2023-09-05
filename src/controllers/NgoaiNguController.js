@@ -2,8 +2,8 @@ const NgoaiNguService = require('../services/NgoaiNguService')
 
 const createNgoaiNgu = async (req, res) => {
     try {
-        const { code,QuanNhanId,NgonNgu,LoaiBang,NamNhan,CapDo,TuongDuong,HinhThucBang,TrangThai,edituser,edittime,GhiChu} = req.body
-        if ( !code || !QuanNhanId) {
+        const { code, QuanNhanId, NgonNgu, LoaiBang, NamNhan, CapDo, TuongDuong, HinhThucBang, TrangThai, edituser, edittime, GhiChu } = req.body
+        if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
@@ -47,7 +47,7 @@ const getNgoaiNguByQuanNhanId = async (req, res) => {
             });
         }
 
-        const response = await NgoaiNguService.getNgoaiNguByQuanNhanId(quannhanId,data);
+        const response = await NgoaiNguService.getNgoaiNguByQuanNhanId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({

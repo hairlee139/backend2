@@ -2,8 +2,8 @@ const QuaTrinhQuanHamService = require('../services/QuaTrinhQuanHamService')
 
 const createQuaTrinhQuanHam = async (req, res) => {
     try {
-        const { code,QuanNhanId,QuyetDinh,NgayQuyetDinh,QuanHam,edituser,edittime,GhiChu} = req.body
-        if ( !code || !QuanNhanId) {
+        const { code, QuanNhanId, QuyetDinh, NgayQuyetDinh, QuanHam, edituser, edittime, GhiChu } = req.body
+        if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
@@ -47,7 +47,7 @@ const getQuaTrinhQuanHamByQuanNhanId = async (req, res) => {
             });
         }
 
-        const response = await QuaTrinhQuanHamService.getQuaTrinhQuanHamByQuanNhanId(quannhanId,data);
+        const response = await QuaTrinhQuanHamService.getQuaTrinhQuanHamByQuanNhanId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({

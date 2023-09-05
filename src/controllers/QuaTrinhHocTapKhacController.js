@@ -2,8 +2,8 @@ const QuaTrinhHocTapKhacService = require('../services/QuaTrinhHocTapKhacService
 
 const createQuaTrinhHocTapKhac = async (req, res) => {
     try {
-        const { code,QuanNhanId,Ten,Loai,Truong,NamNhan,edituser,edittime,GhiChu} = req.body
-        if ( !code || !QuanNhanId) {
+        const { code, QuanNhanId, Ten, Loai, Truong, NamNhan, edituser, edittime, GhiChu } = req.body
+        if (!QuanNhanId || !Ten || !Loai || !Truong || !NamNhan) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
@@ -47,7 +47,7 @@ const getQuaTrinhHocTapKhacByQuanNhanId = async (req, res) => {
             });
         }
 
-        const response = await QuaTrinhHocTapKhacService.getQuaTrinhHocTapKhacByQuanNhanId(quannhanId,data);
+        const response = await QuaTrinhHocTapKhacService.getQuaTrinhHocTapKhacByQuanNhanId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
