@@ -239,7 +239,28 @@ const getQuanNhanByQuanNhanId = (id) => {
         }
     });
 };
-
+const getObjectIdByQuanNhanId = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const quannhan = await QuanNhan.findOne({
+                QuanNhanId: id
+            });
+            
+            if (!quannhan) {
+                resolve({
+                    status: 'ERR',
+                    message: 'Quannhan is not defined'
+                });
+            }
+            
+            resolve({
+                data: quannhan._id 
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 module.exports = {
     createQuanNhan,
     updateQuanNhan,
@@ -249,5 +270,6 @@ module.exports = {
     deleteManyQuanNhan,
     getAllType,
     getQuanNhanByQuanNhanId,
-    getQuanNhanFromDonVi
+    getQuanNhanFromDonVi,
+    getObjectIdByQuanNhanId
 }
