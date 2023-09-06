@@ -240,6 +240,7 @@ const getQuanNhanByQuanNhanId = (id) => {
     });
 };
 
+
 module.exports = {
     createQuanNhan,
     updateQuanNhan,
@@ -249,5 +250,6 @@ module.exports = {
     deleteManyQuanNhan,
     getAllType,
     getQuanNhanByQuanNhanId,
-    getQuanNhanFromDonVi
+    getQuanNhanFromDonVi,
+
 }
