@@ -132,6 +132,25 @@ const getChucVuByDonVi = async (req, res) => {
         });
     }
 };
+const getDataChucVuByDonVi = async (req, res) => {
+    try {
+        const chucvudonviid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
+        const data = req.body
+        if (!chucvudonviid) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User chucvudonviid is not defined'
+            });
+        }
+
+        const response = await ChucVuDonViService.getDataChucVuByDonVi(chucvudonviid,data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
 module.exports = {
     createChucVuDonVi,
     updateChucVuDonVi,
@@ -140,5 +159,6 @@ module.exports = {
     getAllChucVuDonVi,
     deleteMany,
     getAllType,
-    getChucVuByDonVi
+    getChucVuByDonVi,
+    getDataChucVuByDonVi
 }

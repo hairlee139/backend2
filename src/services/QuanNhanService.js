@@ -13,28 +13,29 @@ const createQuanNhan = (newQuanNhan) => {
                     message: 'Hoten is already'
                 })
             }
-            else{
-            const newQuanNhan = await QuanNhan.create({
-                QuanNhanId,
-                HoTen, 
-                NgaySinh, 
-                GioiTinh, 
-                QueQuan, 
-                DiaChi, 
-                SoDienThoai, 
-                Email, 
-                HoatDong,
-                QuanHam, 
-                DonVi, 
-                LoaiQN
-            })
-            if (newQuanNhan) {
-                resolve({
-                    status: 'OK',
-                    message: 'SUCCESS',
-                    data: newQuanNhan
+            else {
+                const newQuanNhan = await QuanNhan.create({
+                    QuanNhanId,
+                    HoTen,
+                    NgaySinh,
+                    GioiTinh,
+                    QueQuan,
+                    DiaChi,
+                    SoDienThoai,
+                    Email,
+                    HoatDong,
+                    QuanHam,
+                    DonVi,
+                    LoaiQN
                 })
-            }}
+                if (newQuanNhan) {
+                    resolve({
+                        status: 'OK',
+                        message: 'SUCCESS',
+                        data: newQuanNhan
+                    })
+                }
+            }
         } catch (e) {
             reject(e)
         }
@@ -103,31 +104,31 @@ const deleteManyQuanNhan = (ids) => {
         }
     })
 }
-const getQuanNhanFromDonVi = (id)  => {
+const getQuanNhanFromDonVi = (id) => {
     return new Promise(async (resolve, reject) => {
-         try {
-             console.log(id)
-             const quanNhan = await QuanNhan.find({
+        try {
+            console.log(id)
+            const quanNhan = await QuanNhan.find({
                 DonVi: { $regex: id, $options: 'i' }
-             });
-             console.log(id)
-             if (!quanNhan || quanNhan.length === 0) {
-                 resolve({
-                     status: 'ERR',
-                     message: 'No quanNhan found'
-                 });
-             }
-             
-             resolve({
-                 status: 'OK',
-                 message: 'SUCCESS',
-                 data:  quanNhan
-             });
-         } catch (error) {
-             reject(error);
-         }
-     });
- };
+            });
+            console.log(id)
+            if (!quanNhan || quanNhan.length === 0) {
+                resolve({
+                    status: 'ERR',
+                    message: 'No quanNhan found'
+                });
+            }
+
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data: quanNhan
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 const getDetailsQuanNhan = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -159,7 +160,7 @@ const getAllQuanNhan = (limit, page, sort, filter) => {
             let allQuanNhan = []
             if (filter) {
                 const label = filter[0];
-                const allObjectFilter = await QuanNhan.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+                const allObjectFilter = await QuanNhan.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -172,7 +173,7 @@ const getAllQuanNhan = (limit, page, sort, filter) => {
             if (sort) {
                 const objectSort = {}
                 objectSort[sort[1]] = sort[0]
-                const allQuanNhanSort = await QuanNhan.find().limit(limit).skip(page * limit).sort(objectSort).sort({createdAt: -1, updatedAt: -1})
+                const allQuanNhanSort = await QuanNhan.find().limit(limit).skip(page * limit).sort(objectSort).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -182,10 +183,10 @@ const getAllQuanNhan = (limit, page, sort, filter) => {
                     totalPage: Math.ceil(totalQuanNhan / limit)
                 })
             }
-            if(!limit) {
-                allQuanNhan = await QuanNhan.find().sort({createdAt: -1, updatedAt: -1})
-            }else {
-                allQuanNhan = await QuanNhan.find().limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+            if (!limit) {
+                allQuanNhan = await QuanNhan.find().sort({ createdAt: -1, updatedAt: -1 })
+            } else {
+                allQuanNhan = await QuanNhan.find().limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
             }
             resolve({
                 status: 'OK',
@@ -221,14 +222,14 @@ const getQuanNhanByQuanNhanId = (id) => {
             const quannhan = await QuanNhan.findOne({
                 QuanNhanId: id
             });
-            
+
             if (!quannhan) {
                 resolve({
                     status: 'ERR',
                     message: 'Quannhan is not defined'
                 });
             }
-            
+
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
@@ -239,8 +240,28 @@ const getQuanNhanByQuanNhanId = (id) => {
         }
     });
 };
+const getObjectIdByQuanNhanId = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const quannhan = await QuanNhan.findOne({
+                QuanNhanId: id
+            });
 
+            if (!quannhan) {
+                resolve({
+                    status: 'ERR',
+                    message: 'Quannhan is not defined'
+                });
+            }
 
+            resolve({
+                data: quannhan._id
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 module.exports = {
     createQuanNhan,
     updateQuanNhan,
@@ -251,5 +272,5 @@ module.exports = {
     getAllType,
     getQuanNhanByQuanNhanId,
     getQuanNhanFromDonVi,
-
+    getObjectIdByQuanNhanId
 }
