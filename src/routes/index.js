@@ -43,6 +43,25 @@ const DanhMucDanToc = require("./DanhMucDanTocRouter")
 const DanhMucCheDoUT = require("./DanhMucCheDoUTRouter")
 const DanhMucKhuVucUT = require("./DanhMucKhuVucUTRouter")
 const HocViRouter = require("./HocViRouter")
+
+const TaiHuongDan = require("./TaiHuongDanRouter")
+const HinhThucHuongDan = require("./HinhThucHuongDanRouter")
+const HinhThucKhaoThi = require("./HinhThucKhaoThiRouter")
+const TaiHoiDong = require("./TaiHoiDongRouter")
+const TaiKhaoThi = require("./TaiKhaoThiRouter")
+const VaiTroHoiDong = require("./VaiTroHoiDongRouter")
+const CapHoiDong = require("./CapHoiDongRouter")
+const HinhThucDaoTao = require("./HinhThucDaoTaoRouter")
+const HinhThucCongViec = require("./HinhThucCongViecRouter")
+const HinhThucGiangDay = require("./HinhThucGiangDayRouter")
+const LoaiHinhDaoTao = require("./LoaiHinhDaoTaoRouter")
+
+const LoaiDeTai = require("./LoaiDeTaiRouter")
+const PhanLoaiKetQua = require("./PhanLoaiKetQuaHDNCKHRouter")
+const HuongDanNCKH = require("./HuongDanNCKHRouter")
+
+
+
 const routes = (app) => {
     app.use('/api/user', UserRouter)
     app.use('/api/product', ProductRouter)
@@ -93,6 +112,25 @@ const routes = (app) => {
     app.use('/api/quatrinhquanham', QuaTrinhQuanHam)
     app.use('/api/quatrinhcdcmkt', QuaTrinhCDCMKT)
     app.use('/api/quatrinhhoctapkhac', QuaTrinhHocTapKhac)
+
+
+    app.use('/api/taihuongdan', TaiHuongDan)
+    app.use('/api/hinhthuchuongdan', HinhThucHuongDan)
+    app.use('/api/hinhthuckhaothi', HinhThucKhaoThi)
+    app.use('/api/taikhaothi', TaiKhaoThi)
+    app.use('/api/taihoidong', TaiHoiDong)
+    app.use('/api/vaitrohoidong', VaiTroHoiDong)
+    app.use('/api/caphoidong', CapHoiDong)
+    app.use('/api/hinhthuccongviec', HinhThucCongViec)
+    app.use('/api/hinhthucdaotao', HinhThucDaoTao)
+    app.use('/api/hinhthucgiangday', HinhThucGiangDay)
+    app.use('/api/loaihinhdaotao', LoaiHinhDaoTao)
+
+    app.use('/api/loaidetai', LoaiDeTai)
+    app.use('/api/phanloaiketqua', PhanLoaiKetQua)
+    app.use('/api/huongdannckh', HuongDanNCKH)
+
+
 }
 
 module.exports = routes
