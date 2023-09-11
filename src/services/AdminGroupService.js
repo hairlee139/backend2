@@ -180,7 +180,98 @@ const getAllType = () => {
         }
     })
 }
+const updateAdminGroupLists = async (id, departmentlist, leveltitlelist) => {
+    try {
+      const adminGroup = await AdminGroup.findById(id);
+  
+      if (!adminGroup) {
+        return {
+          status: 'ERR',
+          message: 'AdminGroup not found',
+        };
+      }
+  
+      if (departmentlist) {
+        adminGroup.departmentlist.push(departmentlist);
+      }
+  
+      if (leveltitlelist) {
+        adminGroup.leveltitlelist.push(leveltitlelist);
+      }
+  
+      await adminGroup.save();
+  
+      return {
+        status: 'OK',
+        message: 'Data updated successfully',
+      };
+    } catch (error) {
+      return {
+        status: 'ERR',
+        message: error.message,
+      };
+    }
+  };
+  const update2ListsAdminGroup = async (_id, index, newLevelTitle, newDepartment) => {
+    try {
+      const adminGroup = await AdminGroup.findById(_id);
+  
+      if (!adminGroup) {
+        return {
+          status: 'ERR',
+          message: 'AdminGroup not found',
+        };
+      }
+      console.log(adminGroup.leveltitlelist[index]);
+      console.log(newLevelTitle);
+      if (newLevelTitle) {
+        adminGroup.leveltitlelist[index] = newLevelTitle;
+      }
+  
+      if (newDepartment) {
+        adminGroup.departmentlist[index] = newDepartment;
+      }
+  
+      await adminGroup.save();
+  
+      return {
+        status: 'OK',
+        message: 'Data updated successfully',
+      };
+    } catch (error) {
+      return {
+        status: 'ERR',
+        message: error.message,
+      };
+    }
+  };
+  const delete2ListsAdminGroup = async (_id, index) => {
+    try {
+        const adminGroup = await AdminGroup.findById(_id);
 
+        if (!adminGroup) {
+            return {
+                status: 'ERR',
+                message: 'AdminGroup not found',
+            };
+        }
+
+        adminGroup.leveltitlelist.splice(index, 1);
+        adminGroup.departmentlist.splice(index, 1);
+
+        await adminGroup.save();
+
+        return {
+            status: 'OK',
+            message: 'Data deleted successfully',
+        };
+    } catch (error) {
+        return {
+            status: 'ERR',
+            message: error.message,
+        };
+    }
+};
 module.exports = {
     createAdminGroup,
     updateAdminGroup,
@@ -188,5 +279,8 @@ module.exports = {
     deleteAdminGroup,
     getAllAdminGroup,
     deleteManyAdminGroup,
-    getAllType
+    getAllType,
+    updateAdminGroupLists,
+    update2ListsAdminGroup,
+    delete2ListsAdminGroup
 }

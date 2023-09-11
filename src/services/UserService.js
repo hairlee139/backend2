@@ -180,6 +180,43 @@ const getDetailsUser = (id) => {
         }
     })
 }
+const updateUserPassword = (userId, oldPassword, newPassword) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const user = await User.findById(userId);
+            if (!user) {
+                resolve({
+                    status: 'ERR',
+                    message: 'User not found'
+                });
+            }
+            // console.log(oldPassword);
+            // console.log(newPassword);
+            const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
+            // console.log(isPasswordValid);
+            // console.log(user.password);
+            if (!isPasswordValid) {
+                resolve({
+                    status: 'ERR',
+                    message: 'Invalid old password'
+                });
+            }
+
+            const hash = bcrypt.hashSync(newPassword, 10);
+            user.password = hash;
+            await user.save();
+
+            resolve({
+                status: 'OK',
+                message: 'Password updated successfully'
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+
 
 module.exports = {
     createUser,
@@ -188,5 +225,6 @@ module.exports = {
     deleteUser,
     getAllUser,
     getDetailsUser,
-    deleteManyUser
+    deleteManyUser,
+    updateUserPassword
 }
