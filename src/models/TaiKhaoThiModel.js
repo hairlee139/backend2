@@ -47,7 +47,7 @@ const taikhaothiSchema = new mongoose.Schema(
         },
 
         TrangThai: {
-            type: String,
+            type: Number,
             required: true,
             default: 0
         },

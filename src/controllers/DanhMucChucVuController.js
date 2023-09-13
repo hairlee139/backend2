@@ -20,15 +20,15 @@ const createDanhMucChucVu = async (req, res) => {
 
 const updateDanhMucChucVu = async (req, res) => {
     try {
-        const danhmuccapbacId = req.params.id
+        const danhmucchucvuId = req.params.id
         const data = req.body
-        if (!danhmuccapbacId) {
+        if (!danhmucchucvuId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'danhmucchucvuId is required'
             })
         }
-        const response = await DanhMucChucVuService.updateDanhMucChucVu(danhmuccapbacId, data)
+        const response = await DanhMucChucVuService.updateDanhMucChucVu(danhmucchucvuId, data)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -39,14 +39,14 @@ const updateDanhMucChucVu = async (req, res) => {
 
 const getDetailsDanhMucChucVu = async (req, res) => {
     try {
-        const danhmuccapbacId = req.params.id
-        if (!danhmuccapbacId) {
+        const danhmucchucvuId = req.params.id
+        if (!danhmucchucvuId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The danhmucchucvuId is required'
             })
         }
-        const response = await DanhMucChucVuService.getDetailsDanhMucChucVu(danhmuccapbacId)
+        const response = await DanhMucChucVuService.getDetailsDanhMucChucVu(danhmucchucvuId)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -57,14 +57,14 @@ const getDetailsDanhMucChucVu = async (req, res) => {
 
 const deleteDanhMucChucVu = async (req, res) => {
     try {
-        const danhmuccapbacId = req.params.id
-        if (!danhmuccapbacId) {
+        const danhmucchucvuId = req.params.id
+        if (!danhmucchucvuId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The danhmucchucvuId is required'
             })
         }
-        const response = await DanhMucChucVuService.deleteDanhMucChucVu(danhmuccapbacId)
+        const response = await DanhMucChucVuService.deleteDanhMucChucVu(danhmucchucvuId)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({

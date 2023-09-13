@@ -14,7 +14,7 @@ const quatrinhcongtacSchema = new mongoose.Schema(
 
     },
     NgayQuyetDinh: {
-      type: String,
+      type: Date,
 
     },
     ChucVu: {
@@ -34,7 +34,7 @@ const quatrinhcongtacSchema = new mongoose.Schema(
       required: true,
     },
     TrangThai: {
-      type: String,
+      type: Number,
       required: true,
       default: 0
     },

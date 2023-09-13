@@ -43,6 +43,8 @@ const DanhMucDanToc = require("./DanhMucDanTocRouter")
 const DanhMucCheDoUT = require("./DanhMucCheDoUTRouter")
 const DanhMucKhuVucUT = require("./DanhMucKhuVucUTRouter")
 const HocViRouter = require("./HocViRouter")
+const QuaTrinhHocHam = require("./QuaTrinhHocHamRouter")
+const DanhMucChucVuDang = require("./DanhMucChucVuDangRouter")
 
 const TaiHuongDan = require("./TaiHuongDanRouter")
 const HinhThucHuongDan = require("./HinhThucHuongDanRouter")
@@ -96,6 +98,7 @@ const routes = (app) => {
     app.use('/api/danhmuckhenthuong', DanhMucKhenThuong)
     app.use('/api/danhmuckyluat', DanhMucKyLuat)
     app.use('/api/danhmucloaidonvi', DanhMucLoaiDonVi)
+    app.use('/api/danhmucchucvudang', DanhMucChucVuDang)
 
     app.use('/api/danhmuctinh', DanhMucTinh)
     app.use('/api/danhmuchuyen', DanhMucHuyen)
@@ -112,7 +115,7 @@ const routes = (app) => {
     app.use('/api/quatrinhquanham', QuaTrinhQuanHam)
     app.use('/api/quatrinhcdcmkt', QuaTrinhCDCMKT)
     app.use('/api/quatrinhhoctapkhac', QuaTrinhHocTapKhac)
-
+    app.use('/api/quatrinhhocham', QuaTrinhHocHam)
 
     app.use('/api/taihuongdan', TaiHuongDan)
     app.use('/api/hinhthuchuongdan', HinhThucHuongDan)

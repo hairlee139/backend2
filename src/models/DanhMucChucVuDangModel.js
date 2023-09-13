@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const danhmuctinhSchema = new mongoose.Schema(
+const danhmucchucvudangSchema = new mongoose.Schema(
     {
-        DanhMucTinhId: { type: String },
-        TenDanhMucTinh: { type: String },
+        DanhMucChucVuDangId: { type: String },
+        TenDanhMucChucVuDang: { type: String },
         HienThi: { type: Boolean, default: true },
         GhiChu: { String },
         edituser: {
@@ -26,5 +26,5 @@ const danhmuctinhSchema = new mongoose.Schema(
         timestamps: true
     }
 );
-const DanhMucTinh = mongoose.model("DanhMucTinh", danhmuctinhSchema);
-module.exports = DanhMucTinh;
+const DanhMucChucVuDang = mongoose.model("DanhMucChucVuDang", danhmucchucvudangSchema);
+module.exports = DanhMucChucVuDang;

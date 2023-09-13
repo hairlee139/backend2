@@ -5,7 +5,23 @@ const danhmuchuyenSchema = new mongoose.Schema(
         TenDanhMucHuyen: { type: String },
         TenDanhMucTinh: { type: String, required: true },
         HienThi: { type: Boolean, default: true },
-        GhiChu: { String }
+        GhiChu: { String },
+        edituser: {
+            type: String,
+
+        },
+        edittime: {
+            type: Date,
+
+        },
+        lock: {
+            type: Number,
+
+        },
+        lockdate: {
+            type: Date,
+
+        },
     },
     {
         timestamps: true

@@ -2,7 +2,7 @@ const DanhMucHocHam = require("../models/DanhMucHocHamModel")
 
 const createDanhMucHocHam = (newDanhMucHocHam) => {
     return new Promise(async (resolve, reject) => {
-        const { DanhMucHocHamId, TenDanhMucHocHam, HienThi, GhiChu } = newDanhMucHocHam
+        const { DanhMucHocHamId, TenDanhMucHocHam, HienThi, GhiChu, edituser, edittime, lock, lockdate } = newDanhMucHocHam
         try {
             const checkDanhMucHocHam = await DanhMucHocHam.findOne({
                 TenDanhMucHocHam: TenDanhMucHocHam
@@ -17,7 +17,7 @@ const createDanhMucHocHam = (newDanhMucHocHam) => {
                 DanhMucHocHamId,
                 TenDanhMucHocHam,
                 HienThi,
-                GhiChu
+                GhiChu, edituser, edittime, lock, lockdate
             })
             if (newDanhMucHocHam) {
                 resolve({
@@ -171,7 +171,7 @@ const getAllDanhMucHocHam = (limit, page, sort, filter) => {
 const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allType = await DanhMucHocHam.distinct('GhiChu')
+            const allType = await DanhMucHocHam.distinct('TenDanhMucHocHam')
             resolve({
                 status: 'OK',
                 message: 'Success',
