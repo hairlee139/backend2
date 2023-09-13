@@ -98,10 +98,10 @@ const deleteManyDanhMucChucVu = (ids) => {
 const getDetailsDanhMucChucVu = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const danhmuccapbac = await DanhMucChucVu.findOne({
+            const danhmucchucvu = await DanhMucChucVu.findOne({
                 _id: id
             })
-            if (danhmuccapbac === null) {
+            if (danhmucchucvu === null) {
                 resolve({
                     status: 'ERR',
                     message: 'DanhMucChucVu is not defined'
@@ -111,7 +111,7 @@ const getDetailsDanhMucChucVu = (id) => {
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data: danhmuccapbac
+                data: danhmucchucvu
             })
         } catch (e) {
             reject(e)
@@ -171,7 +171,7 @@ const getAllDanhMucChucVu = (limit, page, sort, filter) => {
 const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allType = await DanhMucChucVu.distinct('GhiChu')
+            const allType = await DanhMucChucVu.distinct('TenDanhMucChucVu')
             resolve({
                 status: 'OK',
                 message: 'Success',

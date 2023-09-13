@@ -1,10 +1,26 @@
 const mongoose = require('mongoose')
 const danhmuccapbacSchema = new mongoose.Schema(
     {
-        DanhMucCapBacId: {type: String},
+        DanhMucCapBacId: { type: String },
         TenDanhMucCapBac: { type: String },
-        HienThi: { type: Boolean, default: true},
-        GhiChu: {String}
+        HienThi: { type: Boolean, default: true },
+        GhiChu: { String },
+        edituser: {
+            type: String,
+
+        },
+        edittime: {
+            type: Date,
+
+        },
+        lock: {
+            type: Number,
+
+        },
+        lockdate: {
+            type: Date,
+
+        },
     },
     {
         timestamps: true

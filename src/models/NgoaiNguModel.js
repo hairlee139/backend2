@@ -29,7 +29,9 @@ const ngoainguSchema = new mongoose.Schema(
       type: String,
     },
     TrangThai: {
-      type: String,
+      type: Number,
+      required: true,
+      default: 0
     },
     edituser: {
       type: String,
