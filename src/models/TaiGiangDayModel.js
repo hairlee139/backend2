@@ -21,56 +21,58 @@ const taigiangdaySchema = new mongoose.Schema(
             required: true,
           },
         SoTinChi: {
-            type: String,
+            type: Number,
             required: true,
           },
         GioChuan: {
-            type: String,
+            type: Number,
             required: true,
           },
         SiSo: {
-            type: String,
-            required: true,
+            type: Number,
+            // required: true,
           },
         HTDT: {
             type: String,
-            required: true,
+            // required: true
           },
-        LoaiHinhDT: {
-            type: String,
-            required: true,
-          },
+        
+        KetThuc: {
+            type: Date,
+           
+          },  
         Quy: {
-            type: String,
-            required: true,
+            type: Number,
+            // required: true
           },  
         Nam: {
-            type: String,
-            required: true,
+            type: Number,
+            // required: true
           },
         HocKy: {
             type: String,
-            required: true,
+            // required: true,
           },
         HTThi: {
             type: String,
-            required: true,
+            // required: true,
           },
         SoTiet: {
-            type: String,
-            required: true,
+            type: Number,
+            // required: true,
           },
         FileCM: {
             type: String,
-            required: true,
+           
           },
         THCSDT: {
-            type: String,
-            required: true,
+            type: Boolean,
+            default: true
+            
           },
         TrangThai: {
-            type: String,
-            required: true,
+            type: Number,
+            default: 0
           },
         CacHTCV: [{
             type: mongoose.Schema.Types.ObjectId,

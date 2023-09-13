@@ -1,15 +1,15 @@
-const TaiGiangDayService = require('../services/TaiGiangDayService')
+const HTCVService = require('../services/HTCVService')
 
-const createTaiGiangDay = async (req, res) => {
+const createHTCV = async (req, res) => {
     try {
-        const { code, QuanNhanId, MaLop, MaMonHoc, TenMonHoc, SoTinChi, GioChuan, SiSo, HTDT, KetThuc,Quy, Nam,HocKy,HTThi,SoTiet,FileCM,THCSDT,TrangThai,CacHTCV, edituser, edittime, GhiChu  } = req.body
+        const { HinhThucCV, QuanNhanId,HoTen, KhoiLuongCV, DonVi, SoTiet, SoGioQuyDoi, edituser, edittime, GhiChu  } = req.body
         if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
             })
         }
-        const response = await TaiGiangDayService.createTaiGiangDay(req.body)
+        const response = await HTCVService.createHTCV(req.body)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -18,17 +18,17 @@ const createTaiGiangDay = async (req, res) => {
     }
 }
 
-const updateTaiGiangDay = async (req, res) => {
+const updateHTCV = async (req, res) => {
     try {
-        const taigiangdayId = req.params.id
+        const htcvId = req.params.id
         const data = req.body
-        if (!taigiangdayId) {
+        if (!htcvId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The taigiangdayId is required'
+                message: 'The htcvId is required'
             })
         }
-        const response = await TaiGiangDayService.updateTaiGiangDay(taigiangdayId, data)
+        const response = await HTCVService.updateHTCV(htcvId, data)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -36,7 +36,7 @@ const updateTaiGiangDay = async (req, res) => {
         })
     }
 }
-const getTaiGiangDayByQuanNhanId = async (req, res) => {
+const getHTCVByQuanNhanId = async (req, res) => {
     try {
         const quannhanId = req.params.id // Lấy QuanNhanId của user đang đăng nhập từ request
         const data = req.body
@@ -47,7 +47,7 @@ const getTaiGiangDayByQuanNhanId = async (req, res) => {
             });
         }
 
-        const response = await TaiGiangDayService.getTaiGiangDayByQuanNhanId(quannhanId, data);
+        const response = await HTCVService.getHTCVByQuanNhanId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -55,16 +55,16 @@ const getTaiGiangDayByQuanNhanId = async (req, res) => {
         });
     }
 };
-const getDetailsTaiGiangDay = async (req, res) => {
+const getDetailsHTCV = async (req, res) => {
     try {
-        const taigiangdayId = req.params.id
-        if (!taigiangdayId) {
+        const htcvId = req.params.id
+        if (!htcvId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The taigiangdayId is required'
+                message: 'The htcvId is required'
             })
         }
-        const response = await TaiGiangDayService.getDetailsTaiGiangDay(taigiangdayId)
+        const response = await HTCVService.getDetailsHTCV(htcvId)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -73,16 +73,16 @@ const getDetailsTaiGiangDay = async (req, res) => {
     }
 }
 
-const deleteTaiGiangDay = async (req, res) => {
+const deleteHTCV = async (req, res) => {
     try {
-        const taigiangdayId = req.params.id
-        if (!taigiangdayId) {
+        const htcvId = req.params.id
+        if (!htcvId) {
             return res.status(200).json({
                 status: 'ERR',
-                message: 'The taigiangdayId is required'
+                message: 'The htcvId is required'
             })
         }
-        const response = await TaiGiangDayService.deleteTaiGiangDay(taigiangdayId)
+        const response = await HTCVService.deleteHTCV(htcvId)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -100,7 +100,7 @@ const deleteMany = async (req, res) => {
                 message: 'The ids is required'
             })
         }
-        const response = await TaiGiangDayService.deleteManyTaiGiangDay(ids)
+        const response = await HTCVService.deleteManyHTCV(ids)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -109,10 +109,10 @@ const deleteMany = async (req, res) => {
     }
 }
 
-const getAllTaiGiangDay = async (req, res) => {
+const getAllHTCV = async (req, res) => {
     try {
         const { limit, page, sort, filter } = req.query
-        const response = await TaiGiangDayService.getAllTaiGiangDay(Number(limit) || null, Number(page) || 0, sort, filter)
+        const response = await HTCVService.getAllHTCV(Number(limit) || null, Number(page) || 0, sort, filter)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -123,7 +123,7 @@ const getAllTaiGiangDay = async (req, res) => {
 
 const getAllType = async (req, res) => {
     try {
-        const response = await TaiGiangDayService.getAllType()
+        const response = await HTCVService.getAllType()
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -131,29 +131,14 @@ const getAllType = async (req, res) => {
         })
     }
 }
-const updateHTCVLists = async (req, res) => {
-    try {
-      const id = req.params.id;
-      const { HTCVList } = req.body;
-  
-      const response = await TaiGiangDayService.updateHTCVLists(
-        id,
-        HTCVList
-      );
-  
-      return res.status(200).json(response);
-    } catch (err) {
-      return res.status(500).json({ message: err.message });
-    }
-  };
+
 module.exports = {
-    createTaiGiangDay,
-    updateTaiGiangDay,
-    getDetailsTaiGiangDay,
-    deleteTaiGiangDay,
-    getAllTaiGiangDay,
+    createHTCV,
+    updateHTCV,
+    getDetailsHTCV,
+    deleteHTCV,
+    getAllHTCV,
     deleteMany,
     getAllType,
-    getTaiGiangDayByQuanNhanId,
-    updateHTCVLists
+    getHTCVByQuanNhanId,
 }

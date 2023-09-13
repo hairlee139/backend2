@@ -55,11 +55,11 @@ const HinhThucDaoTao = require("./HinhThucDaoTaoRouter")
 const HinhThucCongViec = require("./HinhThucCongViecRouter")
 const HinhThucGiangDay = require("./HinhThucGiangDayRouter")
 const LoaiHinhDaoTao = require("./LoaiHinhDaoTaoRouter")
-
+const TaiGiangDay = require("./TaiGiangDayRouter")
 const LoaiDeTai = require("./LoaiDeTaiRouter")
 const PhanLoaiKetQua = require("./PhanLoaiKetQuaHDNCKHRouter")
 const HuongDanNCKH = require("./HuongDanNCKHRouter")
-
+const HTCV = require("./HTCVRouter")
 
 
 const routes = (app) => {
@@ -112,8 +112,8 @@ const routes = (app) => {
     app.use('/api/quatrinhquanham', QuaTrinhQuanHam)
     app.use('/api/quatrinhcdcmkt', QuaTrinhCDCMKT)
     app.use('/api/quatrinhhoctapkhac', QuaTrinhHocTapKhac)
-
-
+    app.use('/api/htcv', HTCV)
+    app.use('/api/taigiangday', TaiGiangDay)
     app.use('/api/taihuongdan', TaiHuongDan)
     app.use('/api/hinhthuchuongdan', HinhThucHuongDan)
     app.use('/api/hinhthuckhaothi', HinhThucKhaoThi)
