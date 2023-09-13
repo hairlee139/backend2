@@ -3,7 +3,7 @@ const prioritySchema = new mongoose.Schema(
     {
         code: {
             type: String,
-            
+            required: true
           },
         description: {
             type: String,
@@ -38,16 +38,18 @@ const prioritySchema = new mongoose.Schema(
             
           },
         addn: {
-            type: Number,
+            type: Boolean,
+            default: true
             
           },
         edit: {
-            type: Number,
+          type: Boolean,
+          default: true
             
           },
         dele: {
-            type: Number,
-            
+          type: Boolean,
+          default: true  
           },
     },
     {

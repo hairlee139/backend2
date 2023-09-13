@@ -113,7 +113,54 @@ const getAllType = async (req, res) => {
         })
     }
 }
+const updateAdminGroupLists = async (req, res) => {
+    try {
+      const id = req.params.id;
+      const { departmentlist, leveltitlelist } = req.body;
+  
+      const response = await AdminGroupService.updateAdminGroupLists(
+        id,
+        departmentlist,
+        leveltitlelist
+      );
+  
+      return res.status(200).json(response);
+    } catch (err) {
+      return res.status(500).json({ message: err.message });
+    }
+  };
+  const update2ListsAdminGroup = async (req, res) => {
+    try {
+      const { _id, index } = req.params; // Thêm _id vào params
+      const { newLevelTitle, newDepartment } = req.body;
+  
+      const response = await AdminGroupService.update2ListsAdminGroup(
+        _id, // Truyền _id vào hàm service
+        index,
+        newLevelTitle,
+        newDepartment
+      );
+  
+      return res.status(200).json(response);
+    } catch (err) {
+      return res.status(500).json({ message: err.message });
+    }
+  };
+  const delete2ListsAdminGroup = async (req, res) => {
+    const { _id, index } = req.params;
 
+    try {
+        const result = await AdminGroupService.delete2ListsAdminGroup(_id, index);
+
+        if (result.status === 'OK') {
+            return res.status(200).json({ message: result.message });
+        } else {
+            return res.status(404).json({ message: result.message });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
 module.exports = {
     createAdminGroup,
     updateAdminGroup,
@@ -121,5 +168,8 @@ module.exports = {
     deleteAdminGroup,
     getAllAdminGroup,
     deleteMany,
-    getAllType
+    getAllType,
+    updateAdminGroupLists,
+    update2ListsAdminGroup,
+    delete2ListsAdminGroup
 }
