@@ -2,7 +2,7 @@ const TaiGiangDayService = require('../services/TaiGiangDayService')
 
 const createTaiGiangDay = async (req, res) => {
     try {
-        const { code, QuanNhanId, MaLop, MaMonHoc, TenMonHoc, SoTinChi, GioChuan, SiSo, HTDT, KetThuc,Quy, Nam,HocKy,HTThi,SoTiet,FileCM,THCSDT,TrangThai,CacHTCV, edituser, edittime, GhiChu  } = req.body
+        const { code, QuanNhanId, MaLop, MaMonHoc, TenMonHoc, SoTinChi, GioChuan, SiSo, HTDT, KetThuc, Quy, LoaiHinhDT, Nam, HocKy, HTThi, SoTiet, FileCM, THCSDT, TrangThai, CacHTCV, edituser, edittime, GhiChu } = req.body
         if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',
@@ -133,19 +133,19 @@ const getAllType = async (req, res) => {
 }
 const updateHTCVLists = async (req, res) => {
     try {
-      const id = req.params.id;
-      const { HTCVList } = req.body;
-  
-      const response = await TaiGiangDayService.updateHTCVLists(
-        id,
-        HTCVList
-      );
-  
-      return res.status(200).json(response);
+        const id = req.params.id;
+        const { HTCVList } = req.body;
+
+        const response = await TaiGiangDayService.updateHTCVLists(
+            id,
+            HTCVList
+        );
+
+        return res.status(200).json(response);
     } catch (err) {
-      return res.status(500).json({ message: err.message });
+        return res.status(500).json({ message: err.message });
     }
-  };
+};
 module.exports = {
     createTaiGiangDay,
     updateTaiGiangDay,

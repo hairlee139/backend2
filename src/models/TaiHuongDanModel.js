@@ -51,7 +51,7 @@ const taihuongdanSchema = new mongoose.Schema(
         },
         TrangThai: {
             type: Number,
-            required: true,
+            //   required: true,
             default: 0
         },
         edituser: {

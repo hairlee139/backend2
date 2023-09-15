@@ -2,11 +2,11 @@ const TaiGiangDay = require("../models/TaiGiangDayModel")
 
 const createTaiGiangDay = (newTaiGiangDay) => {
     return new Promise(async (resolve, reject) => {
-        const { code, QuanNhanId, MaLop, MaMonHoc, TenMonHoc, SoTinChi, GioChuan, SiSo, HTDT, KetThuc,Quy, Nam,HocKy,HTThi,SoTiet,FileCM,THCSDT,TrangThai,CacHTCV, edituser, edittime, GhiChu } = newTaiGiangDay
+        const { code, QuanNhanId, MaLop, MaMonHoc, TenMonHoc, SoTinChi, GioChuan, SiSo, HTDT, KetThuc, Quy, LoaiHinhDT, Nam, HocKy, HTThi, SoTiet, FileCM, THCSDT, TrangThai, CacHTCV, edituser, edittime, GhiChu } = newTaiGiangDay
         try {
             const checkTaiGiangDay = await TaiGiangDay.findOne({
                 MaLop: MaLop,
-                MaMonHoc:MaMonHoc
+                MaMonHoc: MaMonHoc
             })
             if (checkTaiGiangDay !== null) {
                 resolve({
@@ -14,18 +14,18 @@ const createTaiGiangDay = (newTaiGiangDay) => {
                     message: 'TaiGiangDay is already'
                 })
             }
-            else{
-            const newTaiGiangDay = await TaiGiangDay.create({
-                code, QuanNhanId, MaLop, MaMonHoc, TenMonHoc, SoTinChi, GioChuan, SiSo, HTDT, KetThuc,Quy, Nam,HocKy,HTThi,SoTiet,FileCM,THCSDT,TrangThai,CacHTCV, edituser, edittime, GhiChu 
-            })
-            if (newTaiGiangDay) {
-                resolve({
-                    status: 'OK',
-                    message: 'SUCCESS',
-                    data: newTaiGiangDay
+            else {
+                const newTaiGiangDay = await TaiGiangDay.create({
+                    code, QuanNhanId, MaLop, MaMonHoc, TenMonHoc, SoTinChi, GioChuan, SiSo, HTDT, LoaiHinhDT, KetThuc, Quy, Nam, HocKy, HTThi, SoTiet, FileCM, THCSDT, TrangThai, CacHTCV, edituser, edittime, GhiChu
                 })
+                if (newTaiGiangDay) {
+                    resolve({
+                        status: 'OK',
+                        message: 'SUCCESS',
+                        data: newTaiGiangDay
+                    })
+                }
             }
-        }
         } catch (e) {
             reject(e)
         }
@@ -208,39 +208,38 @@ const getTaiGiangDayByQuanNhanId = (id) => {
 };
 const updateHTCVLists = async (id, HTCVList) => {
     try {
-      const taigiangday = await TaiGiangDay.findById(id);
-  
-      if (!taigiangday) {
-        return {
-          status: 'ERR',
-          message: 'HTCV not found',
-        };
-      }
-      if (taigiangday.CacHTCV.includes(HTCVList)) {
-        return {
-            status: 'OK',
-            message: 'HTCV already exists',
-        };
-    }
-      
-     else
-     {
-        taigiangday.CacHTCV.push(HTCVList);
-     
-      await taigiangday.save();
-  
-      return {
-        status: 'OK',
-        message: 'Data updated successfully',
-      };
-    }
+        const taigiangday = await TaiGiangDay.findById(id);
+
+        if (!taigiangday) {
+            return {
+                status: 'ERR',
+                message: 'HTCV not found',
+            };
+        }
+        if (taigiangday.CacHTCV.includes(HTCVList)) {
+            return {
+                status: 'OK',
+                message: 'HTCV already exists',
+            };
+        }
+
+        else {
+            taigiangday.CacHTCV.push(HTCVList);
+
+            await taigiangday.save();
+
+            return {
+                status: 'OK',
+                message: 'Data updated successfully',
+            };
+        }
     } catch (error) {
-      return {
-        status: 'ERR',
-        message: error.message,
-      };
+        return {
+            status: 'ERR',
+            message: error.message,
+        };
     }
-  };
+};
 
 module.exports = {
     createTaiGiangDay,
