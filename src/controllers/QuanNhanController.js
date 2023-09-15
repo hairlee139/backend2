@@ -189,6 +189,44 @@ const getSoLuongQuanNhanFromDonVi = async (req, res) => {
         });
     }
 };
+const getAllDoTuoiFromDonVi = async (req, res) => {
+    try {
+        const DonViId = req.params.id 
+        const data = req.body
+        if (!DonViId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'DonViId is not defined'
+            });
+        }
+
+        const response = await QuanNhanService.getAllDoTuoiFromDonVi(DonViId, data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
+const getAllQuanHamFromDonVi = async (req, res) => {
+    try {
+        const donviId = req.params.id // Lấy donviId của user đang đăng nhập từ request
+        const data = req.body
+        if (!donviId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'donviId is not defined'
+            });
+        }
+        
+        const response = await QuanNhanService.getAllQuanHamFromDonVi(donviId,data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
 
 module.exports = {
     createQuanNhan,
@@ -201,5 +239,7 @@ module.exports = {
     getQuanNhanByQuanNhanId,
     getQuanNhanFromDonVi,
     getObjectIdByQuanNhanId,
-    getSoLuongQuanNhanFromDonVi
+    getSoLuongQuanNhanFromDonVi,
+    getAllQuanHamFromDonVi,
+    getAllDoTuoiFromDonVi
 }

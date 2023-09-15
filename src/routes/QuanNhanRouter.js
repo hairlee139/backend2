@@ -14,4 +14,6 @@ router.get('/get-by-id/:id', QuanNhanController.getQuanNhanByQuanNhanId)
 router.get('/get-by-id2/:id', QuanNhanController.getQuanNhanFromDonVi)
 router.get('/get-by-id3/:id', QuanNhanController.getSoLuongQuanNhanFromDonVi)
 router.get('/getobjectid/:id', QuanNhanController.getObjectIdByQuanNhanId)
+router.get('/get-all-quanham/:id', QuanNhanController.getAllQuanHamFromDonVi)
+router.get('/get-all-dotuoi/:id', QuanNhanController.getAllDoTuoiFromDonVi)
 module.exports = router
