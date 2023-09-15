@@ -2,7 +2,7 @@ const TaiHuongDan = require("../models/TaiHuongDanModel")
 
 const createTaiHuongDan = (newTaiHuongDan) => {
     return new Promise(async (resolve, reject) => {
-        const { TaiHuongDanId, QuanNhanId, HinhThucHuongDan, HocVien, Lop, DeTai, NgayBatDau, Quy, Nam, SoCBHuongDan, DinhMuc, SoGioChuan, TrangThai, edituser, edittime, GhiChu } = newTaiHuongDan
+        const { TaiHuongDanId, QuanNhanId, HinhThucHuongDan, HocVien, Lop, DeTai, NgayBatDau, Quy, Nam, FileCM, SoCBHuongDan, DinhMuc, SoGioChuan, TrangThai, edituser, edittime, GhiChu } = newTaiHuongDan
         try {
             // const checkTaiHuongDan = await TaiHuongDan.findOne({
             //     TaiHuongDanId: TaiHuongDanId
@@ -26,6 +26,7 @@ const createTaiHuongDan = (newTaiHuongDan) => {
                 SoCBHuongDan,
                 DinhMuc,
                 SoGioChuan,
+                FileCM,
                 TrangThai,
                 edituser,
                 edittime,

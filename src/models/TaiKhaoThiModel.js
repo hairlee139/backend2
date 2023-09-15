@@ -45,7 +45,10 @@ const taikhaothiSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        FileCM: {
+            type: String,
 
+        },
         TrangThai: {
             type: Number,
             // required: true,

@@ -2,7 +2,7 @@ const TaiHuongDanService = require('../services/TaiHuongDanService')
 
 const createTaiHuongDan = async (req, res) => {
     try {
-        const { TaiHuongDanId, QuanNhanId, HinhThucHuongDan, HocVien, Lop, DeTai, NgayBatDau, Quy, Nam, SoCBHuongDan, DinhMuc, SoGioChuan, TrangThai, edituser, edittime, GhiChu } = req.body
+        const { TaiHuongDanId, QuanNhanId, HinhThucHuongDan, HocVien, Lop, DeTai, NgayBatDau, Quy, Nam, SoCBHuongDan, DinhMuc, FileCM, SoGioChuan, TrangThai, edituser, edittime, GhiChu } = req.body
         if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',

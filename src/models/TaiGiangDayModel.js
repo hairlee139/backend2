@@ -70,8 +70,9 @@ const taigiangdaySchema = new mongoose.Schema(
 
     },
     THCSDT: {
-      type: Boolean,
-      default: true
+      type: Number,
+      required: true,
+      default: 0
 
     },
     TrangThai: {

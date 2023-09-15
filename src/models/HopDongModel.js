@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const taihuongdanSchema = new mongoose.Schema(
+const hopdongSchema = new mongoose.Schema(
     {
-        TaiHuongDanId: {
+        HopDongId: {
             type: String,
 
         },
@@ -9,55 +9,68 @@ const taihuongdanSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        HinhThucHuongDan: {
+        TenHopDong: {
             type: String,
             required: true,
         },
-        HocVien: {
+        BenA: {
+            type: String,
+
+
+        },
+        DonViChuTri: {
             type: String,
 
         },
-        Lop: {
+        GiaTriHopDong: {
             type: String,
 
         },
-        DeTai: {
-            type: String,
-            required: true,
+        ThoiDiemBatDau: {
+            type: Date,
+
         },
-        NgayBatDau: {
-            type: String,
-            required: true,
+        ThoiDiemKetThuc: {
+            type: Date,
+
         },
-        Quy: {
+        NguoiChuTri: {
             type: String,
 
         },
-        Nam: {
-            type: String,
-            required: true,
+        SoThanhVien: {
+            type: Number,
+
         },
-        SoCBHuongDan: {
+        CacThanhVien: {
             type: String,
-            required: true,
+
         },
-        DinhMuc: {
-            type: String,
-            required: true,
+        NgayThanhLy: {
+            type: Date,
+
         },
-        SoGioChuan: {
-            type: String,
+
+        TrangThai: {
+            type: Number,
             required: true,
+            default: 0
         },
+        Tai: {
+            type: Number,
+
+        },
+
         FileCM: {
             type: String,
 
         },
-        TrangThai: {
-            type: Number,
-            //   required: true,
-            default: 0
-        },
+        DanhSachThanhVien: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "ThanhVienHopDong",
+        }],
+
+
         edituser: {
             type: String,
         },
@@ -72,5 +85,5 @@ const taihuongdanSchema = new mongoose.Schema(
         timestamps: true
     }
 );
-const TaiHuongDan = mongoose.model("TaiHuongDan", taihuongdanSchema);
-module.exports = TaiHuongDan;
+constHopDong = mongoose.model("HopDong", hopdongSchema);
+module.exports = HopDong;

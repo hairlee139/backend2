@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const taihuongdanSchema = new mongoose.Schema(
+const sangcheSchema = new mongoose.Schema(
     {
-        TaiHuongDanId: {
+        SangCheId: {
             type: String,
 
         },
@@ -9,55 +9,66 @@ const taihuongdanSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        HinhThucHuongDan: {
-            type: String,
-            required: true,
-        },
-        HocVien: {
+        TenSangChe: {
             type: String,
 
         },
-        Lop: {
+        LoaiDangKy: {
+            type: String,
+            required: true,
+
+        },
+        DonViCap: {
             type: String,
 
         },
-        DeTai: {
+        NhomNghienCuu: {
             type: String,
             required: true,
+
         },
-        NgayBatDau: {
-            type: String,
-            required: true,
+        ThoiDiemDangKy: {
+            type: Date,
+
         },
-        Quy: {
+
+        SoTacGia: {
+            type: Number,
+
+        },
+        CacTacGia: {
             type: String,
 
         },
         Nam: {
-            type: String,
-            required: true,
+            type: Number,
+
         },
-        SoCBHuongDan: {
-            type: String,
-            required: true,
+        Quy: {
+            type: Number,
+
         },
-        DinhMuc: {
-            type: String,
+
+        TrangThai: {
+            type: Number,
             required: true,
+            default: 0
         },
-        SoGioChuan: {
-            type: String,
-            required: true,
+        Tai: {
+            type: Number,
+
         },
+
         FileCM: {
             type: String,
 
         },
-        TrangThai: {
-            type: Number,
-            //   required: true,
-            default: 0
-        },
+        DanhSachThanhVien: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "ThanhVienSangChe",
+        }],
+
+
         edituser: {
             type: String,
         },
@@ -72,5 +83,5 @@ const taihuongdanSchema = new mongoose.Schema(
         timestamps: true
     }
 );
-const TaiHuongDan = mongoose.model("TaiHuongDan", taihuongdanSchema);
-module.exports = TaiHuongDan;
+const SangChe = mongoose.model("SangChe", sangcheSchema);
+module.exports = SangChe;

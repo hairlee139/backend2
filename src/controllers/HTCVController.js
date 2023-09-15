@@ -2,7 +2,7 @@ const HTCVService = require('../services/HTCVService')
 
 const createHTCV = async (req, res) => {
     try {
-        const { HinhThucCV, QuanNhanId,HoTen, KhoiLuongCV, DonVi, SoTiet, SoGioQuyDoi, edituser, edittime, GhiChu  } = req.body
+        const { HinhThucCV, QuanNhanId, HoTen, KhoiLuongCV, DonVi, SoTietCV, SoGioQuyDoi, edituser, edittime, GhiChu } = req.body
         if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',

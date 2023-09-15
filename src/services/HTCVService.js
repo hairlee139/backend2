@@ -2,7 +2,7 @@ const HTCV = require("../models/HTCVModel")
 
 const createHTCV = (newHTCV) => {
     return new Promise(async (resolve, reject) => {
-        const { HinhThucCV, QuanNhanId,HoTen, KhoiLuongCV, DonVi, SoTiet, SoGioQuyDoi, edituser, edittime, GhiChu } = newHTCV
+        const { HinhThucCV, QuanNhanId, HoTen, KhoiLuongCV, DonVi, SoTietCV, SoGioQuyDoi, edituser, edittime, GhiChu } = newHTCV
         try {
             // const checkHTCV = await HTCV.findOne({
             //     HTCVId: HTCVId
@@ -14,7 +14,7 @@ const createHTCV = (newHTCV) => {
             //     })
             // }
             const newHTCV = await HTCV.create({
-                HinhThucCV, QuanNhanId,HoTen, KhoiLuongCV, DonVi, SoTiet, SoGioQuyDoi, edituser, edittime, GhiChu 
+                HinhThucCV, QuanNhanId, HoTen, KhoiLuongCV, DonVi, SoTietCV, SoGioQuyDoi, edituser, edittime, GhiChu
             })
             if (newHTCV) {
                 resolve({

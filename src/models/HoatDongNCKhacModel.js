@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const taihoidongSchema = new mongoose.Schema(
+const hoatdongnckhacSchema = new mongoose.Schema(
     {
-        TaiHoiDongId: {
+        HoatDongKhacId: {
             type: String,
 
         },
@@ -9,48 +9,59 @@ const taihoidongSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        CapHoiDong: {
+        NhomNghienCuu: {
             type: String,
             required: true,
         },
-        LoaiHoiDong: {
+        LoaiHoatDong: {
+            type: String,
+
+
+        },
+        NoiDungThucHien: {
             type: String,
 
         },
-        VaiTro: {
+        MoTaThem: {
             type: String,
 
         },
-        ThoiDiem: {
-            type: String,
-            required: true,
+        ThoiDiemThucHien: {
+            type: Date,
+
         },
         Quy: {
-            type: String,
+            type: Number,
 
         },
         Nam: {
-            type: String,
-            required: true,
+            type: Number,
         },
-        KhoiLuongCongViec: {
-            type: String,
-            required: true,
+        SoLuongTacGia: {
+            type: Number,
         },
 
-        SoGioQuyDoi: {
-            type: String,
+
+        TrangThai: {
+            type: Number,
             required: true,
+            default: 0
         },
+        Tai: {
+            type: Number,
+
+        },
+
         FileCM: {
             type: String,
 
         },
-        TrangThai: {
-            type: Number,
-            // required: true,
-            default: 0
-        },
+        CacHTCV: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "ThanhVienHDNC",
+        }],
+
+
         edituser: {
             type: String,
         },
@@ -65,5 +76,5 @@ const taihoidongSchema = new mongoose.Schema(
         timestamps: true
     }
 );
-const TaiHoiDong = mongoose.model("TaiHoiDong", taihoidongSchema);
-module.exports = TaiHoiDong;
+constHoatDongKhac = mongoose.model("HoatDongKhac", hoatdongnckhacSchema);
+module.exports = HoatDongKhac;
