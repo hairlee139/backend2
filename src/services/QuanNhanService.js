@@ -1,5 +1,5 @@
 const QuanNhan = require("../models/QuanNhanModel")
-
+const DonVi= require("../models/DonViModel")
 const createQuanNhan = (newQuanNhan) => {
     return new Promise(async (resolve, reject) => {
         const { QuanNhanId, HoTen, NgaySinh, GioiTinh, QueQuan, DiaChi, SoDienThoai, Email, HoatDong, QuanHam, DonVi, LoaiQN } = newQuanNhan
@@ -262,6 +262,55 @@ const getObjectIdByQuanNhanId = (id) => {
         }
     });
 };
+// const getSoLuongQuanNhanFromDonVi = (id) => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             const soLuongQuanNhan = await QuanNhan.aggregate([
+//                 {
+//                     $match: {
+//                         DonVi: {
+//                             $regex: id, 
+//                             $options: 'i'
+//                         }
+//                     }
+//                 },
+//                 {
+//                     $count: 'total'
+//                 }
+//             ]);
+
+//             resolve(soLuongQuanNhan[0]?.total || 0);
+//         } catch (error) {
+//             reject(error);
+//         }
+//     });
+// }
+const getSoLuongQuanNhanFromDonVi = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const quanNhans = await QuanNhan.aggregate([
+                {
+                    $match: {
+                        'DonVi': {
+                            $regex: id,
+                            $options: 'i'
+                        }
+                    }
+                }
+            ]);
+            const donViInfo = await DonVi.findOne({ code: id });
+            const soLuongQuanNhan = quanNhans.length;
+            const bienche= donViInfo.bienche;
+            resolve({ soLuongQuanNhan, bienche });
+            // resolve (bienche);
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+
+
 module.exports = {
     createQuanNhan,
     updateQuanNhan,
@@ -272,5 +321,6 @@ module.exports = {
     getAllType,
     getQuanNhanByQuanNhanId,
     getQuanNhanFromDonVi,
-    getObjectIdByQuanNhanId
+    getObjectIdByQuanNhanId,
+    getSoLuongQuanNhanFromDonVi
 }

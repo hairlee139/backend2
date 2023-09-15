@@ -12,5 +12,6 @@ router.post('/delete-many', authMiddleWare, QuanNhanController.deleteMany)
 router.get('/get-all-type', QuanNhanController.getAllType)
 router.get('/get-by-id/:id', QuanNhanController.getQuanNhanByQuanNhanId)
 router.get('/get-by-id2/:id', QuanNhanController.getQuanNhanFromDonVi)
+router.get('/get-by-id3/:id', QuanNhanController.getSoLuongQuanNhanFromDonVi)
 router.get('/getobjectid/:id', QuanNhanController.getObjectIdByQuanNhanId)
 module.exports = router
