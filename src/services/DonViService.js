@@ -1,5 +1,6 @@
 const DonVi = require("../models/DonViModel")
 const { getAllHocViFromDonVi } = require('../services/HocViService');
+const QuanNhanService = require('./QuanNhanService');
 const createDonVi = (newDonVi) => {
     return new Promise(async (resolve, reject) => {
         const { code,
@@ -402,7 +403,39 @@ const getDonViConWithHocViCounts = async (id) => {
         };
     }
 };
+const getDonViConWithSoLuongCounts = async (id) => {
+    try {
+        // Lấy danh sách đơn vị con của đơn vị cha
+        const donViConResult = await getDonViConOnly(id);
+        if (donViConResult.status === 'ERR') {
+            return donViConResult; // Trả về lỗi nếu không tìm thấy đơn vị con
+        }
 
+        // Lấy số lượng học vị của từng đơn vị con
+        const donViConList = donViConResult.data;
+        const donViConWithSoLuongCounts = [];
+
+        for (const donViCon of donViConList) {
+            const soLuongCounts = await QuanNhanService.getSoLuongQuanNhanFromDonVi(donViCon.code);
+            donViConWithSoLuongCounts.push({
+                donViCon,
+                soLuongCounts,
+            });
+        }
+
+        //Trả về danh sách đơn vị con cùng với số lượng học vị
+        return {
+            status: 'OK',
+            message: 'SUCCESS',
+            data: donViConWithSoLuongCounts,
+        };
+    } catch (error) {
+        return {
+            status: 'ERR',
+            message:  error.message,
+        };
+    }
+};
 
 
 module.exports = {
@@ -419,5 +452,6 @@ module.exports = {
     getDonVifromcode,
     getDonViConByTen,
     getDonViConWithHocViCounts,
-    getDonVifromObjectId
+    getDonVifromObjectId,
+    getDonViConWithSoLuongCounts
 }
