@@ -142,7 +142,7 @@ const getAllHocViFromDonVi = async (req, res) => {
                 message: 'donviId is not defined'
             });
         }
-        console.log("ABC"+req.params.id)
+        
         const response = await HocViService.getAllHocViFromDonVi(donviId,data);
         return res.status(200).json(response);
     } catch (error) {

@@ -436,7 +436,72 @@ const getDonViConWithSoLuongCounts = async (id) => {
         };
     }
 };
+const getDonViConWithQuanHamCounts = async (id) => {
+    try {
+        // Lấy danh sách đơn vị con của đơn vị cha
+        const donViConResult = await getDonViConOnly(id);
+        if (donViConResult.status === 'ERR') {
+            return donViConResult; // Trả về lỗi nếu không tìm thấy đơn vị con
+        }
 
+        // Lấy số lượng học vị của từng đơn vị con
+        const donViConList = donViConResult.data;
+        const donViConWithHocViCounts = [];
+
+        for (const donViCon of donViConList) {
+            const quanHamCounts = await QuanNhanService.getAllQuanHamFromDonVi(donViCon.code);
+            donViConWithHocViCounts.push({
+                donViCon,
+                quanHamCounts,
+            });
+        }
+
+        //Trả về danh sách đơn vị con cùng với số lượng học vị
+        return {
+            status: 'OK',
+            message: 'SUCCESS',
+            data: donViConWithHocViCounts,
+        };
+    } catch (error) {
+        return {
+            status: 'ERR',
+            message:  error.message,
+        };
+    }
+};
+const getDonViConWithDoTuoiCounts = async (id) => {
+    try {
+        // Lấy danh sách đơn vị con của đơn vị cha
+        const donViConResult = await getDonViConOnly(id);
+        if (donViConResult.status === 'ERR') {
+            return donViConResult; // Trả về lỗi nếu không tìm thấy đơn vị con
+        }
+
+        // Lấy số lượng học vị của từng đơn vị con
+        const donViConList = donViConResult.data;
+        const donViConWithHocViCounts = [];
+
+        for (const donViCon of donViConList) {
+            const quanHamCounts = await QuanNhanService.getAllDoTuoiFromDonVi(donViCon.code);
+            donViConWithHocViCounts.push({
+                donViCon,
+                quanHamCounts,
+            });
+        }
+
+        //Trả về danh sách đơn vị con cùng với số lượng học vị
+        return {
+            status: 'OK',
+            message: 'SUCCESS',
+            data: donViConWithHocViCounts,
+        };
+    } catch (error) {
+        return {
+            status: 'ERR',
+            message:  error.message,
+        };
+    }
+};
 
 module.exports = {
     createDonVi,
@@ -453,5 +518,7 @@ module.exports = {
     getDonViConByTen,
     getDonViConWithHocViCounts,
     getDonVifromObjectId,
-    getDonViConWithSoLuongCounts
+    getDonViConWithSoLuongCounts,
+    getDonViConWithQuanHamCounts,
+    getDonViConWithDoTuoiCounts
 }

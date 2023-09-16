@@ -208,6 +208,44 @@ const getDonViConWithHocViCounts  = async (req, res) => {
         });
     }
 };
+const getDonViConWithQuanHamCounts  = async (req, res) => {
+    try {
+        const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
+        const data = req.body
+        if (!donvichaid) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User donvichaid is not defined'
+            });
+        }
+
+        const response = await DonViService.getDonViConWithQuanHamCounts(donvichaid,data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
+const getDonViConWithDoTuoiCounts  = async (req, res) => {
+    try {
+        const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
+        const data = req.body
+        if (!donvichaid) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User donvichaid is not defined'
+            });
+        }
+
+        const response = await DonViService.getDonViConWithDoTuoiCounts(donvichaid,data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
 const getDonViConWithSoLuongCounts  = async (req, res) => {
     try {
         const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
@@ -300,5 +338,7 @@ module.exports = {
     getDonViConByTen,
     getDonViConWithHocViCounts,
     getDonVifromObjectId,
-    getDonViConWithSoLuongCounts
+    getDonViConWithSoLuongCounts,
+    getDonViConWithQuanHamCounts,
+    getDonViConWithDoTuoiCounts
 }

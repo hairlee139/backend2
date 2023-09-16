@@ -193,6 +193,9 @@ const updateAdminGroupLists = async (id, departmentlist, leveltitlelist) => {
   
       if (departmentlist) {
         adminGroup.departmentlist.push(departmentlist);
+        if (!leveltitlelist) {
+            adminGroup.leveltitlelist.push(departmentlist);
+        }
       }
   
       if (leveltitlelist) {
@@ -222,8 +225,7 @@ const updateAdminGroupLists = async (id, departmentlist, leveltitlelist) => {
           message: 'AdminGroup not found',
         };
       }
-      console.log(adminGroup.leveltitlelist[index]);
-      console.log(newLevelTitle);
+      
       if (newLevelTitle) {
         adminGroup.leveltitlelist[index] = newLevelTitle;
       }

@@ -18,4 +18,6 @@ router.get('/getdonviconbyten/:id', DonViController.getDonViConByTen)
 router.get('/gethocvi/:id', DonViController.getDonViConWithHocViCounts)
 router.get('/getsoluong/:id', DonViController.getDonViConWithSoLuongCounts)
 router.get('/getdonvi/:id', DonViController.getDonVifromObjectId)
+router.get('/getquanham/:id', DonViController.getDonViConWithQuanHamCounts)
+router.get('/getdotuoi/:id', DonViController.getDonViConWithDoTuoiCounts)
 module.exports = router

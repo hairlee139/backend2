@@ -3,7 +3,7 @@ const quannhanSchema = new mongoose.Schema(
     {
         QuanNhanId: { type: String, unique: true },
         HoTen: { type: String },
-        NgaySinh: { type: String },
+        NgaySinh: { type: Date },
         GioiTinh: { type: String, required: true },
         QueQuan: { type: String, required: true },
         DiaChi: { type: String },
