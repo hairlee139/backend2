@@ -77,6 +77,25 @@ const getChucVuDonViFromUser = async (req, res) => {
         });
     }
 };
+const getAdminGroupIdFromUser = async (req, res) => {
+    try {
+        const quannhanId = req.params.id // Lấy quannhanId của user đang đăng nhập từ request
+        const data = req.body
+        if (!quannhanId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'quannhanId is not defined'
+            });
+        }
+        
+        const response = await PriorityFromQuanNhanId.getAdminGroupIdFromUser(quannhanId,data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
 const getAdminGroupFromChucVuDonVi = async (req, res) => {
     try {
         const departmentlist = req.params.departmentlist;
@@ -98,11 +117,33 @@ const getAdminGroupFromChucVuDonVi = async (req, res) => {
         });
     }
 };
+const getAdminGroupFromChucVu = async (req, res) => {
+    try {
+        const leveltitlelist = req.params.leveltitlelist;
+        
+        const result = await PriorityFromQuanNhanId.getAdminGroupFromChucVu(
+            leveltitlelist
+        );
+        if (result.status === 'ERR') {
+            return res.status(404).json(result);
+        }
+
+        res.status(200).json(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            status: 'ERR',
+            message: 'An error occurred while processing your request'
+        });
+    }
+};
 
 module.exports = {
     getAllPriorityFromAdminGroup,
     getChucVuDonViFromUser,
     getAdminGroupFromChucVuDonVi,
     getAdminGroupCodeFromUser,
-    getPriorityFromUser
+    getPriorityFromUser,
+    getAdminGroupFromChucVu,
+    getAdminGroupIdFromUser
 }

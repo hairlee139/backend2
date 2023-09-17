@@ -137,6 +137,33 @@ const deleteAdminGroupPriority = (id) => {
         }
     })
 }
+const deleteAdminGroupPriorityById = (objectcode,prioritycode) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkAdminGroupPriority = await AdminGroupPriority.findOne({
+                objectcode: objectcode,
+                prioritycode: prioritycode
+            })
+            if (checkAdminGroupPriority === null) {
+                resolve({
+                    status: 'ERR',
+                    message: 'Admingroup is not defined'
+                })
+            }
+
+            await AdminGroupPriority.findOneAndDelete({
+                objectcode: objectcode,
+                prioritycode: prioritycode
+            })
+            resolve({
+                status: 'OK',
+                message: 'Delete AdminGroupPriority success',
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 
 const deleteManyAdminGroupPriority = (ids) => {
     return new Promise(async (resolve, reject) => {
@@ -248,5 +275,6 @@ module.exports = {
     getAllAdminGroupPriority,
     deleteManyAdminGroupPriority,
     getAllType,
-    getAllPriorityFromAdminGroup
+    getAllPriorityFromAdminGroup,
+    deleteAdminGroupPriorityById
 }

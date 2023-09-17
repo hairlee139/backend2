@@ -129,6 +129,38 @@ const getQuanNhanFromDonVi = (id) => {
         }
     });
 };
+const getQuanNhanFromDonViCon = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const donVi = await DonVi.findById(id);
+        
+            if (!donVi) {
+            return {
+                status: 'ERR',
+                message: 'No DonVi found'
+                    };
+            }
+
+            const quanNhan = await QuanNhan.find({
+                DonVi: donVi.code
+            });
+            if (!quanNhan || quanNhan.length === 0) {
+                resolve({
+                    status: 'ERR',
+                    message: 'No quanNhan found'
+                });
+            }
+
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data: quanNhan
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 const getDetailsQuanNhan = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -463,5 +495,6 @@ module.exports = {
     getObjectIdByQuanNhanId,
     getSoLuongQuanNhanFromDonVi,
     getAllQuanHamFromDonVi,
-    getAllDoTuoiFromDonVi
+    getAllDoTuoiFromDonVi,
+    getQuanNhanFromDonViCon
 }

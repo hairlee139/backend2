@@ -180,6 +180,20 @@ const getAllType = () => {
         }
     })
 }
+const getAllTypeList = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const allType = await AdminGroup.distinct('leveltitlelist')
+            resolve({
+                status: 'OK',
+                message: 'Success',
+                data: allType,
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 const updateAdminGroupLists = async (id, departmentlist, leveltitlelist) => {
     try {
       const adminGroup = await AdminGroup.findById(id);
@@ -284,5 +298,6 @@ module.exports = {
     getAllType,
     updateAdminGroupLists,
     update2ListsAdminGroup,
-    delete2ListsAdminGroup
+    delete2ListsAdminGroup,
+    getAllTypeList
 }
