@@ -63,9 +63,9 @@ const sangcheSchema = new mongoose.Schema(
             type: String,
 
         },
-        DanhSachThanhVien: [{
+        CacHTCV: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "ThanhVienSangChe",
+            ref: "HTCVSangChe",
         }],
 
 

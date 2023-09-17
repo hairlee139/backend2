@@ -63,6 +63,29 @@ const PhanLoaiKetQua = require("./PhanLoaiKetQuaHDNCKHRouter")
 const HuongDanNCKH = require("./HuongDanNCKHRouter")
 const HTCV = require("./HTCVRouter")
 
+const BaiBaoKhoaHoc = require("./BaiBaoKhoaHocRouter")
+const DeTaiNCKH = require("./DeTaiNCKHRouter")
+const BienSoan = require("./BienSoanRouter")
+const GiaiThuong = require("./GiaiThuongRouter")
+const SangChe = require("./SangCheRouter")
+const HoatDongNCKhac = require("./HoatDongNCKhacRouter")
+const HopDong = require("./HopDongRouter")
+const HTCVBaiBao = require("./HTCVBaiBaoRouter")
+const HTCVBienSoan = require("./HTCVBienSoanRouter")
+const HTCVDeTai = require("./HTCVDeTaiRouter")
+const HTCVGiaiThuong = require("./HTCVGiaiThuongRouter")
+const HTCVHopDong = require("./HTCVHopDongRouter")
+const HTCVSangChe = require("./HTCVSangCheRouter")
+const HTCVHoatDongKhac = require("./HTCVHoatDongKhacRouter")
+
+const ThanNhan = require("./ThanNhanRouter")
+const LoaiQuanHe = require("./LoaiQuanHeRouter")
+const TaiSan = require("./TaiSanRouter")
+const LoaiTaiSan = require("./LoaiTaiSanRouter")
+const QuaTrinhKhenThuong = require("./QuaTrinhKhenThuongRouter")
+
+const QuaTrinhKyLuat = require('./QuaTrinhKyLuatRouter')
+
 
 const routes = (app) => {
     app.use('/api/user', UserRouter)
@@ -115,7 +138,7 @@ const routes = (app) => {
     app.use('/api/quatrinhquanham', QuaTrinhQuanHam)
     app.use('/api/quatrinhcdcmkt', QuaTrinhCDCMKT)
     app.use('/api/quatrinhhoctapkhac', QuaTrinhHocTapKhac)
-    app.use('/api/htcv', HTCV)
+
     app.use('/api/quatrinhhocham', QuaTrinhHocHam)
     app.use('/api/taigiangday', TaiGiangDay)
     app.use('/api/taihuongdan', TaiHuongDan)
@@ -133,6 +156,32 @@ const routes = (app) => {
     app.use('/api/loaidetai', LoaiDeTai)
     app.use('/api/phanloaiketqua', PhanLoaiKetQua)
     app.use('/api/huongdannckh', HuongDanNCKH)
+    app.use('/api/htcv', HTCV)
+
+    app.use('/api/htcvbaibao', HTCVBaiBao)
+    app.use('/api/htcvbiensoan', HTCVBienSoan)
+    app.use('/api/htcvgiaithuong', HTCVGiaiThuong)
+    app.use('/api/htcvsangche', HTCVSangChe)
+    app.use('/api/htcvhopdong', HTCVHopDong)
+    app.use('/api/htcvhoatdongkhac', HTCVHoatDongKhac)
+    app.use('/api/htcvdetai', HTCVDeTai)
+
+    app.use('/api/baibaokhoahoc', BaiBaoKhoaHoc)
+    app.use('/api/detainckh', DeTaiNCKH)
+    app.use('/api/biensoan', BienSoan)
+    app.use('/api/sangche', SangChe)
+    app.use('/api/hopdong', HopDong)
+    app.use('/api/hoatdongkhac', HoatDongNCKhac)
+    app.use('/api/giaithuong', GiaiThuong)
+
+
+    app.use('/api/thannhan', ThanNhan)
+    app.use('/api/loaiquanhe', LoaiQuanHe)
+    app.use('/api/taisan', TaiSan)
+    app.use('/api/loaitaisan', LoaiTaiSan)
+    app.use('/api/quatrinhkhenthuong', QuaTrinhKhenThuong)
+    app.use('/api/quatrinhkyluat', QuaTrinhKyLuat)
+
 
 
 }

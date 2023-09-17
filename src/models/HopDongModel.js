@@ -11,7 +11,7 @@ const hopdongSchema = new mongoose.Schema(
         },
         TenHopDong: {
             type: String,
-            required: true,
+            // required: true,
         },
         BenA: {
             type: String,
@@ -65,9 +65,9 @@ const hopdongSchema = new mongoose.Schema(
             type: String,
 
         },
-        DanhSachThanhVien: [{
+        CacHTCV: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "ThanhVienHopDong",
+            ref: "HTCVHopDong",
         }],
 
 
@@ -85,5 +85,5 @@ const hopdongSchema = new mongoose.Schema(
         timestamps: true
     }
 );
-constHopDong = mongoose.model("HopDong", hopdongSchema);
+const HopDong = mongoose.model("HopDong", hopdongSchema);
 module.exports = HopDong;

@@ -58,7 +58,7 @@ const hoatdongnckhacSchema = new mongoose.Schema(
         },
         CacHTCV: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "ThanhVienHDNC",
+            ref: "HTCVHoatDongKhac",
         }],
 
 
@@ -76,5 +76,5 @@ const hoatdongnckhacSchema = new mongoose.Schema(
         timestamps: true
     }
 );
-constHoatDongKhac = mongoose.model("HoatDongKhac", hoatdongnckhacSchema);
+const HoatDongKhac = mongoose.model("HoatDongKhac", hoatdongnckhacSchema);
 module.exports = HoatDongKhac;

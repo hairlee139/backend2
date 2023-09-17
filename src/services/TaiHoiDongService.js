@@ -182,11 +182,11 @@ const getAllType = () => {
 const getTaiHoiDongByQuanNhanId = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const quaTrinhCongTacList = await TaiHoiDong.find({
+            const TaiHoiDongList = await TaiHoiDong.find({
                 QuanNhanId: id
             });
 
-            if (!quaTrinhCongTacList || quaTrinhCongTacList.length === 0) {
+            if (!TaiHoiDongList || TaiHoiDongList.length === 0) {
                 resolve({
                     status: 'ERR',
                     message: 'No TaiHoiDong found for the given QuanNhanId'
@@ -196,7 +196,7 @@ const getTaiHoiDongByQuanNhanId = (id) => {
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data: quaTrinhCongTacList
+                data: TaiHoiDongList
             });
         } catch (error) {
             reject(error);

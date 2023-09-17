@@ -171,7 +171,7 @@ const getAllDanhMucKyLuat = (limit, page, sort, filter) => {
 const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allType = await DanhMucKyLuat.distinct('GhiChu')
+            const allType = await DanhMucKyLuat.distinct('TenDanhMucKyLuat')
             resolve({
                 status: 'OK',
                 message: 'Success',

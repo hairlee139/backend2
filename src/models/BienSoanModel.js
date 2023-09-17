@@ -37,6 +37,10 @@ const biensoanSchema = new mongoose.Schema(
             type: Number,
 
         },
+        CacTacGia: {
+            type: String,
+
+        },
         Quy: {
             type: Number,
 
@@ -63,7 +67,7 @@ const biensoanSchema = new mongoose.Schema(
         },
         CacHTCV: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "ThanhVienBienSoan",
+            ref: "HTCVBienSoan",
         }],
         TrangThai: {
             type: Number,

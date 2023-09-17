@@ -13,6 +13,11 @@ const giaithuongSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        TenGiaiThuong: {
+            type: String,
+
+
+        },
         TenCongTrinh: {
             type: String,
 
@@ -55,7 +60,7 @@ const giaithuongSchema = new mongoose.Schema(
         },
         CacHTCV: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "ThanhVienGiaiThuong",
+            ref: "HTCVGiaiThuong",
         }],
 
 

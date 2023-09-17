@@ -11,7 +11,11 @@ const baibaokhSchema = new mongoose.Schema(
         },
         TenBai: {
             type: String,
-            required: true,
+            //  /  required: true,
+        },
+        TenTapChiHoiThao: {
+            type: String,
+
         },
         LoaiTapChiHoiThao: {
             type: String,

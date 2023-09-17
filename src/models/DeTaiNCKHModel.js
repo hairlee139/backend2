@@ -9,6 +9,10 @@ const detainckhSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        LoaiDeTai: {
+            type: String,
+            required: true,
+        },
         MaDeTai: {
             type: String,
             required: true,
