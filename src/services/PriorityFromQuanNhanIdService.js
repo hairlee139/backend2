@@ -2,6 +2,7 @@ const AdminGroupPriority = require("../models/AdminGroupPriorityModel")
 const StaffAdminGroup = require("../models/StaffAdminGroupModel")
 const QuanNhan = require("../models/QuanNhanModel")
 const AdminGroup = require("../models/AdminGroupModel")
+const AdminGroupService = require("../services/AdminGroupService")
 // const getAllPriorityFromAdminGroup = (id)  => {
 //     return new Promise(async (resolve, reject) => {
 //          try {
@@ -42,6 +43,7 @@ const AdminGroup = require("../models/AdminGroupModel")
                  });
              }
              const codeValues = priorityList.map(item => ({
+                _id: item.prioritycode._id,
                 code: item.prioritycode.code,
                 description: item.prioritycode.description,
                 addn: item.prioritycode.addn,
@@ -164,11 +166,41 @@ const getPriorityFromUser = async (id) => {
         throw error;
     }
 };
+const getAdminGroupIdFromUser = async (id) => {
+    try {
+        
+        const chucVuDonViResponse = await getChucVuDonViFromUser(id);
+        if (chucVuDonViResponse.status !== 'OK' || !chucVuDonViResponse.data || !chucVuDonViResponse.data.length) {
+            return {
+                status: 'ERR',
+                message: 'No chucVuDonVi found'
+            };
+        }
+        const chucVuList = chucVuDonViResponse.data[0].HoatDong || [];
+        const adminGroupCodeList = [];
+        for (const chucVu of chucVuList) {
+            // console.log(chucVu);
+            const adminGroupResponse = await getAdminGroupFromChucVu(chucVu);
+            if (adminGroupResponse) {
+                const objectIdList = adminGroupResponse.map(item => item.ObjectId);      
+                adminGroupCodeList.push(...objectIdList); 
+            }
+        }
+        
+        return {
+            status: 'OK',
+            message: 'SUCCESS',
+            data: adminGroupCodeList
+        };    
+    } catch (error) {
+        throw error;
+    }
+};
 
  const getChucVuDonViFromUser = (id)  => {
     return new Promise(async (resolve, reject) => {
          try {
-             console.log(id)
+            
              const quannhanList = await QuanNhan.find({
                  QuanNhanId: id
              });
@@ -227,10 +259,104 @@ const getPriorityFromUser = async (id) => {
          }
      });
  };
+//  const getAdminGroupFromChucVu = (reqLevelTitleList)  => {
+//     return new Promise(async (resolve, reject) => {
+//          try {
+            
+             
+//             //  const admingroupList = await AdminGroup.find({
+//             //     leveltitlelist: { $elemMatch: { $in: reqLevelTitleList } }
+//             //  });
+//             // const admingroupList = await AdminGroup.find({
+//             //     leveltitlelist: {
+//             //         $elemMatch: {
+//             //             type: String,
+//             //             $in: reqLevelTitleList
+//             //         }
+//             //     }
+//             // });
+//             // const admingroupList = await AdminGroup.find({
+//             //     leveltitlelist: {
+//             //         $elemMatch: {
+//             //             $regex: new RegExp(`^${reqLevelTitleList}`)
+//             //         }
+//             //     }
+//             // });
+//             console.log(reqLevelTitleList)
+//             const response = await AdminGroupService.getAllTypeList();
+//             const leveltitlelist = response.data;
+//             const matchingElements = leveltitlelist.filter(element => reqLevelTitleList.includes(element));
+//             const admingroupList = await AdminGroup.find({})
+//             resolve(matchingElements);
+
+//             // const admingroupList = await AdminGroup.find({
+                
+//             // });
+            
+            
+            
+            
+            
+//             //  if (!admingroupList || admingroupList.length === 0) {
+//             //      resolve({
+//             //          status: 'ERR',
+//             //          message: 'No admingroupList found for the given chuc vu don vi'
+//             //      });
+//             //  }
+//             //  const simplifiedList = admingroupList.map(item => {
+//             //     return {
+//             //         ObjectId: item._id,
+//             //     };
+//             // });
+
+//             //  resolve({
+//             //      status: 'OK',
+//             //      message: 'SUCCESS',
+//             //      data:  simplifiedList
+//             //  });
+//          } catch (error) {
+//              reject(error);
+//          }
+//      });
+//  };
+const getAdminGroupFromChucVu = async (reqLevelTitleList) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const response = await AdminGroupService.getAllTypeList();
+            const leveltitlelist = response.data;
+            const matchingElements = leveltitlelist.filter(element => reqLevelTitleList.includes(element));
+            
+            const adminGroupsMatching = [];
+
+            for (const element of matchingElements) {
+                // console.log(element);
+                const admingroupList = await AdminGroup.find({
+                    leveltitlelist: {
+                        $elemMatch: { $in: element }
+                    }
+                });
+                const simplifiedList = admingroupList.map(item => {
+                    return {
+                        ObjectId: item._id,
+                            };
+                    });
+                adminGroupsMatching.push(simplifiedList);
+            }
+            const combinedList = adminGroupsMatching.reduce((acc, curr) => acc.concat(curr), []);
+            resolve(combinedList);
+            
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
 module.exports = {
     getAllPriorityFromAdminGroup,
     getChucVuDonViFromUser,
     getAdminGroupFromChucVuDonVi,
     getAdminGroupCodeFromUser,
-    getPriorityFromUser
+    getPriorityFromUser,
+    getAdminGroupFromChucVu,
+    getAdminGroupIdFromUser
 }

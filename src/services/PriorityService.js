@@ -170,7 +170,7 @@ const getAllPriority = (limit, page, sort, filter) => {
 const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allType = await Priority.distinct('objectcode')
+            const allType = await Priority.distinct('code')
             resolve({
                 status: 'OK',
                 message: 'Success',

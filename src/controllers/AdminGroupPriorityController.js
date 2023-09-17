@@ -92,6 +92,25 @@ const deleteAdminGroupPriority = async (req, res) => {
         })
     }
 }
+const deleteAdminGroupPriorityById = async (req, res) => {
+    try {
+        const { objectcode, prioritycode } = req.params; 
+        if (!objectcode || !prioritycode) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'Both objectcode and prioritycode are required'
+            })
+        }
+
+        const response = await AdminGroupPriorityService.deleteAdminGroupPriorityById(objectcode, prioritycode);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e.message || 'An error occurred while processing your request'
+        });
+    }
+}
+
 
 const deleteMany = async (req, res) => {
     try {
@@ -141,5 +160,6 @@ module.exports = {
     deleteAdminGroupPriority,
     getAllAdminGroupPriority,
     deleteMany,
-    getAllType
+    getAllType,
+    deleteAdminGroupPriorityById
 }

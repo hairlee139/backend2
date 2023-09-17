@@ -113,6 +113,16 @@ const getAllType = async (req, res) => {
         })
     }
 }
+const getAllTypeList = async (req, res) => {
+    try {
+        const response = await AdminGroupService.getAllTypeList()
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
 const updateAdminGroupLists = async (req, res) => {
     try {
       const id = req.params.id;
@@ -171,5 +181,6 @@ module.exports = {
     getAllType,
     updateAdminGroupLists,
     update2ListsAdminGroup,
-    delete2ListsAdminGroup
+    delete2ListsAdminGroup,
+    getAllTypeList
 }

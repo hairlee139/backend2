@@ -10,6 +10,7 @@ router.delete('/delete/:id', authMiddleWare, AdminGroupController.deleteAdminGro
 router.get('/get-all', AdminGroupController.getAllAdminGroup)
 router.post('/delete-many', authMiddleWare, AdminGroupController.deleteMany)
 router.get('/get-all-type', AdminGroupController.getAllType)
+router.get('/get-all-type-list', AdminGroupController.getAllTypeList)
 router.post('/pushdata/:id', AdminGroupController.updateAdminGroupLists)
 router.put('/editdata/:_id/:index', AdminGroupController.update2ListsAdminGroup)
 router.delete('/deletedata/:_id/:index', AdminGroupController.delete2ListsAdminGroup)

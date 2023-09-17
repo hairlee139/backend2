@@ -75,6 +75,25 @@ const getQuanNhanFromDonVi = async (req, res) => {
         });
     }
 };
+const getQuanNhanFromDonViCon = async (req, res) => {
+    try {
+        const donviId = req.params.id // Lấy QuanNhanId của user đang đăng nhập từ request
+        const data = req.body
+        if (!donviId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User QuanNhanId is not defined'
+            });
+        }
+
+        const response = await QuanNhanService.getQuanNhanFromDonViCon(donviId, data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
 const updateQuanNhan = async (req, res) => {
     try {
         const quannhanId = req.params.id
@@ -241,5 +260,6 @@ module.exports = {
     getObjectIdByQuanNhanId,
     getSoLuongQuanNhanFromDonVi,
     getAllQuanHamFromDonVi,
-    getAllDoTuoiFromDonVi
+    getAllDoTuoiFromDonVi,
+    getQuanNhanFromDonViCon
 }
