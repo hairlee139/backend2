@@ -63,7 +63,7 @@ const donviSchema = new mongoose.Schema(
             
           },
         managestaff: {
-            type: Number,
+            type: String,
             
           },
         whois: {
