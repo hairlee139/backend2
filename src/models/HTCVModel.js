@@ -3,7 +3,7 @@ const hinhthuccongviecSchema = new mongoose.Schema(
   {
     HinhThucCV: {
       type: String,
-      required: true,
+      //required: true,
     },
     HoTen: {
       type: String,

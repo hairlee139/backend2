@@ -71,7 +71,7 @@ const taigiangdaySchema = new mongoose.Schema(
     },
     THCSDT: {
       type: Number,
-      required: true,
+      //   required: true,
       default: 0
 
     },

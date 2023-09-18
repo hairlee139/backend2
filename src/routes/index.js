@@ -78,6 +78,8 @@ const HTCVHopDong = require("./HTCVHopDongRouter")
 const HTCVSangChe = require("./HTCVSangCheRouter")
 const HTCVHoatDongKhac = require("./HTCVHoatDongKhacRouter")
 
+const VaiTro = require("./VaiTroRouter")
+
 const ThanNhan = require("./ThanNhanRouter")
 const LoaiQuanHe = require("./LoaiQuanHeRouter")
 const TaiSan = require("./TaiSanRouter")
@@ -173,6 +175,7 @@ const routes = (app) => {
     app.use('/api/hopdong', HopDong)
     app.use('/api/hoatdongkhac', HoatDongNCKhac)
     app.use('/api/giaithuong', GiaiThuong)
+    app.use('/api/vaitro', VaiTro)
 
 
     app.use('/api/thannhan', ThanNhan)
