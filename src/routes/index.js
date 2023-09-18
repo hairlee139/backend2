@@ -87,7 +87,7 @@ const LoaiTaiSan = require("./LoaiTaiSanRouter")
 const QuaTrinhKhenThuong = require("./QuaTrinhKhenThuongRouter")
 
 const QuaTrinhKyLuat = require('./QuaTrinhKyLuatRouter')
-
+const DieuChuyenCanBo = require('./QuaTrinhDieuChuyenRouter')
 
 const routes = (app) => {
     app.use('/api/user', UserRouter)
@@ -186,7 +186,7 @@ const routes = (app) => {
     app.use('/api/quatrinhkyluat', QuaTrinhKyLuat)
 
 
-
+    app.use('/api/dieuchuyencanbo', DieuChuyenCanBo)
 }
 
 module.exports = routes
