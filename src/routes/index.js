@@ -88,7 +88,7 @@ const QuaTrinhKhenThuong = require("./QuaTrinhKhenThuongRouter")
 
 const QuaTrinhKyLuat = require('./QuaTrinhKyLuatRouter')
 const DieuChuyenCanBo = require('./QuaTrinhDieuChuyenRouter')
-
+const QuaTrinhHocVi = require('./QuaTrinhHocViRouter')
 const routes = (app) => {
     app.use('/api/user', UserRouter)
     app.use('/api/product', ProductRouter)
@@ -184,7 +184,7 @@ const routes = (app) => {
     app.use('/api/loaitaisan', LoaiTaiSan)
     app.use('/api/quatrinhkhenthuong', QuaTrinhKhenThuong)
     app.use('/api/quatrinhkyluat', QuaTrinhKyLuat)
-
+    app.use('/api/quatrinhhocvi', QuaTrinhHocVi)
 
     app.use('/api/dieuchuyencanbo', DieuChuyenCanBo)
 }
