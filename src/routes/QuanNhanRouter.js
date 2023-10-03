@@ -17,4 +17,7 @@ router.get('/getobjectid/:id', QuanNhanController.getObjectIdByQuanNhanId)
 router.get('/get-all-quanham/:id', QuanNhanController.getAllQuanHamFromDonVi)
 router.get('/get-all-dotuoi/:id', QuanNhanController.getAllDoTuoiFromDonVi)
 router.get('/getquannhanmin/:id', QuanNhanController.getQuanNhanFromDonViCon)
+router.post('/pushdata/:id', QuanNhanController.updateQuanNhanLists)
+router.put('/editdata/:_id/:index', QuanNhanController.update2ListsQuanNhan)
+router.delete('/deletedata/:_id/:index', QuanNhanController.delete2ListsQuanNhan)
 module.exports = router

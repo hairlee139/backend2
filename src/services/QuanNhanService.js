@@ -479,7 +479,100 @@ const getAllDoTuoiFromDonVi = (id) => {
         }
     });
 };
+const updateQuanNhanLists = async (id, departmentlist, leveltitlelist) => {
+    try {
+      const quanNhan = await QuanNhan.findById(id);
+  
+      if (!quanNhan) {
+        return {
+          status: 'ERR',
+          message: 'QuanNhan not found',
+        };
+      }
+  
+      if (departmentlist) {
+        quanNhan.DonVi.push(departmentlist);
+        if (!leveltitlelist) {
+            quanNhan.HoatDong.push(departmentlist);
+        }
+      }
+  
+      if (leveltitlelist) {
+        quanNhan.HoatDong.push(leveltitlelist);
+      }
+  
+      await quanNhan.save();
+  
+      return {
+        status: 'OK',
+        message: 'Data updated successfully',
+      };
+    } catch (error) {
+      return {
+        status: 'ERR',
+        message: error.message,
+      };
+    }
+  };
+  const update2ListsQuanNhan = async (_id, index, newLevelTitle, newDepartment) => {
+    try {
+      const quanNhan = await QuanNhan.findById(_id);
+  
+      if (!quanNhan) {
+        return {
+          status: 'ERR',
+          message: 'QuanNhan not found',
+        };
+      }
+      
+      if (newLevelTitle) {
+        quanNhan.HoatDong[index] = newLevelTitle;
+      }
+  
+      if (newDepartment) {
+        quanNhan.DonVi[index] = newDepartment;
+      }
+  
+      await quanNhan.save();
+  
+      return {
+        status: 'OK',
+        message: 'Data updated successfully',
+      };
+    } catch (error) {
+      return {
+        status: 'ERR',
+        message: error.message,
+      };
+    }
+  };
+const delete2ListsQuanNhan = async (_id, index) => {
+    try {
+        const quanNhan = await QuanNhan.findById(_id);
 
+        if (!quanNhan) {
+            return {
+                status: 'ERR',
+                message: 'QuanNhan not found',
+            };
+        }
+
+        quanNhan.HoatDong.splice(index, 1);
+        quanNhan.DonVi.splice(index, 1);
+
+        await quanNhan.save();
+
+        return {
+            status: 'OK',
+            message: 'Data deleted successfully',
+        };
+    } catch (error) {
+        return {
+            status: 'ERR',
+            message: error.message,
+        };
+    }
+};
 
 
 module.exports = {
@@ -496,5 +589,9 @@ module.exports = {
     getSoLuongQuanNhanFromDonVi,
     getAllQuanHamFromDonVi,
     getAllDoTuoiFromDonVi,
-    getQuanNhanFromDonViCon
+    getQuanNhanFromDonViCon,
+    updateQuanNhanLists,
+    update2ListsQuanNhan,
+    delete2ListsQuanNhan
+
 }
