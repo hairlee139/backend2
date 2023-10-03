@@ -2,7 +2,7 @@ const HocVi = require("../models/HocViModel")
 
 const createHocVi = (newHocVi) => {
     return new Promise(async (resolve, reject) => {
-        const { QuanNhanId, TenHocVi, note, edituser, edittime, lock, lockdate} = newHocVi
+        const { QuanNhanId, TenHocVi, note, edituser, edittime, lock, lockdate } = newHocVi
         try {
             const checkHocVi = await HocVi.findOne({
                 QuanNhanId: QuanNhanId
@@ -123,7 +123,7 @@ const getAllHocVi = (limit, page, sort, filter) => {
             let allHocVi = []
             if (filter) {
                 const label = filter[0];
-                const allObjectFilter = await HocVi.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+                const allObjectFilter = await HocVi.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -136,7 +136,7 @@ const getAllHocVi = (limit, page, sort, filter) => {
             if (sort) {
                 const objectSort = {}
                 objectSort[sort[1]] = sort[0]
-                const allHocViSort = await HocVi.find().limit(limit).skip(page * limit).sort(objectSort).sort({createdAt: -1, updatedAt: -1})
+                const allHocViSort = await HocVi.find().limit(limit).skip(page * limit).sort(objectSort).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
@@ -146,10 +146,10 @@ const getAllHocVi = (limit, page, sort, filter) => {
                     totalPage: Math.ceil(totalHocVi / limit)
                 })
             }
-            if(!limit) {
-                allHocVi = await HocVi.find().sort({createdAt: -1, updatedAt: -1})
-            }else {
-                allHocVi = await HocVi.find().limit(limit).skip(page * limit).sort({createdAt: -1, updatedAt: -1})
+            if (!limit) {
+                allHocVi = await HocVi.find().sort({ createdAt: -1, updatedAt: -1 })
+            } else {
+                allHocVi = await HocVi.find().limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
             }
             resolve({
                 status: 'OK',
@@ -168,7 +168,7 @@ const getAllHocVi = (limit, page, sort, filter) => {
 const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allType = await HocVi.distinct('QuanNhanId')
+            const allType = await HocVi.distinct('TenHocVi')
             resolve({
                 status: 'OK',
                 message: 'Success',
@@ -185,18 +185,18 @@ const getHocViByQuanNhanId = (id) => {
             const hocViList = await HocVi.find({
                 QuanNhanId: id
             });
-            
+
             if (!hocViList || hocViList.length === 0) {
                 resolve({
                     status: 'ERR',
                     message: 'No HocVi found for the given QuanNhanId'
                 });
             }
-            
+
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data:  hocViList
+                data: hocViList
             });
         } catch (error) {
             reject(error);

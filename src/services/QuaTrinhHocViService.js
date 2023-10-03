@@ -1,26 +1,26 @@
-const DieuChuyenCanBo = require("../models/QuatrinhDieuChuyenModel")
+const QuaTrinhHocVi = require("../models/QuaTrinhHocViModel")
 
-const createDieuChuyenCanBo = (newDieuChuyenCanBo) => {
+const createQuaTrinhHocVi = (newQuaTrinhHocVi) => {
     return new Promise(async (resolve, reject) => {
-        const { DieuChuyenCanBoId, QuanNhanId, SoQuyetDinh, NgayQuyetDinh, DonViQuyetDinh, ChucVuHienTai, DonViHienTai, DonViDen, ChucVuDen, NgayDenNhanChuc, TrangThai, edituser, edittime, GhiChu } = newDieuChuyenCanBo
+        const { code, QuanNhanId, QuyetDinh, NgayQuyetDinh, HocVi, CaoNhat, edituser, edittime, GhiChu } = newQuaTrinhHocVi
         try {
-            // const checkDieuChuyenCanBo = await DieuChuyenCanBo.findOne({
-            //     DieuChuyenCanBoId: DieuChuyenCanBoId
+            // const checkQuaTrinhHocVi = await QuaTrinhHocVi.findOne({
+            //     QuaTrinhHocViId: QuaTrinhHocViId
             // })
-            // if (checkDieuChuyenCanBo !== null) {
+            // if (checkQuaTrinhHocVi !== null) {
             //     resolve({
             //         status: 'ERR',
-            //         message: 'DieuChuyenCanBo is already'
+            //         message: 'QuaTrinhHocVi is already'
             //     })
             // }
-            const newDieuChuyenCanBo = await DieuChuyenCanBo.create({
-                DieuChuyenCanBoId, QuanNhanId, SoQuyetDinh, NgayQuyetDinh, DonViQuyetDinh, ChucVuHienTai, DonViHienTai, DonViDen, ChucVuDen, NgayDenNhanChuc, TrangThai, edituser, edittime, GhiChu
+            const newQuaTrinhHocVi = await QuaTrinhHocVi.create({
+                code, QuanNhanId, QuyetDinh, NgayQuyetDinh, HocVi, CaoNhat, edituser, edittime, GhiChu
             })
-            if (newDieuChuyenCanBo) {
+            if (newQuaTrinhHocVi) {
                 resolve({
                     status: 'OK',
                     message: 'SUCCESS',
-                    data: newDieuChuyenCanBo
+                    data: newQuaTrinhHocVi
                 })
             }
         } catch (e) {
@@ -29,24 +29,24 @@ const createDieuChuyenCanBo = (newDieuChuyenCanBo) => {
     })
 }
 
-const updateDieuChuyenCanBo = (id, data) => {
+const updateQuaTrinhHocVi = (id, data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkDieuChuyenCanBo = await DieuChuyenCanBo.findOne({
+            const checkQuaTrinhHocVi = await QuaTrinhHocVi.findOne({
                 _id: id
             })
-            if (checkDieuChuyenCanBo === null) {
+            if (checkQuaTrinhHocVi === null) {
                 resolve({
                     status: 'ERR',
                     message: 'Qua Trinh Cong Tac is not defined'
                 })
             }
 
-            const updatedDieuChuyenCanBo = await DieuChuyenCanBo.findByIdAndUpdate(id, data, { new: true })
+            const updatedQuaTrinhHocVi = await QuaTrinhHocVi.findByIdAndUpdate(id, data, { new: true })
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data: updatedDieuChuyenCanBo
+                data: updatedQuaTrinhHocVi
             })
         } catch (e) {
             reject(e)
@@ -54,20 +54,20 @@ const updateDieuChuyenCanBo = (id, data) => {
     })
 }
 
-const deleteDieuChuyenCanBo = (id) => {
+const deleteQuaTrinhHocVi = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkDieuChuyenCanBo = await DieuChuyenCanBo.findOne({
+            const checkQuaTrinhHocVi = await QuaTrinhHocVi.findOne({
                 _id: id
             })
-            if (checkDieuChuyenCanBo === null) {
+            if (checkQuaTrinhHocVi === null) {
                 resolve({
                     status: 'ERR',
                     message: 'Qua Trinh Cong Tac is not defined'
                 })
             }
 
-            await DieuChuyenCanBo.findByIdAndDelete(id)
+            await QuaTrinhHocVi.findByIdAndDelete(id)
             resolve({
                 status: 'OK',
                 message: 'Delete Qua Trinh Cong Tac success',
@@ -78,10 +78,10 @@ const deleteDieuChuyenCanBo = (id) => {
     })
 }
 
-const deleteManyDieuChuyenCanBo = (ids) => {
+const deleteManyQuaTrinhHocVi = (ids) => {
     return new Promise(async (resolve, reject) => {
         try {
-            await DieuChuyenCanBo.deleteMany({ _id: ids })
+            await QuaTrinhHocVi.deleteMany({ _id: ids })
             resolve({
                 status: 'OK',
                 message: 'Delete Qua Trinh Cong Tac success',
@@ -92,13 +92,13 @@ const deleteManyDieuChuyenCanBo = (ids) => {
     })
 }
 
-const getDetailsDieuChuyenCanBo = (id) => {
+const getDetailsQuaTrinhHocVi = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const quatrinhdieuchuyen = await DieuChuyenCanBo.findOne({
+            const quatrinhHocVi = await QuaTrinhHocVi.findOne({
                 _id: id
             })
-            if (quatrinhdieuchuyen === null) {
+            if (quatrinhHocVi === null) {
                 resolve({
                     status: 'ERR',
                     message: 'Qua Trinh Cong Tac is not defined'
@@ -108,7 +108,7 @@ const getDetailsDieuChuyenCanBo = (id) => {
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data: quatrinhdieuchuyen
+                data: quatrinhHocVi
             })
         } catch (e) {
             reject(e)
@@ -116,48 +116,48 @@ const getDetailsDieuChuyenCanBo = (id) => {
     })
 }
 
-const getAllDieuChuyenCanBo = (limit, page, sort, filter) => {
+const getAllQuaTrinhHocVi = (limit, page, sort, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const totalDieuChuyenCanBo = await DieuChuyenCanBo.count()
-            let allDieuChuyenCanBo = []
+            const totalQuaTrinhHocVi = await QuaTrinhHocVi.count()
+            let allQuaTrinhHocVi = []
             if (filter) {
                 const label = filter[0];
-                const allObjectFilter = await DieuChuyenCanBo.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
+                const allObjectFilter = await QuaTrinhHocVi.find({ [label]: { '$regex': filter[1] } }).limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
                     data: allObjectFilter,
-                    total: totalDieuChuyenCanBo,
+                    total: totalQuaTrinhHocVi,
                     pageCurrent: Number(page + 1),
-                    totalPage: Math.ceil(totalDieuChuyenCanBo / limit)
+                    totalPage: Math.ceil(totalQuaTrinhHocVi / limit)
                 })
             }
             if (sort) {
                 const objectSort = {}
                 objectSort[sort[1]] = sort[0]
-                const allDieuChuyenCanBoSort = await DieuChuyenCanBo.find().limit(limit).skip(page * limit).sort(objectSort).sort({ createdAt: -1, updatedAt: -1 })
+                const allQuaTrinhHocViSort = await QuaTrinhHocVi.find().limit(limit).skip(page * limit).sort(objectSort).sort({ createdAt: -1, updatedAt: -1 })
                 resolve({
                     status: 'OK',
                     message: 'Success',
-                    data: allDieuChuyenCanBoSort,
-                    total: totalDieuChuyenCanBo,
+                    data: allQuaTrinhHocViSort,
+                    total: totalQuaTrinhHocVi,
                     pageCurrent: Number(page + 1),
-                    totalPage: Math.ceil(totalDieuChuyenCanBo / limit)
+                    totalPage: Math.ceil(totalQuaTrinhHocVi / limit)
                 })
             }
             if (!limit) {
-                allDieuChuyenCanBo = await DieuChuyenCanBo.find().sort({ createdAt: -1, updatedAt: -1 })
+                allQuaTrinhHocVi = await QuaTrinhHocVi.find().sort({ createdAt: -1, updatedAt: -1 })
             } else {
-                allDieuChuyenCanBo = await DieuChuyenCanBo.find().limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
+                allQuaTrinhHocVi = await QuaTrinhHocVi.find().limit(limit).skip(page * limit).sort({ createdAt: -1, updatedAt: -1 })
             }
             resolve({
                 status: 'OK',
                 message: 'Success',
-                data: allDieuChuyenCanBo,
-                total: totalDieuChuyenCanBo,
+                data: allQuaTrinhHocVi,
+                total: totalQuaTrinhHocVi,
                 pageCurrent: Number(page + 1),
-                totalPage: Math.ceil(totalDieuChuyenCanBo / limit)
+                totalPage: Math.ceil(totalQuaTrinhHocVi / limit)
             })
         } catch (e) {
             reject(e)
@@ -168,7 +168,7 @@ const getAllDieuChuyenCanBo = (limit, page, sort, filter) => {
 const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allType = await DieuChuyenCanBo.distinct('QuanNhanId')
+            const allType = await QuaTrinhHocVi.distinct('QuanNhanId')
             resolve({
                 status: 'OK',
                 message: 'Success',
@@ -179,24 +179,24 @@ const getAllType = () => {
         }
     })
 }
-const getDieuChuyenCanBoByQuanNhanId = (id) => {
+const getQuaTrinhHocViByQuanNhanId = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const quaTrinhDieuChuyenList = await DieuChuyenCanBo.find({
+            const quatrinhHocViList = await QuaTrinhHocVi.find({
                 QuanNhanId: id
             });
 
-            if (!quaTrinhDieuChuyenList || quaTrinhDieuChuyenList.length === 0) {
+            if (!quatrinhHocViList || quatrinhHocViList.length === 0) {
                 resolve({
                     status: 'ERR',
-                    message: 'No DieuChuyenCanBo found for the given QuanNhanId'
+                    message: 'No QuaTrinhHocVi found for the given QuanNhanId'
                 });
             }
 
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data: quaTrinhDieuChuyenList
+                data: quatrinhHocViList
             });
         } catch (error) {
             reject(error);
@@ -206,12 +206,12 @@ const getDieuChuyenCanBoByQuanNhanId = (id) => {
 
 
 module.exports = {
-    createDieuChuyenCanBo,
-    updateDieuChuyenCanBo,
-    getDetailsDieuChuyenCanBo,
-    deleteDieuChuyenCanBo,
-    getAllDieuChuyenCanBo,
-    deleteManyDieuChuyenCanBo,
+    createQuaTrinhHocVi,
+    updateQuaTrinhHocVi,
+    getDetailsQuaTrinhHocVi,
+    deleteQuaTrinhHocVi,
+    getAllQuaTrinhHocVi,
+    deleteManyQuaTrinhHocVi,
     getAllType,
-    getDieuChuyenCanBoByQuanNhanId
+    getQuaTrinhHocViByQuanNhanId
 }
