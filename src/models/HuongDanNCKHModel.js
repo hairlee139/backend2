@@ -45,6 +45,10 @@ const huongdannckhSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        FileCM: {
+            type: String,
+
+        },
         Tai: {
             type: String,
 

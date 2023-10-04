@@ -2,7 +2,7 @@ const HuongDanNCKHService = require('../services/HuongDanNCKHService')
 
 const createHuongDanNCKH = async (req, res) => {
     try {
-        const { HuongDanNCKHId, QuanNhanId, Ten, LoaiDeTai, DonViChuTri, ThoiGianBatDau, ThoiGianDuKienKetThuc, CacSinhVien, PhanLoaiKetQua, HinhThucKhenThuong, NgayNghiemThu, Tai, TrangThai, edituser, edittime, GhiChu } = req.body
+        const { HuongDanNCKHId, QuanNhanId, Ten, LoaiDeTai, DonViChuTri, ThoiGianBatDau, ThoiGianDuKienKetThuc, CacSinhVien, PhanLoaiKetQua, HinhThucKhenThuong, NgayNghiemThu, FileCM, Tai, TrangThai, edituser, edittime, GhiChu } = req.body
         if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',

@@ -64,11 +64,29 @@ const HuongDanNCKH = require("./HuongDanNCKHRouter")
 const HTCV = require("./HTCVRouter")
 
 const BaiBaoKhoaHoc = require("./BaiBaoKhoaHocRouter")
+const LoaiTapChi = require("./LoaiTapChiRouter")
+const NganhXetChucDanh = require("./NganhXetChucDanhRouter")
+const NgonNgu = require("./NgonNguRouter")
+
+
+
 const DeTaiNCKH = require("./DeTaiNCKHRouter")
+const HinhThucDeTai = require("./HinhThucDeTaiRouter")
+const HinhThucKhenThuong = require("./HinhThucKhenThuongRouter")
+
 const BienSoan = require("./BienSoanRouter")
+const LoaiTaiLieu = require("./LoaiTaiLieuRouter")
+
 const GiaiThuong = require("./GiaiThuongRouter")
+const LoaiGiaiThuong = require("./LoaiGiaiThuongRouter")
+
 const SangChe = require("./SangCheRouter")
+const LoaiDangKy = require("./LoaiDangKyRouter")
+
 const HoatDongNCKhac = require("./HoatDongNCKhacRouter")
+const NhomHoatDongNC = require("./NhomHoatDongNCRouter")
+const LoaiHoatDong = require("./LoaiHoatDongRouter")
+
 const HopDong = require("./HopDongRouter")
 const HTCVBaiBao = require("./HTCVBaiBaoRouter")
 const HTCVBienSoan = require("./HTCVBienSoanRouter")
@@ -176,6 +194,19 @@ const routes = (app) => {
     app.use('/api/hoatdongkhac', HoatDongNCKhac)
     app.use('/api/giaithuong', GiaiThuong)
     app.use('/api/vaitro', VaiTro)
+
+    app.use('/api/loaitapchi', LoaiTapChi)
+    app.use('/api/nganhxetchucdanh', NganhXetChucDanh)
+    app.use('/api/ngonngu', NgonNgu)
+    app.use('/api/loaitailieu', LoaiTaiLieu)
+    app.use('/api/loaidangky', LoaiDangKy)
+    app.use('/api/loaihoatdong', LoaiHoatDong)
+    app.use('/api/nhomhoatdongnc', NhomHoatDongNC)
+
+
+    app.use('/api/hinhthuckhenthuong', HinhThucKhenThuong)
+    app.use('/api/hinhthucdetai', HinhThucDeTai)
+    app.use('/api/loaigiaithuong', LoaiGiaiThuong)
 
 
     app.use('/api/thannhan', ThanNhan)
