@@ -246,7 +246,54 @@ const getAllQuanHamFromDonVi = async (req, res) => {
         });
     }
 };
+const updateQuanNhanLists = async (req, res) => {
+    try {
+      const id = req.params.id;
+      const { departmentlist, leveltitlelist } = req.body;
+  
+      const response = await QuanNhanService.updateQuanNhanLists(
+        id,
+        departmentlist,
+        leveltitlelist
+      );
+  
+      return res.status(200).json(response);
+    } catch (err) {
+      return res.status(500).json({ message: err.message });
+    }
+  };
+  const update2ListsQuanNhan = async (req, res) => {
+    try {
+      const { _id, index } = req.params; // Thêm _id vào params
+      const { newLevelTitle, newDepartment } = req.body;
+  
+      const response = await QuanNhanService.update2ListsQuanNhan(
+        _id, // Truyền _id vào hàm service
+        index,
+        newLevelTitle,
+        newDepartment
+      );
+  
+      return res.status(200).json(response);
+    } catch (err) {
+      return res.status(500).json({ message: err.message });
+    }
+  };
+  const delete2ListsQuanNhan = async (req, res) => {
+    const { _id, index } = req.params;
 
+    try {
+        const result = await QuanNhanService.delete2ListsQuanNhan(_id, index);
+
+        if (result.status === 'OK') {
+            return res.status(200).json({ message: result.message });
+        } else {
+            return res.status(404).json({ message: result.message });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
 module.exports = {
     createQuanNhan,
     updateQuanNhan,
@@ -261,5 +308,8 @@ module.exports = {
     getSoLuongQuanNhanFromDonVi,
     getAllQuanHamFromDonVi,
     getAllDoTuoiFromDonVi,
-    getQuanNhanFromDonViCon
+    getQuanNhanFromDonViCon,
+    updateQuanNhanLists,
+    update2ListsQuanNhan,
+    delete2ListsQuanNhan
 }
