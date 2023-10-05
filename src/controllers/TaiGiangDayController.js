@@ -1,6 +1,6 @@
 const TaiGiangDayService = require('../services/TaiGiangDayService')
 const TongTaiService = require('../services/TongTaiService')
-
+const TongHopTaiService = require('../services/TongHopTaiService')
 const createTaiGiangDay = async (req, res) => {
     try {
         const { code, QuanNhanId, MaLop, MaMonHoc, TenMonHoc, SoTinChi, GioChuan, SiSo, HTDT, KetThuc, Quy, LoaiHinhDT, Nam, HocKy, HTThi, SoTiet, FileCM, THCSDT, TrangThai, CacHTCV, edituser, edittime, GhiChu } = req.body
@@ -68,6 +68,45 @@ const getTongTaiFromId = async (req, res) => {
         }
 
         const response = await TongTaiService.getTongTaiFromId(quannhanId, data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
+const getTongTaiDaoTaoFromId = async (req, res) => {
+    try {
+        const quannhanId = req.params.id // Lấy QuanNhanId của user đang đăng nhập từ request
+        const data = req.body
+        if (!quannhanId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User QuanNhanId is not defined'
+            });
+        }
+
+        const response = await TongHopTaiService.getTongTaiDaoTaoFromId(quannhanId, data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
+
+const getTongNCKHFromId = async (req, res) => {
+    try {
+        const quannhanId = req.params.id // Lấy QuanNhanId của user đang đăng nhập từ request
+        const data = req.body
+        if (!quannhanId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User QuanNhanId is not defined'
+            });
+        }
+
+        const response = await TongHopTaiService.getTongTaiNCKHFromId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -176,5 +215,7 @@ module.exports = {
     getAllType,
     getTaiGiangDayByQuanNhanId,
     updateHTCVLists,
-    getTongTaiFromId
+    getTongTaiFromId,
+    getTongNCKHFromId,
+    getTongTaiDaoTaoFromId
 }

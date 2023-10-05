@@ -13,4 +13,6 @@ router.get('/get-all-type', TaiGiangDayController.getAllType)
 router.get('/get-by-id/:id', TaiGiangDayController.getTaiGiangDayByQuanNhanId)
 router.post('/pushdata/:id', TaiGiangDayController.updateHTCVLists)
 router.get('/get-tong/:id', TaiGiangDayController.getTongTaiFromId)
+router.get('/get-tong-daotao/:id', TaiGiangDayController.getTongTaiDaoTaoFromId)
+router.get('/get-tong-nckh/:id', TaiGiangDayController.getTongNCKHFromId)
 module.exports = router
