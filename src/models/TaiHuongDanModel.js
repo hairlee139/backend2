@@ -46,7 +46,7 @@ const taihuongdanSchema = new mongoose.Schema(
             required: true,
         },
         SoGioChuan: {
-            type: String,
+            type: Number,
             required: true,
         },
         FileCM: {

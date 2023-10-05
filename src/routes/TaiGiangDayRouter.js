@@ -12,4 +12,5 @@ router.post('/delete-many', authMiddleWare, TaiGiangDayController.deleteMany)
 router.get('/get-all-type', TaiGiangDayController.getAllType)
 router.get('/get-by-id/:id', TaiGiangDayController.getTaiGiangDayByQuanNhanId)
 router.post('/pushdata/:id', TaiGiangDayController.updateHTCVLists)
+router.get('/get-tong/:id', TaiGiangDayController.getTongTaiFromId)
 module.exports = router

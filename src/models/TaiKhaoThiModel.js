@@ -38,11 +38,11 @@ const taikhaothiSchema = new mongoose.Schema(
             required: true,
         },
         KhoiLuongCongViec: {
-            type: String,
+            type: Number,
             required: true,
         },
         SoGioQuyDoi: {
-            type: String,
+            type: Number,
             required: true,
         },
         FileCM: {

@@ -1,4 +1,5 @@
 const TaiGiangDayService = require('../services/TaiGiangDayService')
+const TongTaiService = require('../services/TongTaiService')
 
 const createTaiGiangDay = async (req, res) => {
     try {
@@ -48,6 +49,25 @@ const getTaiGiangDayByQuanNhanId = async (req, res) => {
         }
 
         const response = await TaiGiangDayService.getTaiGiangDayByQuanNhanId(quannhanId, data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
+const getTongTaiFromId = async (req, res) => {
+    try {
+        const quannhanId = req.params.id // Lấy QuanNhanId của user đang đăng nhập từ request
+        const data = req.body
+        if (!quannhanId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User QuanNhanId is not defined'
+            });
+        }
+
+        const response = await TongTaiService.getTongTaiFromId(quannhanId, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -155,5 +175,6 @@ module.exports = {
     deleteMany,
     getAllType,
     getTaiGiangDayByQuanNhanId,
-    updateHTCVLists
+    updateHTCVLists,
+    getTongTaiFromId
 }

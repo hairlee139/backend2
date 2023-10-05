@@ -240,6 +240,156 @@ const updateHTCVLists = async (id, HTCVList) => {
         };
     }
 };
+// const getAllTaiGiangDayFromId = (id) => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             const TaiGiangDayCounts = await TaiGiangDay.aggregate([
+//                 {
+//                     $lookup: {
+//                         from: 'quannhans', // Tên bảng QuanNhan trong cơ sở dữ liệu
+//                         localField: 'QuanNhanId',
+//                         foreignField: 'QuanNhanId',
+//                         as: 'quannhan',
+//                     },
+//                 },
+//                 {
+//                     $unwind: {
+//                         path: '$quannhan',
+//                         preserveNullAndEmptyArrays: true, 
+//                     },
+//                 },
+//                 {
+//                     $facet: {
+//                         hocViWithQuanNhan: [
+//                             {
+//                                 $match: {
+//                                     'quannhan.DonVi': {
+//                                         $regex: id, // Sử dụng $regex để kiểm tra xem quannhan.DonVi có chứa giá trị id không
+//                                         $options: 'i', // Tùy chọn 'i' để không phân biệt chữ hoa chữ thường
+//                                     },
+//                                     QuanNhanId: { $exists: true },
+//                                 },
+//                             },
+//                             {
+//                                 $group: {
+//                                     _id: '$TenHocVi',
+//                                     total: { $sum: 1 },
+//                                 },
+//                             },
+//                             {
+//                                 $project: {
+//                                     _id: 0, // Bỏ trường _id ra khỏi kết quả
+//                                     TenHocVi: '$_id', // Đặt lại tên trường thành TenHocVi
+//                                     SoLuong: '$total',
+//                                 },
+//                             },
+//                         ],
+//                         hocViWithoutQuanNhan: [
+//                             {
+//                                 $match: {
+//                                     'quannhan.DonVi': { $exists: false }, // HocVi không có quannhan
+//                                 },
+//                             },
+//                             {
+//                                 $group: {
+//                                     _id: '$TenHocVi',
+//                                     total: { $sum: 1 },
+//                                 },
+//                             },
+//                             {
+//                                 $project: {
+//                                     _id: 0, // Bỏ trường _id ra khỏi kết quả
+//                                     TenHocVi: '$_id', // Đặt lại tên trường thành TenHocVi
+//                                     SoLuong: '$total',
+//                                 },
+//                             },
+//                         ],
+//                     },
+//                 },
+//                 {
+//                     $project: {
+//                         hocViCounts: {
+//                             $concatArrays: ['$hocViWithQuanNhan', '$hocViWithoutQuanNhan'], // Kết hợp kết quả từ cả hai tìm kiếm
+//                         },
+//                     },
+//                 },
+//             ]);
+
+//             // Tạo một mảng chứa tất cả các trường TenHocVi cần hiển thị
+//             const hocViTypes = ['Tiến sỹ khoa học', 'Tiến sỹ', 'Thạc sỹ', 'Kỹ sư', 'Cử nhân', 'Khác'];
+
+//             // Tạo một đối tượng để lưu số lượng học vị cho mỗi trường
+//             const hocViCountsMap = {};
+
+//             // Khởi tạo số lượng mặc định cho tất cả các trường là 0
+//             hocViTypes.forEach((hocViType) => {
+//                 hocViCountsMap[hocViType] = 0;
+//             });
+
+//             // Cập nhật số lượng thực tế từ dữ liệu API
+//             hocViCounts[0].hocViCounts.forEach((item) => {
+//                 hocViCountsMap[item.TenHocVi] = item.SoLuong;
+//             });
+
+//             // Tạo mảng kết quả cuối cùng dựa trên số lượng học vị của mỗi trường
+//             const finalResult = hocViTypes.map((hocViType) => ({
+//                 TenHocVi: hocViType,
+//                 SoLuong: hocViCountsMap[hocViType],
+//             }));
+
+//             resolve(finalResult);
+//         } catch (error) {
+//             console.error(error);
+//             reject(error);
+//         }
+//     });
+// };
+// const getTongTaiGiangDayFromId = (id) => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             const TaiGiangDayCounts = await TaiGiangDay.aggregate([
+//                 {
+//                     $match: { QuanNhanId: id } // Filter by QuanNhanId
+//                 },
+//                 {
+//                     $group: {
+//                         _id: null,
+//                         totalGioChuan: { $sum: "$GioChuan" } // Calculate total of GioChuan
+//                     }
+//                 }
+//             ]);
+
+//             if (TaiGiangDayCounts.length > 0) {
+//                 resolve(TaiGiangDayCounts[0].totalGioChuan);
+//             } else {
+//                 resolve(0); // If no matching records, return 0
+//             }
+//         } catch (error) {
+//             reject(error);
+//         }
+//     });
+// };
+const getTongTaiGiangDayFromId = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const TaiGiangDayList = await TaiGiangDay.find({
+                QuanNhanId: id
+            });
+
+            if (!TaiGiangDayList || TaiGiangDayList.length === 0) {
+                resolve(0); // If no matching records, return 0
+            } else {
+                const totalGioChuan = TaiGiangDayList.reduce((total, taiGiangDay) => {
+                    return total + taiGiangDay.GioChuan;
+                }, 0);
+
+                resolve(totalGioChuan);
+            }
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 
 module.exports = {
     createTaiGiangDay,
@@ -250,5 +400,6 @@ module.exports = {
     deleteManyTaiGiangDay,
     getAllType,
     getTaiGiangDayByQuanNhanId,
-    updateHTCVLists
+    updateHTCVLists,
+    getTongTaiGiangDayFromId
 }
