@@ -32,22 +32,34 @@ const createHocVi = (newHocVi) => {
 const updateHocVi = (id, data) => {
     return new Promise(async (resolve, reject) => {
         try {
+            console.log(data.TenHocVi);
             const checkHocVi = await HocVi.findOne({
-                _id: id
+                QuanNhanId: id
             })
             if (checkHocVi === null) {
+                const newHocVi = await HocVi.create({
+                    QuanNhanId:id, 
+                    TenHocVi: data.TenHocVi 
+                })
                 resolve({
-                    status: 'ERR',
-                    message: 'Hoc vi is not defined'
+                    status: 'OK',
+                    message: 'SUCCESS',
+                    data: newHocVi
                 })
             }
-
-            const updatedHocVi = await HocVi.findByIdAndUpdate(id, data, { new: true })
+            else{
+            const updatedHocVi = await HocVi.findOneAndUpdate(
+                { QuanNhanId: id },
+                { $set: data },
+                { new: true }
+            )     
+            
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
                 data: updatedHocVi
             })
+        }
         } catch (e) {
             reject(e)
         }
