@@ -50,7 +50,7 @@ const huongdannckhSchema = new mongoose.Schema(
 
         },
         Tai: {
-            type: String,
+            type: Number,
 
         },
         TrangThai: {

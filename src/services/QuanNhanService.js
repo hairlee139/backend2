@@ -479,6 +479,29 @@ const getAllDoTuoiFromDonVi = (id) => {
         }
     });
 };
+const getAllTaiFromDonVi = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const quanNhans = await QuanNhan.aggregate([
+                {
+                    $match: {
+                        'DonVi': {
+                            $regex: id,
+                            $options: 'i'
+                        }
+                    }
+                }
+            ]);
+            const donViInfo = await DonVi.findOne({ code: id });
+            const soLuongQuanNhan = quanNhans.length;
+            const bienche= donViInfo.bienche;
+            resolve({ soLuongQuanNhan, bienche });
+            // resolve (bienche);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 const updateQuanNhanLists = async (id, departmentlist, leveltitlelist) => {
     try {
       const quanNhan = await QuanNhan.findById(id);
