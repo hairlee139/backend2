@@ -20,8 +20,8 @@ const HuongDanNCKH = require("../models/HuongDanNCKHModel")
 //             const TaiGiangDayList = await TaiGiangDay.find({ QuanNhanId: id });
 //             const TaiHuongDanList = await TaiHuongDan.find({ QuanNhanId: id });
 //             const TaiKhaoThiList = await TaiKhaoThi.find({ QuanNhanId: id });
-            
-           
+
+
 
 //             const BaiBaoList = await BaiBaoKhoaHoc.find({ QuanNhanId: id });
 //             const BienSoanList = await BienSoan.find({ QuanNhanId: id });
@@ -180,7 +180,7 @@ const getTongTaiFromId = (id) => {
                 {
                     $group: {
                         _id: null,
-                        totalSoGioQuyDoiHoiDong: { $sum: "$Tai" }
+                        totalSoGioQuyDoiHoiDong: { $sum: "$SoGioQuyDoi" }
                     }
                 }
             ]);
@@ -204,7 +204,7 @@ const getTongTaiFromId = (id) => {
                 {
                     $group: {
                         _id: null,
-                        totalSoGioChuanHuongDan: { $sum: "$Tai" }
+                        totalSoGioChuanHuongDan: { $sum: "$SoGioChuan" }
                     }
                 }
             ]);
@@ -216,7 +216,7 @@ const getTongTaiFromId = (id) => {
                 {
                     $group: {
                         _id: null,
-                        totalSoGioQuyDoiKhaoThi: { $sum: "$Tai" }
+                        totalSoGioQuyDoiKhaoThi: { $sum: "$SoGioQuyDoi" }
                     }
                 }
             ]);
@@ -321,29 +321,52 @@ const getTongTaiFromId = (id) => {
             const TaiNCKHYeuCau = 300;
             const TongTaiYeuCau = TaiDaoTaoYeuCau + TaiNCKHYeuCau;
 
-            const TaiThucDaoTaoYeuCau = (TaiGiangDayCounts.length > 0 ? TaiGiangDayCounts[0].totalGioChuanGiangDay : 0) + 
-                                        (TaiHuongDanCounts.length > 0 ? TaiHuongDanCounts[0].totalSoGioChuanHuongDan : 0) + 
-                                        (TaiKhaoThiCounts.length > 0 ? TaiKhaoThiCounts[0].totalSoGioQuyDoiKhaoThi : 0) + 
-                                        (TaiHoiDongCounts.length > 0 ? TaiHoiDongCounts[0].totalSoGioQuyDoiHoiDong : 0);
+            const TaiThucDaoTaoYeuCau = (TaiGiangDayCounts.length > 0 ? TaiGiangDayCounts[0].totalGioChuanGiangDay : 0) +
+                (TaiHuongDanCounts.length > 0 ? TaiHuongDanCounts[0].totalSoGioChuanHuongDan : 0) +
+                (TaiKhaoThiCounts.length > 0 ? TaiKhaoThiCounts[0].totalSoGioQuyDoiKhaoThi : 0) +
+                (TaiHoiDongCounts.length > 0 ? TaiHoiDongCounts[0].totalSoGioQuyDoiHoiDong : 0);
 
-            const TaiThucNCKHYeuCau = (BaiBaoCounts.length > 0 ? BaiBaoCounts[0].totalSoGioChuanBaiBao : 0) + 
-                                    (BienSoanCounts.length > 0 ? BienSoanCounts[0].totalSoGioChuanBienSoan : 0) + 
-                                    (SangCheCounts.length > 0 ? SangCheCounts[0].totalSoGioQuyDoiSangChe : 0) + 
-                                    (HopDongCounts.length > 0 ? HopDongCounts[0].totalSoGioQuyDoiHopDong : 0) + 
-                                    (DeTaiCounts.length > 0 ? DeTaiCounts[0].totalGioChuanDeTai : 0) + 
-                                    (HuongDanCounts.length > 0 ? HuongDanCounts[0].totalSoGioChuanHuongDanNCKH : 0) + 
-                                    (GiaiThuongCounts.length > 0 ? GiaiThuongCounts[0].totalSoGioQuyDoiGiaiThuong : 0) + 
-                                    (HoatDongKhacCounts.length > 0 ? HoatDongKhacCounts[0].totalSoGioQuyDoiHoatDongKhac : 0);
+            const TaiThucNCKHYeuCau = (BaiBaoCounts.length > 0 ? BaiBaoCounts[0].totalSoGioChuanBaiBao : 0) +
+                (BienSoanCounts.length > 0 ? BienSoanCounts[0].totalSoGioChuanBienSoan : 0) +
+                (SangCheCounts.length > 0 ? SangCheCounts[0].totalSoGioQuyDoiSangChe : 0) +
+                (HopDongCounts.length > 0 ? HopDongCounts[0].totalSoGioQuyDoiHopDong : 0) +
+                (DeTaiCounts.length > 0 ? DeTaiCounts[0].totalGioChuanDeTai : 0) +
+                (HuongDanCounts.length > 0 ? HuongDanCounts[0].totalSoGioChuanHuongDanNCKH : 0) +
+                (GiaiThuongCounts.length > 0 ? GiaiThuongCounts[0].totalSoGioQuyDoiGiaiThuong : 0) +
+                (HoatDongKhacCounts.length > 0 ? HoatDongKhacCounts[0].totalSoGioQuyDoiHoatDongKhac : 0);
 
+
+            GioChuanGiangDay = (TaiGiangDayCounts.length > 0 ? TaiGiangDayCounts[0].totalGioChuanGiangDay : 0);
+            SoGioChuanHuongDan = (TaiHuongDanCounts.length > 0 ? TaiHuongDanCounts[0].totalSoGioChuanHuongDan : 0);
+            SoGioQuyDoiKhaoThi = (TaiKhaoThiCounts.length > 0 ? TaiKhaoThiCounts[0].totalSoGioQuyDoiKhaoThi : 0);
+            SoGioQuyDoiHoiDong = (TaiHoiDongCounts.length > 0 ? TaiHoiDongCounts[0].totalSoGioQuyDoiHoiDong : 0);
+
+            KetQuaDaoTao = (TaiThucDaoTaoYeuCau / TaiDaoTaoYeuCau) * 100;
+
+            KetQuaNCKH = (TaiThucNCKHYeuCau / TaiNCKHYeuCau) * 100;
             const TongThucTai = TaiThucDaoTaoYeuCau + TaiThucNCKHYeuCau;
 
+            SoGioChuanBaiBao = (BaiBaoCounts.length > 0 ? BaiBaoCounts[0].totalSoGioChuanBaiBao : 0);
+            SoGioChuanBienSoan = (BienSoanCounts.length > 0 ? BienSoanCounts[0].totalSoGioChuanBienSoan : 0);
+            SoGioQuyDoiSangChe = (SangCheCounts.length > 0 ? SangCheCounts[0].totalSoGioQuyDoiSangChe : 0);
+            SoGioQuyDoiHopDong = (HopDongCounts.length > 0 ? HopDongCounts[0].totalSoGioQuyDoiHopDong : 0);
+            GioChuanDeTai = (DeTaiCounts.length > 0 ? DeTaiCounts[0].totalGioChuanDeTai : 0);
+            SoGioChuanHuongDanNCKH = (HuongDanCounts.length > 0 ? HuongDanCounts[0].totalSoGioChuanHuongDanNCKH : 0);
+            SoGioQuyDoiGiaiThuong = (GiaiThuongCounts.length > 0 ? GiaiThuongCounts[0].totalSoGioQuyDoiGiaiThuong : 0);
+            SoGioQuyDoiHoatDongKhac = (HoatDongKhacCounts.length > 0 ? HoatDongKhacCounts[0].totalSoGioQuyDoiHoatDongKhac : 0);
             const totals = {
-                TaiDaoTaoYeuCau, 
-                TaiNCKHYeuCau, 
-                TongTaiYeuCau, 
-                TaiThucDaoTaoYeuCau, 
-                TaiThucNCKHYeuCau, 
-                TongThucTai
+                TaiDaoTaoYeuCau,
+                TaiNCKHYeuCau,
+                TongTaiYeuCau,
+                TaiThucDaoTaoYeuCau,
+                TaiThucNCKHYeuCau,
+                TongThucTai,
+                SoGioChuanHuongDan, GioChuanGiangDay, SoGioQuyDoiKhaoThi, SoGioQuyDoiHoiDong,
+
+                SoGioChuanBaiBao, SoGioChuanBienSoan, SoGioQuyDoiSangChe, SoGioQuyDoiHopDong, GioChuanDeTai,
+                SoGioChuanHuongDanNCKH, SoGioQuyDoiGiaiThuong, SoGioQuyDoiHoatDongKhac,
+
+                KetQuaDaoTao, KetQuaNCKH
             };
 
             resolve(totals);

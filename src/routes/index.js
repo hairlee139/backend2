@@ -108,6 +108,9 @@ const QuaTrinhKyLuat = require('./QuaTrinhKyLuatRouter')
 const DieuChuyenCanBo = require('./QuaTrinhDieuChuyenRouter')
 const QuaTrinhHocVi = require('./QuaTrinhHocViRouter')
 
+const DinhMucChucDanh = require('./DinhMucChucDanhRouter')
+const DinhMucCMKT = require('./DinhMucCMKTRouter')
+const DinhMucMienGiam = require('./DinhMucMienGiamRouter')
 
 const routes = (app) => {
     app.use('/api/user', UserRouter)
@@ -222,6 +225,10 @@ const routes = (app) => {
     app.use('/api/dieuchuyencanbo', DieuChuyenCanBo)
     app.use('/api/thongkehocvi', ThongKeHocVi)
     app.use('/api/thongketai', ThongKeTai)
+
+    app.use('/api/dinhmucchucdanh', DinhMucChucDanh)
+    app.use('/api/dinhmuccmkt', DinhMucCMKT)
+    app.use('/api/dinhmucmiengiam', DinhMucMienGiam)
 }
 
 module.exports = routes
