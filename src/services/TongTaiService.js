@@ -15,21 +15,25 @@ const HuongDanNCKH = require("../models/HuongDanNCKHModel")
 const getTongTaiFromId = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
+            console.log("bd")
             const TaiGiangDayList = await TaiGiangDay.find({ QuanNhanId: id });
+            console.log("1")
             const TaiHuongDanList = await TaiHuongDan.find({ QuanNhanId: id });
+            console.log("2")
             const TaiKhaoThiList = await TaiKhaoThi.find({ QuanNhanId: id });
-
+            console.log("3")
 
             const TaiHoiDongList = await TaiHoiDong.find({ QuanNhanId: id });
+            console.log("4")
 
-            const BaiBaoList = await BaiBaoKhoaHoc.find({ QuanNhanId: id });
-            const BienSoanList = await BienSoan.find({ QuanNhanId: id });
-            const SangCheList = await SangChe.find({ QuanNhanId: id });
-            const HuongDanList = await HuongDanNCKH.find({ QuanNhanId: id });
-            const DeTaiList = await DeTaiNCKH.find({ QuanNhanId: id });
-            const HopDongList = await HopDong.find({ QuanNhanId: id });
-            const GiaiThuongList = await GiaiThuong.find({ QuanNhanId: id });
-            const HoatDongKhacList = await HoatDongNCKhac.find({ QuanNhanId: id });
+            const BaiBaoList = await BaiBaoKhoaHoc.find({ QuanNhanId: id }); console.log("5")
+            const BienSoanList = await BienSoan.find({ QuanNhanId: id }); console.log("6")
+            const SangCheList = await SangChe.find({ QuanNhanId: id }); console.log("7")
+            const HuongDanList = await HuongDanNCKH.find({ QuanNhanId: id }); console.log("7")
+            const DeTaiList = await DeTaiNCKH.find({ QuanNhanId: id }); console.log("8")
+            const HopDongList = await HopDong.find({ QuanNhanId: id }); console.log("9")
+            const GiaiThuongList = await GiaiThuong.find({ QuanNhanId: id }); console.log("10")
+            const HoatDongKhacList = await HoatDongNCKhac.find({ QuanNhanId: id }); console.log("11")
 
             const totalGioChuanGiangDay = TaiGiangDayList.reduce((total, taiGiangDay) => total + taiGiangDay.GioChuan, 0);
             const totalSoGioChuanHuongDan = TaiHuongDanList.reduce((total, taiHuongDan) => total + taiHuongDan.SoGioChuan, 0);

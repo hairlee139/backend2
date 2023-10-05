@@ -26,6 +26,8 @@ const getTongTaiDaoTaoFromId = (id) => {
             const TaiHuongDanList = await TaiHuongDan.find({ QuanNhanId: id });
             const TaiKhaoThiList = await TaiKhaoThi.find({ QuanNhanId: id });
             const TaiHoiDongList = await TaiHoiDong.find({ QuanNhanId: id });
+
+
             const totalGioChuanGiangDay = TaiGiangDayList.reduce((total, taiGiangDay) => total + taiGiangDay.GioChuan, 0);
             const totalSoGioChuanHuongDan = TaiHuongDanList.reduce((total, taiHuongDan) => total + taiHuongDan.SoGioChuan, 0);
             const totalSoGioQuyDoiKhaoThi = TaiKhaoThiList.reduce((total, taiKhaoThi) => total + taiKhaoThi.SoGioQuyDoi, 0);
