@@ -142,7 +142,7 @@ const getDonViCon = async (req, res) => {
             });
         }
 
-        const response = await DonViService.getDonViCon(donvichaid,data);
+        const response = await DonViService.getDonViCon(donvichaid, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -161,7 +161,7 @@ const getDonVifromcode = async (req, res) => {
             });
         }
 
-        const response = await DonViService.getDonVifromcode(donvichaid,data);
+        const response = await DonViService.getDonVifromcode(donvichaid, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -180,7 +180,7 @@ const getDonVifromObjectId = async (req, res) => {
             });
         }
 
-        const response = await DonViService.getDonVifromObjectId(donvichaid,data);
+        const response = await DonViService.getDonVifromObjectId(donvichaid, data);
         const codes = response.data.map(item => item.code);
         return res.status(200).json(codes);
     } catch (error) {
@@ -189,7 +189,7 @@ const getDonVifromObjectId = async (req, res) => {
         });
     }
 };
-const getDonViConWithHocViCounts  = async (req, res) => {
+const getDonViConWithHocViCounts = async (req, res) => {
     try {
         const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
         const data = req.body
@@ -200,7 +200,7 @@ const getDonViConWithHocViCounts  = async (req, res) => {
             });
         }
 
-        const response = await DonViService.getDonViConWithHocViCounts(donvichaid,data);
+        const response = await DonViService.getDonViConWithHocViCounts(donvichaid, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -208,7 +208,8 @@ const getDonViConWithHocViCounts  = async (req, res) => {
         });
     }
 };
-const getDonViConWithQuanHamCounts  = async (req, res) => {
+
+const getDonViConWithQuanHamCounts = async (req, res) => {
     try {
         const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
         const data = req.body
@@ -219,7 +220,7 @@ const getDonViConWithQuanHamCounts  = async (req, res) => {
             });
         }
 
-        const response = await DonViService.getDonViConWithQuanHamCounts(donvichaid,data);
+        const response = await DonViService.getDonViConWithQuanHamCounts(donvichaid, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -227,7 +228,7 @@ const getDonViConWithQuanHamCounts  = async (req, res) => {
         });
     }
 };
-const getDonViConWithDoTuoiCounts  = async (req, res) => {
+const getDonViConWithDoTuoiCounts = async (req, res) => {
     try {
         const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
         const data = req.body
@@ -238,7 +239,7 @@ const getDonViConWithDoTuoiCounts  = async (req, res) => {
             });
         }
 
-        const response = await DonViService.getDonViConWithDoTuoiCounts(donvichaid,data);
+        const response = await DonViService.getDonViConWithDoTuoiCounts(donvichaid, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -246,7 +247,7 @@ const getDonViConWithDoTuoiCounts  = async (req, res) => {
         });
     }
 };
-const getDonViConWithSoLuongCounts  = async (req, res) => {
+const getDonViConWithSoLuongCounts = async (req, res) => {
     try {
         const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
         const data = req.body
@@ -257,7 +258,7 @@ const getDonViConWithSoLuongCounts  = async (req, res) => {
             });
         }
 
-        const response = await DonViService.getDonViConWithSoLuongCounts(donvichaid,data);
+        const response = await DonViService.getDonViConWithSoLuongCounts(donvichaid, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -276,7 +277,7 @@ const getDonViConOnly = async (req, res) => {
             });
         }
 
-        const response = await DonViService.getDonViConOnly(donvichaid,data);
+        const response = await DonViService.getDonViConOnly(donvichaid, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -295,7 +296,7 @@ const getDonViConByTen = async (req, res) => {
             });
         }
 
-        const response = await DonViService.getDonViConByTen(donvichaid,data);
+        const response = await DonViService.getDonViConByTen(donvichaid, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -314,7 +315,7 @@ const getDonViConOnly2 = async (req, res) => {
             });
         }
 
-        const response = await DonViService.getDonViConOnly2(donvichaid,data);
+        const response = await DonViService.getDonViConOnly2(donvichaid, data);
         return res.status(200).json(response);
     } catch (error) {
         return res.status(404).json({
@@ -322,7 +323,25 @@ const getDonViConOnly2 = async (req, res) => {
         });
     }
 };
+const getDonViConWithTaiCounts = async (req, res) => {
+    try {
+        const donvichaid = req.params.id // Lấy donvichaId của user đang đăng nhập từ request
+        const data = req.body
+        if (!donvichaid) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User donvichaid is not defined'
+            });
+        }
 
+        const response = await DonViService.getDonViConWithTaiCounts(donvichaid, data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
 module.exports = {
     createDonVi,
     updateDonVi,
@@ -340,5 +359,6 @@ module.exports = {
     getDonVifromObjectId,
     getDonViConWithSoLuongCounts,
     getDonViConWithQuanHamCounts,
-    getDonViConWithDoTuoiCounts
+    getDonViConWithDoTuoiCounts,
+    getDonViConWithTaiCounts
 }

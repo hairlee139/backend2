@@ -45,8 +45,12 @@ const huongdannckhSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        Tai: {
+        FileCM: {
             type: String,
+
+        },
+        Tai: {
+            type: Number,
 
         },
         TrangThai: {

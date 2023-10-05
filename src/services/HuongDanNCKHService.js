@@ -2,7 +2,7 @@ const HuongDanNCKH = require("../models/HuongDanNCKHModel")
 
 const createHuongDanNCKH = (newHuongDanNCKH) => {
     return new Promise(async (resolve, reject) => {
-        const { HuongDanNCKHId, QuanNhanId, Ten, LoaiDeTai, DonViChuTri, ThoiGianBatDau, ThoiGianDuKienKetThuc, CacSinhVien, PhanLoaiKetQua, HinhThucKhenThuong, NgayNghiemThu, Tai, TrangThai, edituser, edittime, GhiChu } = newHuongDanNCKH
+        const { HuongDanNCKHId, QuanNhanId, Ten, LoaiDeTai, DonViChuTri, ThoiGianBatDau, ThoiGianDuKienKetThuc, CacSinhVien, PhanLoaiKetQua, HinhThucKhenThuong, NgayNghiemThu, FileCM, Tai, TrangThai, edituser, edittime, GhiChu } = newHuongDanNCKH
         try {
             // const checkHuongDanNCKH = await HuongDanNCKH.findOne({
             //     HuongDanNCKHId: HuongDanNCKHId
@@ -14,7 +14,7 @@ const createHuongDanNCKH = (newHuongDanNCKH) => {
             //     })
             // }
             const newHuongDanNCKH = await HuongDanNCKH.create({
-                HuongDanNCKHId, QuanNhanId, Ten, LoaiDeTai, DonViChuTri, ThoiGianBatDau, ThoiGianDuKienKetThuc, CacSinhVien, PhanLoaiKetQua, HinhThucKhenThuong, NgayNghiemThu, Tai, TrangThai, edituser, edittime, GhiChu
+                HuongDanNCKHId, QuanNhanId, Ten, LoaiDeTai, DonViChuTri, ThoiGianBatDau, ThoiGianDuKienKetThuc, CacSinhVien, PhanLoaiKetQua, HinhThucKhenThuong, NgayNghiemThu, FileCM, Tai, TrangThai, edituser, edittime, GhiChu
             })
             if (newHuongDanNCKH) {
                 resolve({
