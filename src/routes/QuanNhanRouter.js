@@ -20,4 +20,6 @@ router.get('/getquannhanmin/:id', QuanNhanController.getQuanNhanFromDonViCon)
 router.post('/pushdata/:id', QuanNhanController.updateQuanNhanLists)
 router.put('/editdata/:_id/:index', QuanNhanController.update2ListsQuanNhan)
 router.delete('/deletedata/:_id/:index', QuanNhanController.delete2ListsQuanNhan)
+router.get('/get-tai/:id', QuanNhanController.getTaiFromDonVi)
+
 module.exports = router

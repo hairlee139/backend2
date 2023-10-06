@@ -294,6 +294,25 @@ const updateQuanNhanLists = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 };
+const getTaiFromDonVi = async (req, res) => {
+    try {
+        const donviId = req.params.id // Lấy QuanNhanId của user đang đăng nhập từ request
+        const data = req.body
+        if (!donviId) {
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'User QuanNhanId is not defined'
+            });
+        }
+
+        const response = await QuanNhanService.getTaiFromDonVi(donviId, data);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(404).json({
+            message: error
+        });
+    }
+};
 module.exports = {
     createQuanNhan,
     updateQuanNhan,
@@ -311,5 +330,6 @@ module.exports = {
     getQuanNhanFromDonViCon,
     updateQuanNhanLists,
     update2ListsQuanNhan,
-    delete2ListsQuanNhan
+    delete2ListsQuanNhan,
+    getTaiFromDonVi
 }

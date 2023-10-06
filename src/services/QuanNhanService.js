@@ -1,5 +1,7 @@
 const QuanNhan = require("../models/QuanNhanModel")
 const DonVi= require("../models/DonViModel")
+const TongTaiService = require('./TongTaiService');
+
 const createQuanNhan = (newQuanNhan) => {
     return new Promise(async (resolve, reject) => {
         const { QuanNhanId, HoTen, NgaySinh, GioiTinh, QueQuan, DiaChi, SoDienThoai, Email, HoatDong, QuanHam, DonVi, LoaiQN } = newQuanNhan
@@ -596,6 +598,45 @@ const delete2ListsQuanNhan = async (_id, index) => {
         };
     }
 };
+const getTaiFromDonVi = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const quanNhan = await QuanNhan.find({
+                DonVi: { $regex: id, $options: 'i' }
+            });
+
+            if (!quanNhan || quanNhan.length === 0) {
+                resolve({
+                    status: 'ERR',
+                    message: 'No quanNhan found'
+                });
+            }
+
+            const quanNhanWithTongTai = [];
+
+            for (let i = 0; i < quanNhan.length; i++) {
+                const quanNhanId = quanNhan[i].QuanNhanId;
+
+                // Gọi service để lấy thông tin Tổng tải
+                const tongTai = await TongTaiService.getTongTaiFromId(quanNhanId);
+
+                // Thêm thông tin Tổng tải vào quân nhân
+                quanNhanWithTongTai.push({
+                    ...quanNhan[i]._doc, // Copy thông tin của quân nhân
+                    tongTai // Thêm thông tin Tổng tải
+                });
+            }
+
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data: quanNhanWithTongTai
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 
 
 module.exports = {
@@ -615,6 +656,7 @@ module.exports = {
     getQuanNhanFromDonViCon,
     updateQuanNhanLists,
     update2ListsQuanNhan,
-    delete2ListsQuanNhan
+    delete2ListsQuanNhan,
+    getTaiFromDonVi
 
 }
