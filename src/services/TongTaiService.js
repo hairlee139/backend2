@@ -346,6 +346,8 @@ const getTongTaiFromId = (id) => {
             KetQuaNCKH = (TaiThucNCKHYeuCau / TaiNCKHYeuCau) * 100;
             const TongThucTai = TaiThucDaoTaoYeuCau + TaiThucNCKHYeuCau;
 
+            const KetQuaTongThuc = (TongThucTai / TongTaiYeuCau) * 100
+
             SoGioChuanBaiBao = (BaiBaoCounts.length > 0 ? BaiBaoCounts[0].totalSoGioChuanBaiBao : 0);
             SoGioChuanBienSoan = (BienSoanCounts.length > 0 ? BienSoanCounts[0].totalSoGioChuanBienSoan : 0);
             SoGioQuyDoiSangChe = (SangCheCounts.length > 0 ? SangCheCounts[0].totalSoGioQuyDoiSangChe : 0);
@@ -366,7 +368,7 @@ const getTongTaiFromId = (id) => {
                 SoGioChuanBaiBao, SoGioChuanBienSoan, SoGioQuyDoiSangChe, SoGioQuyDoiHopDong, GioChuanDeTai,
                 SoGioChuanHuongDanNCKH, SoGioQuyDoiGiaiThuong, SoGioQuyDoiHoatDongKhac,
 
-                KetQuaDaoTao, KetQuaNCKH
+                KetQuaDaoTao, KetQuaNCKH, KetQuaTongThuc
             };
 
             resolve(totals);
