@@ -605,7 +605,7 @@ const getTaiFromDonVi = (id) => {
                 DonVi: { $regex: id, $options: 'i' }
             });
 
-            if (!quanNhan || quanNhan.length === 0) {
+            if (!quanNhan) {
                 resolve({
                     status: 'ERR',
                     message: 'No quanNhan found'
