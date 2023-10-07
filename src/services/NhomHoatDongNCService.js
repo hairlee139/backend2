@@ -2,7 +2,7 @@ const NhomHoatDongNC = require("../models/NhomHoatDongNCModel")
 
 const createNhomHoatDongNC = (newNhomHoatDongNC) => {
     return new Promise(async (resolve, reject) => {
-        const { NhomHoatDongNCId, TenNhomHoatDongNC, lock, lockdate, edituser, edittime, GhiChu } = newNhomHoatDongNC
+        const { NhomHoatDongNCId, TenNhomHoatDongNC, LoaiHoatDong, lock, lockdate, edituser, edittime, GhiChu } = newNhomHoatDongNC
         try {
             // const checkNhomHoatDongNC = await NhomHoatDongNC.findOne({
             //     NhomHoatDongNCId: NhomHoatDongNCId
@@ -14,7 +14,7 @@ const createNhomHoatDongNC = (newNhomHoatDongNC) => {
             //     })
             // }
             const newNhomHoatDongNC = await NhomHoatDongNC.create({
-                NhomHoatDongNCId, TenNhomHoatDongNC, lock, lockdate, edituser, edittime, GhiChu
+                NhomHoatDongNCId, TenNhomHoatDongNC, LoaiHoatDong, lock, lockdate, edituser, edittime, GhiChu
             })
             if (newNhomHoatDongNC) {
                 resolve({
@@ -165,10 +165,24 @@ const getAllNhomHoatDongNC = (limit, page, sort, filter) => {
     })
 }
 
-const getAllType = () => {
+const getAllTypeNhomHoatDong = () => {
     return new Promise(async (resolve, reject) => {
         try {
             const allType = await NhomHoatDongNC.distinct('TenNhomHoatDongNC')
+            resolve({
+                status: 'OK',
+                message: 'Success',
+                data: allType,
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+const getAllTypeLoaiHoatDong = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const allType = await NhomHoatDongNC.distinct('LoaiHoatDong')
             resolve({
                 status: 'OK',
                 message: 'Success',
@@ -212,6 +226,6 @@ module.exports = {
     deleteNhomHoatDongNC,
     getAllNhomHoatDongNC,
     deleteManyNhomHoatDongNC,
-    getAllType,
+    getAllTypeNhomHoatDong, getAllTypeLoaiHoatDong,
     getNhomHoatDongNCByQuanNhanId
 }

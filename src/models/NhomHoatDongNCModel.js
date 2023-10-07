@@ -3,6 +3,7 @@ const nhomhoatdongSchema = new mongoose.Schema(
     {
         NhomHoatDongId: { type: String },
         TenNhomHoatDongNC: { type: String },
+        LoaiHoatDong: { type: String },
         GhiChu: { String },
         edituser: {
             type: String,

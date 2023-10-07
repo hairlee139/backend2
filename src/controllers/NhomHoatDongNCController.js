@@ -2,8 +2,8 @@ const NhomHoatDongNCService = require('../services/NhomHoatDongNCService')
 
 const createNhomHoatDongNC = async (req, res) => {
     try {
-        const { NhomHoatDongNCId, TenNhomHoatDongNC, GhiChu, edituser, edittime, lock, lockdate } = req.body
-        if (!NhomHoatDongNCId || !TenNhomHoatDongNC) {
+        const { NhomHoatDongNCId, TenNhomHoatDongNC, LoaiHoatDong, GhiChu, edituser, edittime, lock, lockdate } = req.body
+        if (!TenNhomHoatDongNC) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
@@ -103,9 +103,9 @@ const getAllNhomHoatDongNC = async (req, res) => {
     }
 }
 
-const getAllType = async (req, res) => {
+const getAllTypeNhomHoatDong = async (req, res) => {
     try {
-        const response = await NhomHoatDongNCService.getAllType()
+        const response = await NhomHoatDongNCService.getAllTypeNhomHoatDong()
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
@@ -113,7 +113,16 @@ const getAllType = async (req, res) => {
         })
     }
 }
-
+const getAllTypeLoaiHoatDong = async (req, res) => {
+    try {
+        const response = await NhomHoatDongNCService.getAllTypeLoaiHoatDong()
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
 module.exports = {
     createNhomHoatDongNC,
     updateNhomHoatDongNC,
@@ -121,5 +130,5 @@ module.exports = {
     deleteNhomHoatDongNC,
     getAllNhomHoatDongNC,
     deleteMany,
-    getAllType
+    getAllTypeNhomHoatDong, getAllTypeLoaiHoatDong
 }

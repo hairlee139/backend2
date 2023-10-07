@@ -2,7 +2,7 @@ const TaiHoiDong = require("../models/TaiHoiDongModel")
 
 const createTaiHoiDong = (newTaiHoiDong) => {
     return new Promise(async (resolve, reject) => {
-        const { TaiHoiDongId, QuanNhanId, CapHoiDong, LoaiHoiDong, VaiTro, ThoiDiem, Quy, Nam, KhoiLuongCongViec, FileCM, SoGioQuyDoi, TrangThai, edituser, edittime, GhiChu } = newTaiHoiDong
+        const { TaiHoiDongId, QuanNhanId, CapHoiDong, TenLoaiHoiDong, VaiTro, ThoiDiem, Quy, Nam, KhoiLuongCongViec, FileCM, SoGioQuyDoi, TrangThai, edituser, edittime, GhiChu } = newTaiHoiDong
         try {
             // const checkTaiHoiDong = await TaiHoiDong.findOne({
             //     TaiHoiDongId: TaiHoiDongId
@@ -14,7 +14,7 @@ const createTaiHoiDong = (newTaiHoiDong) => {
             //     })
             // }
             const newTaiHoiDong = await TaiHoiDong.create({
-                TaiHoiDongId, QuanNhanId, CapHoiDong, LoaiHoiDong, VaiTro, ThoiDiem, Quy, Nam, KhoiLuongCongViec, FileCM, SoGioQuyDoi, TrangThai, edituser, edittime, GhiChu
+                TaiHoiDongId, QuanNhanId, CapHoiDong, TenLoaiHoiDong, VaiTro, ThoiDiem, Quy, Nam, KhoiLuongCongViec, FileCM, SoGioQuyDoi, TrangThai, edituser, edittime, GhiChu
             })
             if (newTaiHoiDong) {
                 resolve({

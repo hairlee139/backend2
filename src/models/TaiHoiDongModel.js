@@ -13,7 +13,7 @@ const taihoidongSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        LoaiHoiDong: {
+        TenLoaiHoiDong: {
             type: String,
 
         },

@@ -168,7 +168,7 @@ const getAllCapHoiDong = (limit, page, sort, filter) => {
 const getAllType = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allType = await CapHoiDong.distinct('TenCapHoiDong')
+            const allType = await CapHoiDong.distinct('CapHoiDong')
             resolve({
                 status: 'OK',
                 message: 'Success',
@@ -196,7 +196,20 @@ const getAllTypeByLoaiHoiDong = (value) => {
         }
     })
 }
-
+const getAllTypeByCapHoiDong = (value) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const allType = await CapHoiDong.distinct('TenCapHoiDong')
+            resolve({
+                status: 'OK',
+                message: 'Success',
+                data: allType,
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 const getCapHoiDongByQuanNhanId = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -231,6 +244,6 @@ module.exports = {
     getAllCapHoiDong,
     deleteManyCapHoiDong,
     getAllType,
-    getAllTypeByLoaiHoiDong,
+    getAllTypeByLoaiHoiDong, getAllTypeByCapHoiDong,
     getCapHoiDongByQuanNhanId
 }

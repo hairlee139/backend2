@@ -3,7 +3,7 @@ const CapHoiDongService = require('../services/CapHoiDongService')
 const createCapHoiDong = async (req, res) => {
     try {
         const { CapHoiDongId, TenCapHoiDong, GhiChu, TenLoaiHoiDong } = req.body
-        if (!CapHoiDongId || !TenCapHoiDong) {
+        if (!CapHoiDongId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
@@ -124,7 +124,16 @@ const getAllTypeByLoaiHoiDong = async (req, res) => {
         })
     }
 }
-
+const getAllTypeByCapHoiDong = async (req, res) => {
+    try {
+        const response = await CapHoiDongService.getAllTypeByCapHoiDong()
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
 module.exports = {
     createCapHoiDong,
     updateCapHoiDong,
@@ -133,5 +142,6 @@ module.exports = {
     getAllCapHoiDong,
     deleteMany,
     getAllType,
-    getAllTypeByLoaiHoiDong
+    getAllTypeByLoaiHoiDong,
+    getAllTypeByCapHoiDong
 }

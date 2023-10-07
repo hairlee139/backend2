@@ -11,4 +11,5 @@ router.get('/get-all', CapHoiDongController.getAllCapHoiDong)
 router.post('/delete-many', authMiddleWare, CapHoiDongController.deleteMany)
 router.get('/get-all-type', CapHoiDongController.getAllType)
 router.get('/get-all-typeloai', CapHoiDongController.getAllTypeByLoaiHoiDong)
+router.get('/get-all-typecap', CapHoiDongController.getAllTypeByCapHoiDong)
 module.exports = router
