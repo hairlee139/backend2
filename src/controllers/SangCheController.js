@@ -2,7 +2,7 @@ const SangCheService = require('../services/SangCheService')
 
 const createSangChe = async (req, res) => {
     try {
-        const { SangCheId, QuanNhanId, TenSangChe, LoaiDangKy, DonViCap, NhomNghienCuu, ThoiDiemDangKy, SoTacGia, CacTacGia, Quy, Nam, FileCM, Tai, TrangThai, CacHTCV, edituser, edittime, GhiChu } = req.body
+        const { SangCheId, QuanNhanId, TenSangChe, TenLoaiDangKy, DonViCap, NhomNghienCuu, ThoiDiemDangKy, SoTacGia, CacTacGia, Quy, Nam, FileCM, Tai, TrangThai, CacHTCV, edituser, edittime, GhiChu } = req.body
         if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',

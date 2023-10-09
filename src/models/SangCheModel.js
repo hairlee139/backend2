@@ -13,9 +13,9 @@ const sangcheSchema = new mongoose.Schema(
             type: String,
 
         },
-        LoaiDangKy: {
+        TenLoaiDangKy: {
             type: String,
-            required: true,
+            //   required: true,
 
         },
         DonViCap: {

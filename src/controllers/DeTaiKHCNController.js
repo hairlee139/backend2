@@ -2,7 +2,7 @@ const DeTaiNCKHService = require('../services/DeTaiNCKHService')
 
 const createDeTaiNCKH = async (req, res) => {
     try {
-        const { DeTaiNCKHId, QuanNhanId, LoaiDeTai, MaDeTai, TenDeTai, HinhThucKhenThuong, KinhPhi, CNDeTai, DonViChuTri, ThoiGianDuKienKT, ThoiGianBatDau, GiaHanLan1, GiaHanLan2, SoThanhVien, CacThanhVien, HinhThucDeTai, ThuocCTDuAn, NgayNghiemThu, MoTaKetThuc, QLDVHV, FileCM, Tai, TrangThai, PhanLoaiKetQua, CacHTCV, edituser, edittime, GhiChu } = req.body
+        const { DeTaiNCKHId, QuanNhanId, LoaiDeTai, MaDeTai, TenDeTai, TenDanhMucKhenThuong, KinhPhi, CNDeTai, DonViChuTri, ThoiGianDuKienKT, ThoiGianBatDau, GiaHanLan1, GiaHanLan2, SoThanhVien, CacThanhVien, HinhThucDeTai, ThuocCTDuAn, NgayNghiemThu, MoTaKetThuc, QLDVHV, FileCM, Tai, TrangThai, PhanLoaiKetQua, CacHTCV, edituser, edittime, GhiChu } = req.body
         if (!QuanNhanId) {
             return res.status(200).json({
                 status: 'ERR',

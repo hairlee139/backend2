@@ -25,9 +25,9 @@ const taikhaothiSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        HinhThucKhaoThi: {
+        TenHinhThucKhaoThi: {
             type: String,
-            required: true,
+            // required: true,
         },
         MaLopHocPhan: {
             type: String,

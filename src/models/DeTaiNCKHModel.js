@@ -22,9 +22,9 @@ const detainckhSchema = new mongoose.Schema(
 
 
         },
-        HinhThucKhenThuong: {
+        TenDanhMucKhenThuong: {
             type: String,
-            required: true,
+            // required: true,
 
         },
         KinhPhi: {

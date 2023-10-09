@@ -2,7 +2,7 @@ const TaiKhaoThi = require("../models/TaiKhaoThiModel")
 
 const createTaiKhaoThi = (newTaiKhaoThi) => {
     return new Promise(async (resolve, reject) => {
-        const { TaiKhaoThiId, QuanNhanId, ThoiDiem, Quy, Nam, HocKy, HinhThucKhaoThi, MaLopHocPhan, MonHoc, KhoiLuongCongViec, FileCM, SoGioQuyDoi, TrangThai, edituser, edittime, GhiChu } = newTaiKhaoThi
+        const { TaiKhaoThiId, QuanNhanId, ThoiDiem, Quy, Nam, HocKy, TenHinhThucKhaoThi, MaLopHocPhan, MonHoc, KhoiLuongCongViec, FileCM, SoGioQuyDoi, TrangThai, edituser, edittime, GhiChu } = newTaiKhaoThi
         try {
             // const checkTaiKhaoThi = await TaiKhaoThi.findOne({
             //     TaiKhaoThiId: TaiKhaoThiId
@@ -14,7 +14,7 @@ const createTaiKhaoThi = (newTaiKhaoThi) => {
             //     })
             // }
             const newTaiKhaoThi = await TaiKhaoThi.create({
-                TaiKhaoThiId, QuanNhanId, ThoiDiem, Quy, Nam, HocKy, HinhThucKhaoThi, MaLopHocPhan, MonHoc, KhoiLuongCongViec, FileCM, SoGioQuyDoi, TrangThai, edituser, edittime, GhiChu
+                TaiKhaoThiId, QuanNhanId, ThoiDiem, Quy, Nam, HocKy, TenHinhThucKhaoThi, MaLopHocPhan, MonHoc, KhoiLuongCongViec, FileCM, SoGioQuyDoi, TrangThai, edituser, edittime, GhiChu
             })
             if (newTaiKhaoThi) {
                 resolve({

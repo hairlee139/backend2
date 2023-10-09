@@ -2,7 +2,7 @@ const DeTaiNCKH = require("../models/DeTaiNCKHModel")
 
 const createDeTaiNCKH = (newDeTaiNCKH) => {
     return new Promise(async (resolve, reject) => {
-        const { DeTaiNCKHId, QuanNhanId, LoaiDeTai, MaDeTai, TenDeTai, HinhThucKhenThuong, KinhPhi, CNDeTai, DonViChuTri, ThoiGianDuKienKT, ThoiGianBatDau, GiaHanLan1, GiaHanLan2, SoThanhVien, CacThanhVien, HinhThucDeTai, ThuocCTDuAn, NgayNghiemThu, MoTaKetThuc, QLDVHV, FileCM, Tai, TrangThai, PhanLoaiKetQua, CacHTCV, edituser, edittime, GhiChu } = newDeTaiNCKH
+        const { DeTaiNCKHId, QuanNhanId, LoaiDeTai, MaDeTai, TenDeTai, TenDanhMucKhenThuong, KinhPhi, CNDeTai, DonViChuTri, ThoiGianDuKienKT, ThoiGianBatDau, GiaHanLan1, GiaHanLan2, SoThanhVien, CacThanhVien, HinhThucDeTai, ThuocCTDuAn, NgayNghiemThu, MoTaKetThuc, QLDVHV, FileCM, Tai, TrangThai, PhanLoaiKetQua, CacHTCV, edituser, edittime, GhiChu } = newDeTaiNCKH
         try {
             const checkDeTaiNCKH = await DeTaiNCKH.findOne({
                 MaDeTai: MaDeTai
@@ -16,7 +16,7 @@ const createDeTaiNCKH = (newDeTaiNCKH) => {
             }
             else {
                 const newDeTaiNCKH = await DeTaiNCKH.create({
-                    DeTaiNCKHId, QuanNhanId, LoaiDeTai, MaDeTai, TenDeTai, HinhThucKhenThuong, KinhPhi, CNDeTai, DonViChuTri, ThoiGianDuKienKT, ThoiGianBatDau, GiaHanLan1, GiaHanLan2, SoThanhVien, CacThanhVien, HinhThucDeTai, ThuocCTDuAn, NgayNghiemThu, MoTaKetThuc, QLDVHV, FileCM, Tai, TrangThai, PhanLoaiKetQua, CacHTCV, edituser, edittime, GhiChu
+                    DeTaiNCKHId, QuanNhanId, LoaiDeTai, MaDeTai, TenDeTai, TenDanhMucKhenThuong, KinhPhi, CNDeTai, DonViChuTri, ThoiGianDuKienKT, ThoiGianBatDau, GiaHanLan1, GiaHanLan2, SoThanhVien, CacThanhVien, HinhThucDeTai, ThuocCTDuAn, NgayNghiemThu, MoTaKetThuc, QLDVHV, FileCM, Tai, TrangThai, PhanLoaiKetQua, CacHTCV, edituser, edittime, GhiChu
                 })
                 if (newDeTaiNCKH) {
                     resolve({

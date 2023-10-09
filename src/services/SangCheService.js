@@ -2,7 +2,7 @@ const SangChe = require("../models/SangCheModel")
 
 const createSangChe = (newSangChe) => {
     return new Promise(async (resolve, reject) => {
-        const { SangCheId, QuanNhanId, TenSangChe, LoaiDangKy, DonViCap, NhomNghienCuu, ThoiDiemDangKy, SoTacGia, CacTacGia, Quy, Nam, FileCM, Tai, TrangThai, CacHTCV, edituser, edittime, GhiChu } = newSangChe
+        const { SangCheId, QuanNhanId, TenSangChe, TenLoaiDangKy, DonViCap, NhomNghienCuu, ThoiDiemDangKy, SoTacGia, CacTacGia, Quy, Nam, FileCM, Tai, TrangThai, CacHTCV, edituser, edittime, GhiChu } = newSangChe
         try {
             const checkSangChe = await SangChe.findOne({
                 TenSangChe: TenSangChe,
@@ -16,7 +16,7 @@ const createSangChe = (newSangChe) => {
             }
             else {
                 const newSangChe = await SangChe.create({
-                    SangCheId, QuanNhanId, TenSangChe, LoaiDangKy, DonViCap, NhomNghienCuu, ThoiDiemDangKy, SoTacGia, CacTacGia, Quy, Nam, FileCM, Tai, TrangThai, CacHTCV, edituser, edittime, GhiChu
+                    SangCheId, QuanNhanId, TenSangChe, TenLoaiDangKy, DonViCap, NhomNghienCuu, ThoiDiemDangKy, SoTacGia, CacTacGia, Quy, Nam, FileCM, Tai, TrangThai, CacHTCV, edituser, edittime, GhiChu
                 })
                 if (newSangChe) {
                     resolve({
