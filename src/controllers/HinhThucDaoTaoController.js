@@ -58,6 +58,7 @@ const getDetailsHinhThucDaoTao = async (req, res) => {
 const deleteHinhThucDaoTao = async (req, res) => {
     try {
         const hinhthucdaotaoId = req.params.id
+        console.log(hinhthucdaotaoId)
         if (!hinhthucdaotaoId) {
             return res.status(200).json({
                 status: 'ERR',

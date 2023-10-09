@@ -59,7 +59,9 @@ const deleteHinhThucDaoTao = (id) => {
         try {
             const checkHinhThucDaoTao = await HinhThucDaoTao.findOne({
                 _id: id
+
             })
+            console(_id, id)
             if (checkHinhThucDaoTao === null) {
                 resolve({
                     status: 'ERR',
